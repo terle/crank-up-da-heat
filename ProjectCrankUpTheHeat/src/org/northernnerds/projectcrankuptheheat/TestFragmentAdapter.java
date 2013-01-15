@@ -20,8 +20,12 @@ class TestFragmentAdapter extends FragmentPagerAdapter implements
 
 	@Override
 	public Fragment getItem(int position) {
-//		return TestFragment.newInstance(CONTENT[position % CONTENT.length]);
-		return new ThermostatFragment();
+		switch (position) {
+		case 0:
+			return new ThermostatFragment();
+		default:
+			return TestFragment.newInstance(CONTENT[position % CONTENT.length]);
+		}
 	}
 
 	@Override

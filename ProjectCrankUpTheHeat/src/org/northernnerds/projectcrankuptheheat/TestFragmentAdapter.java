@@ -23,6 +23,8 @@ class TestFragmentAdapter extends FragmentPagerAdapter implements
 		switch (position) {
 		case 0:
 			return new ThermostatFragment();
+		case 1:
+			return new ThermometerFragment();
 		default:
 			return TestFragment.newInstance(CONTENT[position % CONTENT.length]);
 		}

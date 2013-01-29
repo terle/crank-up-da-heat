@@ -18,7 +18,8 @@
     <SeekBar
         android:id="@+id/seekBar2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:rotation="270" />
 
     <TextView
         android:id="@+id/textView2"

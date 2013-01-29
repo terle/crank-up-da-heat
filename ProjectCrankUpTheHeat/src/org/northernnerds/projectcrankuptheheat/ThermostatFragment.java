@@ -24,19 +24,19 @@ public class ThermostatFragment extends SherlockFragment {
 	private String mContent = "???";
 	private TextView textViewTempGauge;
 	//Integers for the angles of the degrees on thermostat.
-		private int temp00 = -120;
-		private int temp08 = -90;
-		private int temp10 = -60;
-		private int temp16 = -20;
-		private int temp17 = 0;
-		private int temp18 = 20;
-		private int temp19  = 40;
-		private int temp20 = 60 ;
-		private int temp21 = 80;
-		private int temp22 = 100;
-		private int temp23  = 120;
-		private int temp24 = 140;
-	
+	private int temp00 = -120;
+	private int temp08 = -90;
+	private int temp10 = -60;
+	private int temp16 = -20;
+	private int temp17 = 0;
+	private int temp18 = 20;
+	private int temp19  = 40;
+	private int temp20 = 60 ;
+	private int temp21 = 80;
+	private int temp22 = 100;
+	private int temp23  = 120;
+	private int temp24 = 140;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,10 +54,10 @@ public class ThermostatFragment extends SherlockFragment {
 		layout.setGravity(Gravity.CENTER);
 		layout.addView(rotate);
 		//TODO: Move this TExtview to the center of the thermostat, and change font.
-				textViewTempGauge = new TextView(getActivity());
-				textViewTempGauge.setText("Fuck Asier");
+		textViewTempGauge = new TextView(getActivity());
+		textViewTempGauge.setText("Fuck Asier");
 
-				layout.addView(textViewTempGauge);
+		layout.addView(textViewTempGauge);
 
 		return layout;
 	}
@@ -105,7 +105,7 @@ public class ThermostatFragment extends SherlockFragment {
 		@Override
 		public boolean onTouchEvent(MotionEvent event) {
 			System.out
-					.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
+			.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
 
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
@@ -261,4 +261,4 @@ public class ThermostatFragment extends SherlockFragment {
 			}		
 		}
 	}
-	}
+}

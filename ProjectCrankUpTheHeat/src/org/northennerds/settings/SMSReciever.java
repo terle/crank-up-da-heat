@@ -23,6 +23,7 @@ public class SMSReciever extends BroadcastReceiver {
 			//Hvis det er den sms vi gerne vil ha fat i...
 			if(messages.getOriginatingAddress().contains(MainActivity.devicePhoneNum)){
 				this.abortBroadcast();
+				//TODO: Håndtér svaret
 			}
 
 			//		Log.i(TAG, messages.getMessageBody());

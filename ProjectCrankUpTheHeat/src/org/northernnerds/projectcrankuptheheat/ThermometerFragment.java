@@ -1,9 +1,13 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northennerds.settings.SMSHandler;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,10 +15,11 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class ThermometerFragment extends SherlockFragment implements OnSeekBarChangeListener {
+public class ThermometerFragment extends SherlockFragment implements OnSeekBarChangeListener, OnClickListener{
 	private SeekBar seekbarMin, seekbarMax;
 	private TextView counterMin, counterMax;
 	private int minTemp, maxTemp;
+	private Button sendButt;
 	
 	
 	@Override
@@ -38,6 +43,8 @@ public class ThermometerFragment extends SherlockFragment implements OnSeekBarCh
 		
 		inflatedView.setRotation(270);
 		
+		sendButt = (Button) inflatedView.findViewById(R.id.button1);
+		sendButt.setOnClickListener(this);
 		return inflatedView;
 	}
 
@@ -66,5 +73,12 @@ public class ThermometerFragment extends SherlockFragment implements OnSeekBarCh
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		Toast.makeText(getSherlockActivity(), "Stopped tracking...", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onClick(View v) {
+		SMSHandler handler = new SMSHandler();
+		handler.SendSMS();
+		
 	}
 }

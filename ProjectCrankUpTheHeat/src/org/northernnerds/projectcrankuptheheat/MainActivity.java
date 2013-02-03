@@ -1,12 +1,9 @@
 package org.northernnerds.projectcrankuptheheat;
 
-import android.graphics.Color;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -38,42 +35,17 @@ public class MainActivity extends SlidingFragmentActivity {
 	public static int coolingTemp = 30;
 	public static String GSMbat = "100%";
 	public static String GSMSignal ="(1-5):3";
+	private ThermostatView thermostat;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// Setting main contentview.
-		FrameLayout mainLayout = (FrameLayout) getLayoutInflater().inflate(
-				R.layout.activity_main, null);
-		ThermostatView thermostat = new ThermostatView(this);
-
-		thermostat.setLayoutParams(new FrameLayout.LayoutParams(
-				FrameLayout.LayoutParams.WRAP_CONTENT,
-				FrameLayout.LayoutParams.WRAP_CONTENT));
-//		thermostat.setBackgroundColor(Color.GRAY);
-		// RelativeLayout.LayoutParams layoutParams =
-		// (RelativeLayout.LayoutParams)thermostat.getLayoutParams();
-		// layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, 0);
-
-		// mainLayout.setGravity(Gravity.CENTER);
-		mainLayout.addView(thermostat);
-
-		TextView tempTextView = new TextView(this);
-		tempTextView.setText("TEMP!");
-		tempTextView.setLayoutParams(new FrameLayout.LayoutParams(
-				FrameLayout.LayoutParams.WRAP_CONTENT,
-				FrameLayout.LayoutParams.WRAP_CONTENT));
-		tempTextView.setBackgroundColor(Color.GREEN);
-		
-		mainLayout.addView(tempTextView);
-
-		mainLayout.setForegroundGravity(Gravity.CENTER);
-		
-		setContentView(mainLayout);
+		setContentView(R.layout.activity_main);
 
 		// Setting the behind view
-		setBehindContentView(R.layout.behind);
+		setBehindContentView(R.layout.menu_layout);
 
 		// Setting up the Sliding Menu.
 		final SlidingMenu menu = getSlidingMenu();
@@ -83,17 +55,13 @@ public class MainActivity extends SlidingFragmentActivity {
 		menu.setShadowDrawable(R.drawable.defaultshadow);
 		menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		menu.setFadeDegree(0.35f);
-
-		// Set the pager with an adapter
-		// ViewPager pager = (ViewPager) findViewById(R.id.pager);
-		// pager.setAdapter(new
-		// TestFragmentAdapter(getSupportFragmentManager()));
-		//
-		// // Bind the title indicator to the adapter
-		// TitlePageIndicator titlePageIndicator = (TitlePageIndicator)
-		// findViewById(R.id.indicator);
-		// titlePageIndicator.setViewPager(pager);
-
+		
+		// Overriding the behindContentView with a fragment.
+		getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.menu_frame, new SettingsFragment())
+		.commit();
+		
 		getSupportActionBar().setHomeButtonEnabled(true);
 	}
 

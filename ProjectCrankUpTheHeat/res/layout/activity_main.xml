@@ -1,7 +1,41 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/bg_kold"
+    android:gravity="bottom"
     android:orientation="vertical" >
-    
-</FrameLayout>
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/afbryd_ikon"
+        android:text="Afbryd" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cancelButton"
+        android:layout_alignBottom="@+id/cancelButton"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/send_ikon"
+        android:text="Send" />
+
+    <org.northernnerds.projectcrankuptheheat.ThermostatView
+        android:id="@+id/thermostatView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/thermo1" />
+
+</RelativeLayout>

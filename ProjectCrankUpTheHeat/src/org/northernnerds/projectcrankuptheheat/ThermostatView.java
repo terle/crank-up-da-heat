@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +39,10 @@ public class ThermostatView extends ImageView {
 
 	public ThermostatView(Context context) {
 		super(context);
+	}
+
+	public ThermostatView(Context context, AttributeSet attributeSet) {
+		super(context, attributeSet);
 
 		paint = new Paint();
 		paint.setColor(Color.WHITE);
@@ -45,10 +50,10 @@ public class ThermostatView extends ImageView {
 		paint.setStyle(Style.STROKE);
 
 		this.setBackgroundResource(R.drawable.thermo2);
-				
+
 		textViewTempGauge = new TextView(context);
 		textViewTempGauge.setText("Fuck Asier");
-		
+
 		this.setImageResource(R.drawable.thermo1);
 	}
 
@@ -70,7 +75,8 @@ public class ThermostatView extends ImageView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		System.out.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
+		System.out
+				.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 

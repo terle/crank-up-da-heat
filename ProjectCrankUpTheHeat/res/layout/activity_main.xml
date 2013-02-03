@@ -14,6 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
+        android:background="@drawable/cancel_button_drawable"
         android:drawablePadding="10dp"
         android:drawableRight="@drawable/afbryd_ikon"
         android:text="Afbryd" />
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/cancelButton"
         android:layout_alignBottom="@+id/cancelButton"
+        android:background="@drawable/accept_button_drawable"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:drawablePadding="10dp"
@@ -37,5 +39,41 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:src="@drawable/thermo1" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thermostatView1"
+        android:layout_centerHorizontal="true"
+        android:text="ToggleButton" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/cancelButton"
+        android:layout_alignTop="@+id/toggleButton1"
+        android:layout_marginRight="42dp"
+        android:src="@drawable/varme_ikon" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sendButton"
+        android:layout_alignTop="@+id/toggleButton1"
+        android:layout_marginLeft="28dp"
+        android:src="@drawable/kulde_ikon" />
+
+    <TextView
+        android:id="@+id/temperatureTextView"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="24" />
 
 </RelativeLayout>

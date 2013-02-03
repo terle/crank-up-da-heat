@@ -1,9 +1,9 @@
 package org.northernnerds.projectcrankuptheheat;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -36,6 +36,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	public static String GSMbat = "100%";
 	public static String GSMSignal ="(1-5):3";
 	private ThermostatView thermostat;
+	private TextView tempTextView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,11 @@ public class MainActivity extends SlidingFragmentActivity {
 		// Setting the behind view
 		setBehindContentView(R.layout.menu_layout);
 
+		tempTextView = (TextView) findViewById(R.id.temperatureTextView);
+		Typeface roboto = Typeface.createFromAsset(getAssets(), "Roboto-Bold.ttf");
+		tempTextView.setTypeface(roboto);
+		tempTextView.setTextSize(98);
+		
 		// Setting up the Sliding Menu.
 		final SlidingMenu menu = getSlidingMenu();
 		menu.setMode(SlidingMenu.LEFT);

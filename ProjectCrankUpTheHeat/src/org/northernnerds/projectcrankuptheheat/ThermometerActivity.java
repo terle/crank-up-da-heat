@@ -79,7 +79,8 @@ public class ThermometerActivity extends SherlockActivity implements
 	@Override
 	public void onClick(View v) {
 		SMSHandler handler = new SMSHandler();
-		handler.SendSMS();
+//		handler.SendSMS();
+		Toast.makeText(this, "Should send sms here to unit!", Toast.LENGTH_LONG).show();
 
 	}
 }

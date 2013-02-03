@@ -49,13 +49,15 @@ public class ThermostatFragment extends SherlockFragment {
 		rotate = new Rotate(getActivity());
 
 		LinearLayout layout = new LinearLayout(getActivity());
-		layout.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-				LayoutParams.FILL_PARENT));
+		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT));
 		layout.setGravity(Gravity.CENTER);
 		layout.addView(rotate);
 		//TODO: Move this TExtview to the center of the thermostat, and change font.
 		textViewTempGauge = new TextView(getActivity());
 		textViewTempGauge.setText("Fuck Asier");
+		
+		textViewTempGauge.setGravity(Gravity.CENTER);
 
 		layout.addView(textViewTempGauge);
 

@@ -1,34 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical" >
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center|center_vertical"
-        android:orientation="vertical" >
+    <TextView
+        android:id="@+id/textViewMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewMax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/textViewMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
-        <TextView
-            android:id="@+id/textViewMin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+    <SeekBar
+        android:id="@+id/seekBarMax"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:max="24"
+        android:progress="22" />
 
-        <SeekBar
-            android:id="@+id/seekBarMax"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:max="24"
-            android:progress="22"/>
+    <SeekBar
+        android:id="@+id/seekBarMin"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        android:max="24"
+        android:progress="18" />
 
-        <SeekBar
-            android:id="@+id/seekBarMin"
-            android:layout_width="306dp"
-            android:layout_height="wrap_content"
-            android:max="24"
-            android:progress="18" />
-
-    </LinearLayout>
+</LinearLayout>

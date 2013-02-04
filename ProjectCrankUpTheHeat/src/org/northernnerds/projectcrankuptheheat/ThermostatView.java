@@ -50,10 +50,6 @@ public class ThermostatView extends ImageView {
 		paint.setStyle(Style.STROKE);
 
 		this.setBackgroundResource(R.drawable.thermo2);
-
-		textViewTempGauge = new TextView(context);
-		textViewTempGauge.setText("Fuck Asier");
-
 		this.setImageResource(R.drawable.thermo1);
 	}
 
@@ -112,10 +108,12 @@ public class ThermostatView extends ImageView {
 		}
 		return true;
 	}
+	
+	public void setTempTextView(TextView tempTextView) {
+		this.textViewTempGauge = tempTextView;
+	}
 
 	private void updateRotation(float newX2, float newY2) {
-		// TODO Auto-generated method stub
-
 		thermostatAngle = (int) Math.toDegrees(Math.atan2(newY, newX)) - 90;
 
 		setDirection(thermostatAngle);
@@ -125,100 +123,100 @@ public class ThermostatView extends ImageView {
 		if (currentAngle > temp00 && currentAngle < temp08) {
 			if (currentAngle >= (Math.abs(temp00) + Math.abs(temp08)) / 2) {
 				setDirection(temp08);
-				textViewTempGauge.setText("08°");
+				textViewTempGauge.setText("08");
 			} else {
 				setDirection(temp00);
-				textViewTempGauge.setText("00°");
+				textViewTempGauge.setText("00");
 			}
 		}
 		if (currentAngle > temp08 && currentAngle < temp10) {
 			if (currentAngle >= (Math.abs(temp08) + Math.abs(temp10)) / 2) {
 				setDirection(temp10);
-				textViewTempGauge.setText("10°");
+				textViewTempGauge.setText("10");
 			} else {
 				setDirection(temp08);
-				textViewTempGauge.setText("08°");
+				textViewTempGauge.setText("08");
 			}
 		}
 		if (currentAngle > temp10 && currentAngle < temp16) {
 			if (currentAngle >= (Math.abs(temp10) + Math.abs(temp16)) / 2) {
 				setDirection(temp16);
-				textViewTempGauge.setText("16°");
+				textViewTempGauge.setText("16");
 			} else {
 				setDirection(temp10);
-				textViewTempGauge.setText("10°");
+				textViewTempGauge.setText("10");
 			}
 		}
 		if (currentAngle > temp16 && currentAngle < temp17) {
 			if (currentAngle >= (Math.abs(temp16) + Math.abs(temp17)) / 2) {
 				setDirection(temp17);
-				textViewTempGauge.setText("17°");
+				textViewTempGauge.setText("17");
 			} else {
 				setDirection(temp16);
-				textViewTempGauge.setText("16°");
+				textViewTempGauge.setText("16");
 			}
 		}
 		if (currentAngle > temp17 && currentAngle < temp18) {
 			if (currentAngle >= (Math.abs(temp17) + Math.abs(temp18)) / 2) {
 				setDirection(temp18);
-				textViewTempGauge.setText("18°");
+				textViewTempGauge.setText("18");
 			} else {
 				setDirection(temp17);
-				textViewTempGauge.setText("17°");
+				textViewTempGauge.setText("17");
 			}
 		}
 		if (currentAngle > temp18 && currentAngle < temp19) {
 			if (currentAngle >= (Math.abs(temp18) + Math.abs(temp19)) / 2) {
 				setDirection(temp19);
-				textViewTempGauge.setText("19°");
+				textViewTempGauge.setText("19");
 			} else {
 				setDirection(temp18);
-				textViewTempGauge.setText("18°");
+				textViewTempGauge.setText("18");
 			}
 		}
 		if (currentAngle > temp19 && currentAngle < temp20) {
 			if (currentAngle >= (Math.abs(temp19) + Math.abs(temp20)) / 2) {
 				setDirection(temp20);
-				textViewTempGauge.setText("20°");
+				textViewTempGauge.setText("20");
 			} else {
 				setDirection(temp19);
-				textViewTempGauge.setText("19°");
+				textViewTempGauge.setText("19");
 			}
 		}
 		if (currentAngle > temp20 && currentAngle < temp21) {
 			if (currentAngle >= (Math.abs(temp20) + Math.abs(temp21)) / 2) {
 				setDirection(temp21);
-				textViewTempGauge.setText("21°");
+				textViewTempGauge.setText("21");
 			} else {
 				setDirection(temp20);
-				textViewTempGauge.setText("20°");
+				textViewTempGauge.setText("20");
 			}
 		}
 		if (currentAngle > temp21 && currentAngle < temp22) {
 			if (currentAngle >= (Math.abs(temp21) + Math.abs(temp22)) / 2) {
 				setDirection(temp22);
-				textViewTempGauge.setText("22°");
+				textViewTempGauge.setText("22");
 			} else {
 				setDirection(temp21);
-				textViewTempGauge.setText("21°");
+				textViewTempGauge.setText("21");
 			}
 		}
 		if (currentAngle > temp22 && currentAngle < temp23) {
 			if (currentAngle >= (Math.abs(temp22) + Math.abs(temp23)) / 2) {
 				setDirection(temp23);
-				textViewTempGauge.setText("23°");
+				textViewTempGauge.setText("23");
 			} else {
 				setDirection(temp22);
-				textViewTempGauge.setText("22°");
+				textViewTempGauge.setText("22");
 			}
 		}
 		if (currentAngle > temp23 && currentAngle < temp24) {
 			if (currentAngle >= (Math.abs(temp23) + Math.abs(temp24)) / 2) {
 				setDirection(temp24);
-				textViewTempGauge.setText("24°");
+				textViewTempGauge.setText("24");
 			} else
 				setDirection(temp23);
-			textViewTempGauge.setText("23°");
+			textViewTempGauge.setText("23");
 		}
 	}
 }

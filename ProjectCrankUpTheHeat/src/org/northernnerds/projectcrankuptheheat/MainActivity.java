@@ -53,6 +53,9 @@ public class MainActivity extends SlidingFragmentActivity {
 		tempTextView.setTypeface(roboto);
 		tempTextView.setTextSize(98);
 		
+		thermostat = (ThermostatView) findViewById(R.id.thermostatView1);
+		thermostat.setTempTextView(tempTextView);
+		
 		// Setting up the Sliding Menu.
 		final SlidingMenu menu = getSlidingMenu();
 		menu.setMode(SlidingMenu.LEFT);

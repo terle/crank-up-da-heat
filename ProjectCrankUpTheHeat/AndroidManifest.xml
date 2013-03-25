@@ -16,7 +16,6 @@
         android:label="@string/app_name"
         android:logo="@drawable/new_indicator"
         android:theme="@style/Theme.Sherlock" >
-        
         <activity
             android:name="org.northernnerds.projectcrankuptheheat.MainActivity"
             android:label="@string/app_name" >

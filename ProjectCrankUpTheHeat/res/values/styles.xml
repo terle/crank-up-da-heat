@@ -19,7 +19,10 @@
             backward-compatibility can go here.
         -->
     </style>
-
+        <!-- line added without any though by TEBR. Dunno why it works -->
+<style name="Theme.Sherlock" parent="android:Theme.Holo"></style>
+    
+    
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
@@ -27,7 +30,7 @@
     
     <style name="SherlockThemeCustomized" parent="android:Theme.Holo.Light">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="homeAsUpIndicator">@drawable/new_indicator</item>
+        <!-- <item name="homeAsUpIndicator">@drawable/new_indicator</item>  -->
         <item name="android:homeAsUpIndicator">@drawable/new_indicator</item>
     </style>
 

@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -69,8 +70,9 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 		thermostat.setOnTouchListener(this);
 		
 		buttonLayout = (LinearLayout) findViewById(R.id.sendCancelButtonLayout);
-		buttonLayout.setAlpha(0);
 		
+		sendButton = (Button) findViewById(R.id.sendButton);
+		sendButton.setOnClickListener(this);
 		cancelButton = (Button) findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(this);
 		
@@ -156,17 +158,34 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_UP) {
-			if(buttonLayout.getAlpha() == 0) {
+			if(buttonLayout.getVisibility() == View.INVISIBLE) {
 		        Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_in_anim);
 				buttonLayout.startAnimation(anim);
+				buttonLayout.setVisibility(View.VISIBLE);
+				System.out.println("Is this called??!");
 			}
 		}
 		return false;
 	}
 
-	@Override
-	public void onClick(View v) {
+	private void slideOutButtons() {
 		Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_out_anim);
 		buttonLayout.startAnimation(anim);
+		buttonLayout.setVisibility(View.INVISIBLE);
+	}
+	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.sendButton:
+			Toast.makeText(this, "Sending something!", Toast.LENGTH_SHORT).show();
+			slideOutButtons();
+			break;
+		case R.id.cancelButton:
+			slideOutButtons();
+			break;
+		default:
+			break;
+		}
 	}
 }

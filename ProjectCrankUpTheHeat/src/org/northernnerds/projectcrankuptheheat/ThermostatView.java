@@ -95,8 +95,15 @@ public class ThermostatView extends ImageView {
 			// newX = centerX - x;
 			// newY = centerY - y;
 			// updateRotation(newX, newY);
-			if (thermostatAngle >= Temperatures.t00.angle || thermostatAngle <= Temperatures.t24.angle) {
-				// Under 0 eller over 24
+			if (thermostatAngle > Temperatures.t00.angle || thermostatAngle < Temperatures.t24.angle) {
+				int midValue = (Math.abs(Temperatures.t00.angle) + Math.abs(Temperatures.t24.angle)) / 2;
+				if(thermostatAngle > midValue) {
+					// Snap to 0
+					setTextViewAndRotation(Temperatures.t00.angle, "0" + degreeSign);
+				} else {
+					// Snap to 24
+					setTextViewAndRotation(Temperatures.t24.angle, "24" + degreeSign);
+				}
 				System.out.println("Under 0 eller over 24");
 			} else {
 				snapToDegree(thermostatAngle);

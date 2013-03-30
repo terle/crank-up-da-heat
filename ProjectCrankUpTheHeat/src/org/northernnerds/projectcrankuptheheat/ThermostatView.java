@@ -119,7 +119,8 @@ public class ThermostatView extends ImageView {
 	private void updateRotation(float newX2, float newY2) {
 		thermostatAngle = (int) Math.toDegrees(Math.atan2(newY, newX)) - 90;
 
-		if (48 > thermostatAngle && thermostatAngle > -207) {
+		
+		if (Temperatures.t00.getAngle() >= thermostatAngle && thermostatAngle >= Temperatures.t24.getAngle()) {
 			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
 
 			// textViewTempGauge.setText("" + thermostatAngle);

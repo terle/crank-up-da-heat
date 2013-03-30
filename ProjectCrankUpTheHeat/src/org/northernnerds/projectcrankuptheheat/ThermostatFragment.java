@@ -23,19 +23,19 @@ public class ThermostatFragment extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		ThermostatView thermostat = new ThermostatView(getActivity());
-
+		
 		LinearLayout layout = new LinearLayout(getActivity());
 		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.MATCH_PARENT));
 		layout.setGravity(Gravity.CENTER);
 		layout.addView(thermostat);
-		//TODO: Move this TExtview to the center of the thermostat, and change font.
-		textViewTempGauge = new TextView(getActivity());
-		textViewTempGauge.setText("Fuck Asier");
-		
-		textViewTempGauge.setGravity(Gravity.CENTER);
-
-		layout.addView(textViewTempGauge);
+//		//TODO: Move this TExtview to the center of the thermostat, and change font.
+//		textViewTempGauge = new TextView(getActivity());
+//		textViewTempGauge.setText("Fuck Asier");
+//		
+//		textViewTempGauge.setGravity(Gravity.CENTER);
+//
+//		layout.addView(textViewTempGauge);
 
 		return layout;
 	}

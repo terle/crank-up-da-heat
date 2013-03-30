@@ -6,23 +6,24 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ThermostatView extends ImageView {
-	private int temp00 = -120;
-	private int temp08 = -90;
-	private int temp10 = -60;
+	private int temp00 = -135;
+	private int temp08 = -89;
+	private int temp10 = -65;
 	private int temp16 = -20;
 	private int temp17 = 0;
-	private int temp18 = 20;
-	private int temp19 = 40;
-	private int temp20 = 60;
-	private int temp21 = 80;
-	private int temp22 = 100;
-	private int temp23 = 120;
-	private int temp24 = 140;
+	private int temp18 = 15;
+	private int temp19 = 32;
+	private int temp20 = 48;
+	private int temp21 = 65;
+	private int temp22 = 82;
+	private int temp23 = -260;
+	private int temp24 = -243;
 
 	private TextView textViewTempGauge;
 
@@ -71,40 +72,27 @@ public class ThermostatView extends ImageView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		System.out
-				.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
+		System.out.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
 			x = event.getX();
 			y = event.getY();
-
 			newX = centerX - x;
 			newY = centerY - y;
-
 			updateRotation(newX, newY);
-
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
 			x = event.getX();
 			y = event.getY();
-
 			newX = centerX - x;
 			newY = centerY - y;
-
 			updateRotation(newX, newY);
-
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-
 			x = event.getX();
 			y = event.getY();
-
 			newX = centerX - x;
 			newY = centerY - y;
-
 			updateRotation(newX, newY);
-			snapToDegree(thermostatAngle);
-
+//			snapToDegree(thermostatAngle);
 		}
 		return true;
 	}
@@ -115,8 +103,21 @@ public class ThermostatView extends ImageView {
 
 	private void updateRotation(float newX2, float newY2) {
 		thermostatAngle = (int) Math.toDegrees(Math.atan2(newY, newX)) - 90;
-
-		setDirection(thermostatAngle);
+		
+		if(48 >= thermostatAngle && thermostatAngle <= 90) {
+			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
+			
+			textViewTempGauge.setText("" + thermostatAngle);
+			
+			setDirection(thermostatAngle);
+		}
+		if(-270 >= thermostatAngle && thermostatAngle <= -207) {
+			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
+			
+			textViewTempGauge.setText("" + thermostatAngle);
+			
+			setDirection(thermostatAngle);
+		}
 	}
 
 	private void snapToDegree(int currentAngle) {

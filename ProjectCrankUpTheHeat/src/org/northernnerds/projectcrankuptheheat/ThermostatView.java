@@ -95,14 +95,14 @@ public class ThermostatView extends ImageView {
 			// newX = centerX - x;
 			// newY = centerY - y;
 			// updateRotation(newX, newY);
-			if (thermostatAngle > Temperatures.t00.angle || thermostatAngle < Temperatures.t24.angle) {
-				int midValue = (Math.abs(Temperatures.t00.angle) + Math.abs(Temperatures.t24.angle)) / 2;
+			if (thermostatAngle > Temperatures.t00.getAngle() || thermostatAngle < Temperatures.t24.getAngle()) {
+				int midValue = (Math.abs(Temperatures.t00.getAngle()) + Math.abs(Temperatures.t24.getAngle())) / 2;
 				if(thermostatAngle > midValue) {
 					// Snap to 0
-					setTextViewAndRotation(Temperatures.t00.angle, "0" + degreeSign);
+					setTextViewAndRotation(Temperatures.t00.getAngle(), "0" + degreeSign);
 				} else {
 					// Snap to 24
-					setTextViewAndRotation(Temperatures.t24.angle, "24" + degreeSign);
+					setTextViewAndRotation(Temperatures.t24.getAngle(), "24" + degreeSign);
 				}
 				System.out.println("Under 0 eller over 24");
 			} else {
@@ -119,7 +119,7 @@ public class ThermostatView extends ImageView {
 	private void updateRotation(float newX2, float newY2) {
 		thermostatAngle = (int) Math.toDegrees(Math.atan2(newY, newX)) - 90;
 
-		if (48 >= thermostatAngle && thermostatAngle >= -207) {
+		if (48 > thermostatAngle && thermostatAngle > -207) {
 			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
 
 			// textViewTempGauge.setText("" + thermostatAngle);
@@ -139,16 +139,16 @@ public class ThermostatView extends ImageView {
 		int smallestAngleSoFar = Integer.MAX_VALUE;
 		Temperatures[] tempEnums = Temperatures.values();
 
-		if(angle < Temperatures.t00.angle && angle > Temperatures.t08.angle)
+		if(angle < Temperatures.t00.getAngle() && angle > Temperatures.t08.getAngle())
 		{
-			int midValue = (Math.abs(Temperatures.t00.angle)+Math.abs(Temperatures.t08.angle))/2;
+			int midValue = (Math.abs(Temperatures.t00.getAngle())+Math.abs(Temperatures.t08.getAngle()))/2;
 			if(angle > midValue) return Temperatures.t00;
 			//else
 			return Temperatures.t08;
 		}
 
 		for (Temperatures t : tempEnums) {
-			int v = Math.abs(angle - t.angle);
+			int v = Math.abs(angle - t.getAngle());
 
 			if (v < smallestAngleSoFar) {
 				smallestAngleSoFar = v;
@@ -165,43 +165,43 @@ public class ThermostatView extends ImageView {
 
 		switch (temp) {
 		case t00:
-			setTextViewAndRotation(Temperatures.t00.angle, "0" + degreeSign);
+			setTextViewAndRotation(Temperatures.t00.getAngle(), "0" + degreeSign);
 			break;
 		case t08:
-			setTextViewAndRotation(Temperatures.t08.angle, "8" + degreeSign);
+			setTextViewAndRotation(Temperatures.t08.getAngle(), "8" + degreeSign);
 			break;
 		case t10:
-			setTextViewAndRotation(Temperatures.t10.angle, "10" + degreeSign);
+			setTextViewAndRotation(Temperatures.t10.getAngle(), "10" + degreeSign);
 			break;
 		case t16:
-			setTextViewAndRotation(Temperatures.t16.angle, "16" + degreeSign);
+			setTextViewAndRotation(Temperatures.t16.getAngle(), "16" + degreeSign);
 			break;
 		case t17:
-			setTextViewAndRotation(Temperatures.t17.angle, "17" + degreeSign);
+			setTextViewAndRotation(Temperatures.t17.getAngle(), "17" + degreeSign);
 			break;
 		case t18:
-			setTextViewAndRotation(Temperatures.t18.angle, "18" + degreeSign);
+			setTextViewAndRotation(Temperatures.t18.getAngle(), "18" + degreeSign);
 			break;
 		case t19:
-			setTextViewAndRotation(Temperatures.t19.angle, "19" + degreeSign);
+			setTextViewAndRotation(Temperatures.t19.getAngle(), "19" + degreeSign);
 			break;
 		case t20:
-			setTextViewAndRotation(Temperatures.t20.angle, "20" + degreeSign);
+			setTextViewAndRotation(Temperatures.t20.getAngle(), "20" + degreeSign);
 			break;
 		case t21:
-			setTextViewAndRotation(Temperatures.t21.angle, "21" + degreeSign);
+			setTextViewAndRotation(Temperatures.t21.getAngle(), "21" + degreeSign);
 			break;
 		case t22:
-			setTextViewAndRotation(Temperatures.t22.angle, "22" + degreeSign);
+			setTextViewAndRotation(Temperatures.t22.getAngle(), "22" + degreeSign);
 			break;
 		case t23:
-			setTextViewAndRotation(Temperatures.t23.angle, "23" + degreeSign);
+			setTextViewAndRotation(Temperatures.t23.getAngle(), "23" + degreeSign);
 			break;
 		case t24:
-			setTextViewAndRotation(Temperatures.t24.angle, "24" + degreeSign);
+			setTextViewAndRotation(Temperatures.t24.getAngle(), "24" + degreeSign);
 			break;
 		default:
-			setTextViewAndRotation(Temperatures.t16.angle, "16" + degreeSign);
+			setTextViewAndRotation(Temperatures.t16.getAngle(), "16" + degreeSign);
 			break;
 		}
 	}

@@ -92,7 +92,7 @@ public class ThermostatView extends ImageView {
 //			newX = centerX - x;
 //			newY = centerY - y;
 //			updateRotation(newX, newY);
-//			snapToDegree(thermostatAngle);
+			snapToDegree(thermostatAngle);
 		}
 		return true;
 	}
@@ -114,8 +114,9 @@ public class ThermostatView extends ImageView {
 	}
 
 	private void snapToDegree(int currentAngle) {
-		if (currentAngle > temp00 && currentAngle < temp08) {
-			if (currentAngle >= (Math.abs(temp00) + Math.abs(temp08)) / 2) {
+		if (currentAngle < temp00 && currentAngle > temp08) {
+			System.out.println("Within angle > temp00 and angle < temp08");
+			if (currentAngle <= (Math.abs(temp00) + Math.abs(temp08)) / 2) {
 				setRotation(temp08);
 				textViewTempGauge.setText("08");
 			} else {

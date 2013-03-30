@@ -3,6 +3,14 @@ package org.northernnerds.projectcrankuptheheat;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.actionbarsherlock.view.Menu;
@@ -10,7 +18,10 @@ import com.actionbarsherlock.view.MenuItem;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends SlidingFragmentActivity implements OnTouchListener, OnClickListener {
+	private LinearLayout buttonLayout;
+	private Button sendButton, cancelButton;
+	
 	//Final strings to hold preferences names, not values
 	public static final String PREFSNAME = "CrankUpDaHeatPREFERENCES";
 	public static final String PREFS_isOldController = "isOldController";
@@ -55,6 +66,13 @@ public class MainActivity extends SlidingFragmentActivity {
 		
 		thermostat = (ThermostatView) findViewById(R.id.thermostatView1);
 		thermostat.setTempTextView(tempTextView);
+		thermostat.setOnTouchListener(this);
+		
+		buttonLayout = (LinearLayout) findViewById(R.id.sendCancelButtonLayout);
+		buttonLayout.setAlpha(0);
+		
+		cancelButton = (Button) findViewById(R.id.cancelButton);
+		cancelButton.setOnClickListener(this);
 		
 		// Setting up the Sliding Menu.
 		final SlidingMenu menu = getSlidingMenu();
@@ -113,8 +131,6 @@ public class MainActivity extends SlidingFragmentActivity {
 	}
 	@Override
 	protected void onResume() {
-
-
 		// Restore preferences
 		SharedPreferences settings = getSharedPreferences(PREFSNAME, 0);
 		name = settings.getString(PREFS_deviceName, name);
@@ -135,5 +151,22 @@ public class MainActivity extends SlidingFragmentActivity {
 	public void onBackPressed() {
 		super.onBackPressed();
 		//TODO: Her skal services startes der tjekker for sms'er
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			if(buttonLayout.getAlpha() == 0) {
+		        Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_in_anim);
+				buttonLayout.startAnimation(anim);
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+		Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_out_anim);
+		buttonLayout.startAnimation(anim);
 	}
 }

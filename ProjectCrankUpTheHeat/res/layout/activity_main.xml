@@ -6,31 +6,39 @@
     android:gravity="bottom"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/sendCancelButtonLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/cancel_button_drawable"
-        android:drawablePadding="10dp"
-        android:drawableRight="@drawable/afbryd_ikon"
-        android:text="Afbryd" />
+        android:layout_alignParentLeft="true" >
 
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cancelButton"
-        android:layout_alignBottom="@+id/cancelButton"
-        android:background="@drawable/accept_button_drawable"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:drawablePadding="10dp"
-        android:drawableRight="@drawable/send_ikon"
-        android:text="Send" />
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/cancel_button_drawable"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/afbryd_ikon"
+            android:text="Afbryd" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/accept_button_drawable"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/send_ikon"
+            android:text="Send" />
+    </LinearLayout>
 
     <org.northernnerds.projectcrankuptheheat.ThermostatView
         android:id="@+id/thermostatView1"
@@ -48,32 +56,30 @@
         android:layout_centerHorizontal="true"
         android:text="ToggleButton" />
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <TextView
+        android:id="@+id/temperatureTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/cancelButton"
-        android:layout_alignTop="@+id/toggleButton1"
-        android:layout_marginRight="42dp"
-        android:src="@drawable/varme_ikon" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/sendButton"
-        android:layout_alignTop="@+id/toggleButton1"
-        android:layout_marginLeft="28dp"
+        android:layout_alignRight="@+id/thermostatView1"
+        android:layout_below="@+id/thermostatView1"
         android:src="@drawable/kulde_ikon" />
 
-    <TextView
-        android:id="@+id/temperatureTextView"
-        android:textColor="@color/black"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0" />
+        android:layout_alignLeft="@+id/thermostatView1"
+        android:layout_below="@+id/thermostatView1"
+        android:src="@drawable/varme_ikon" />
 
 </RelativeLayout>

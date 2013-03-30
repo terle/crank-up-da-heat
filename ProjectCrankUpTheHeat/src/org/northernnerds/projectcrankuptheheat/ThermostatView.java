@@ -110,7 +110,7 @@ public class ThermostatView extends ImageView {
 		if (48 >= thermostatAngle && thermostatAngle >= -207) {
 			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
 
-			//textViewTempGauge.setText("" + thermostatAngle);
+			// textViewTempGauge.setText("" + thermostatAngle);
 
 			setRotation(thermostatAngle);
 		}
@@ -127,14 +127,23 @@ public class ThermostatView extends ImageView {
 		int smallestAngleSoFar = Integer.MAX_VALUE;
 		Temperatures[] tempEnums = Temperatures.values();
 
-		for (Temperatures t : tempEnums) {
-			int v = Math.abs(angle) - Math.abs(t.angle);
+		if(angle < Temperatures.t00.angle && angle > Temperatures.t08.angle)
+		{
+			int midValue = (Math.abs(Temperatures.t00.angle)+Math.abs(Temperatures.t08.angle))/2;
+			if(angle > midValue) return Temperatures.t00;
+			//else
+			return Temperatures.t08;
+		}
 
-			if (Math.abs(v) < smallestAngleSoFar) {
-				smallestAngleSoFar = Math.abs(v);
+		for (Temperatures t : tempEnums) {
+			int v = Math.abs(angle - t.angle);
+
+			if (v < smallestAngleSoFar) {
+				smallestAngleSoFar = v;
 				closestTempSoFar = t;
 			}
 		}
+
 		return closestTempSoFar;
 	}
 

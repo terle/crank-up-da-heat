@@ -75,8 +75,7 @@ public class ThermostatView extends ImageView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		System.out
-				.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
+		System.out.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			// x = event.getX();
@@ -96,7 +95,12 @@ public class ThermostatView extends ImageView {
 			// newX = centerX - x;
 			// newY = centerY - y;
 			// updateRotation(newX, newY);
-			snapToDegree(thermostatAngle);
+			if (thermostatAngle >= Temperatures.t00.angle || thermostatAngle <= Temperatures.t24.angle) {
+				// Under 0 eller over 24
+				System.out.println("Under 0 eller over 24");
+			} else {
+				snapToDegree(thermostatAngle);
+			}
 		}
 		return true;
 	}

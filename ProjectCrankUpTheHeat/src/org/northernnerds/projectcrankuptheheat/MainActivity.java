@@ -157,6 +157,8 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
+		System.out.println("X: " + event.getX() + ", Y: " + event.getY());
+		
 		if(event.getAction() == MotionEvent.ACTION_UP) {
 			if(buttonLayout.getVisibility() == View.INVISIBLE) {
 		        Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_in_anim);

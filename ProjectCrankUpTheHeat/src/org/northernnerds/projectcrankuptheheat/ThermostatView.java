@@ -29,12 +29,13 @@ public class ThermostatView extends ImageView {
 
 	private TextView textViewTempGauge;
 
+	private char degreeSign = (char) 0x00B0;
+	
 	private Paint paint;
 	private int degree = 0;
 	private float x;
 	private float y;
 	private int thermostatAngle = 0;
-	// private float a, b, c;
 	private float centerX;
 	private float centerY;
 	private float newX;
@@ -153,52 +154,43 @@ public class ThermostatView extends ImageView {
 
 		switch (temp) {
 		case t00:
-			setTextViewAndRotation(Temperatures.t00.angle, "0¡");
+			setTextViewAndRotation(Temperatures.t00.angle, "0" + degreeSign);
 			break;
-
 		case t08:
-			setTextViewAndRotation(Temperatures.t08.angle, "8¡");
+			setTextViewAndRotation(Temperatures.t08.angle, "8" + degreeSign);
 			break;
-
 		case t10:
-			setTextViewAndRotation(Temperatures.t10.angle, "10¡");
+			setTextViewAndRotation(Temperatures.t10.angle, "10" + degreeSign);
 			break;
-
 		case t16:
-			setTextViewAndRotation(Temperatures.t16.angle, "16¡");
+			setTextViewAndRotation(Temperatures.t16.angle, "16" + degreeSign);
 			break;
-
 		case t17:
-			setTextViewAndRotation(Temperatures.t17.angle, "17¡");
+			setTextViewAndRotation(Temperatures.t17.angle, "17" + degreeSign);
 			break;
-
 		case t18:
-			setTextViewAndRotation(Temperatures.t18.angle, "18¡");
+			setTextViewAndRotation(Temperatures.t18.angle, "18" + degreeSign);
 			break;
-
 		case t19:
-			setTextViewAndRotation(Temperatures.t19.angle, "19¡");
+			setTextViewAndRotation(Temperatures.t19.angle, "19" + degreeSign);
 			break;
-
 		case t20:
-			setTextViewAndRotation(Temperatures.t20.angle, "20¡");
+			setTextViewAndRotation(Temperatures.t20.angle, "20" + degreeSign);
 			break;
-
 		case t21:
-			setTextViewAndRotation(Temperatures.t21.angle, "21¡");
+			setTextViewAndRotation(Temperatures.t21.angle, "21" + degreeSign);
 			break;
 		case t22:
-			setTextViewAndRotation(Temperatures.t22.angle, "22¡");
+			setTextViewAndRotation(Temperatures.t22.angle, "22" + degreeSign);
 			break;
 		case t23:
-			setTextViewAndRotation(Temperatures.t23.angle, "23¡");
+			setTextViewAndRotation(Temperatures.t23.angle, "23" + degreeSign);
 			break;
 		case t24:
-			setTextViewAndRotation(Temperatures.t24.angle, "24¡");
+			setTextViewAndRotation(Temperatures.t24.angle, "24" + degreeSign);
 			break;
-
 		default:
-			setTextViewAndRotation(Temperatures.t16.angle, "16¡");
+			setTextViewAndRotation(Temperatures.t16.angle, "16" + degreeSign);
 			break;
 		}
 	}

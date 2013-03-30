@@ -113,12 +113,39 @@ public class ThermostatView extends ImageView {
 		}
 	}
 
+	private void setTextViewAndRotation(int rotation, String text) {
+		setRotation(rotation);
+		textViewTempGauge.setText(text);
+		
+		
+	}
+	
+	enum Temps {
+		Temp00(0), Temp08(8);
+
+		int degrees;
+		
+		Temps(int degrees) {
+			this.degrees = degrees;
+		}
+	}
+	
+	private int getClosestAngle(int angle) {
+		int closestAngleSoFar = 0;
+		
+		Temps[] tempEnums = Temps.values();
+		for(Temps t : tempEnums) {
+			
+		}
+		return closestAngleSoFar;
+	}
+	
 	private void snapToDegree(int currentAngle) {
+		
 		if (currentAngle < temp00 && currentAngle > temp08) {
 			System.out.println("Within angle > temp00 and angle < temp08");
 			if (currentAngle <= (Math.abs(temp00) + Math.abs(temp08)) / 2) {
-				setRotation(temp08);
-				textViewTempGauge.setText("08");
+				setTextViewAndRotation(temp08, "08");
 			} else {
 				setRotation(temp00);
 				textViewTempGauge.setText("00");

@@ -1,7 +1,5 @@
 package org.northennerds.settings;
 
-import org.northernnerds.projectcrankuptheheat.MainActivity;
-
 import android.content.IntentFilter;
 import android.telephony.SmsManager;
 
@@ -17,10 +15,10 @@ public class SMSHandler {
 	}
 	
 	public void SendSMS(){
-		System.out.println("DeviceNumber: "+MainActivity.devicePhoneNum);
+		System.out.println("DeviceNumber: "); // Add device number...
 		SmsManager sm = SmsManager.getDefault();
 		
-		String msg = MainActivity.passwd+", status";
+		String msg = ", status"; // Add password
 		sm.sendTextMessage("+4528921237", null, msg, null, null);
 	}
 	

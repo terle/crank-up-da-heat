@@ -1,7 +1,10 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northennerds.enums.SettingsNames;
+
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.audiofx.BassBoost.Settings;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,31 +25,20 @@ import com.slidingmenu.lib.app.SlidingFragmentActivity;
 public class MainActivity extends SlidingFragmentActivity implements OnTouchListener, OnClickListener {
 	private LinearLayout buttonLayout;
 	private Button sendButton, cancelButton;
+		
+//	//Final strings to hold preferences names, not values
+//	public static final String PREFSNAME = "CrankUpDaHeatPREFERENCES";
+//	public static final String PREFS_isOldController = "isOldController";
+//	public static final String PREFS_phoneNum = "phoneNum";
+//	public static final String PREFS_password = "password";
+//	public static final String PREFS_minTemp = "minTemp";
+//	public static final String PREFS_maxTemp = "maxTemp";
+//	public static final String PREFS_deviceName = "deviceName";
+//	public static final String PREFS_HeatingTemp = "HeatTemp";
+//	public static final String PREFS_CoolingTemp = "CoolTemp";
+//	public static final String PREFS_GSMBat = "GSMBat";
+//	public static final String PREFS_GSMSignal = "GSMSignal";
 	
-	//Final strings to hold preferences names, not values
-	public static final String PREFSNAME = "CrankUpDaHeatPREFERENCES";
-	public static final String PREFS_isOldController = "isOldController";
-	public static final String PREFS_phoneNum = "phoneNum";
-	public static final String PREFS_password = "password";
-	public static final String PREFS_minTemp = "minTemp";
-	public static final String PREFS_maxTemp = "maxTemp";
-	public static final String PREFS_deviceName = "deviceName";
-	public static final String PREFS_HeatingTemp = "HeatTemp";
-	public static final String PREFS_CoolingTemp = "CoolTemp";
-	public static final String PREFS_GSMBat = "GSMBat";
-	public static final String PREFS_GSMSignal = "GSMSignal";
-
-	//Values for SharedPrefs
-	public static String name = "Sommerfjong i bingbong";
-	public static boolean isOldController = false;
-	public static String devicePhoneNum = "004528921237";
-	public static String passwd = "1234";
-	public static int minTemp = 8;
-	public static int maxTemp = 8;
-	public static int heatingTemp = 24;
-	public static int coolingTemp = 30;
-	public static String GSMbat = "100%";
-	public static String GSMSignal ="(1-5):3";
 	private ThermostatView thermostat;
 	private TextView tempTextView;
 
@@ -112,41 +104,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 			toggle();
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	protected void onPause() {
-		SharedPreferences settings = getSharedPreferences(PREFSNAME, 0);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putString(PREFS_deviceName, name);
-		editor.putBoolean(PREFS_isOldController, isOldController);
-		editor.putString(PREFS_phoneNum, devicePhoneNum);
-		editor.putString(PREFS_password, passwd); 
-		editor.putInt(PREFS_minTemp, minTemp);
-		editor.putInt(PREFS_maxTemp, maxTemp);
-		editor.putInt(PREFS_HeatingTemp, heatingTemp); 
-		editor.putInt(PREFS_CoolingTemp, coolingTemp); 
-		editor.putString(PREFS_GSMBat, GSMbat);
-		editor.putString(PREFS_GSMSignal, GSMSignal);
-		editor.commit();
-		super.onPause();
-	}
-	@Override
-	protected void onResume() {
-		// Restore preferences
-		SharedPreferences settings = getSharedPreferences(PREFSNAME, 0);
-		name = settings.getString(PREFS_deviceName, name);
-		isOldController = settings.getBoolean(PREFS_isOldController, false);
-		devicePhoneNum = settings.getString(PREFS_phoneNum, "");
-		passwd = settings.getString(PREFS_password, "1234");
-		minTemp = settings.getInt(PREFS_minTemp, 9);
-		maxTemp = settings.getInt(PREFS_maxTemp, 9);
-		heatingTemp = settings.getInt(PREFS_HeatingTemp, 24);
-		coolingTemp = settings.getInt(PREFS_CoolingTemp, 20);
-		GSMbat = settings.getString(PREFS_GSMBat, "100%");
-		GSMSignal = settings.getString(PREFS_GSMSignal, "bla");
-
-		super.onResume();
 	}
 
 	@Override

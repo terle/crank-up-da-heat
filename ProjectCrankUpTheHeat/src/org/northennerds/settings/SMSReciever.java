@@ -1,7 +1,5 @@
 package org.northennerds.settings;
 
-import org.northernnerds.projectcrankuptheheat.MainActivity;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,9 +19,9 @@ public class SMSReciever extends BroadcastReceiver {
 			SmsMessage messages = SmsMessage.createFromPdu((byte[]) pdus[0]);
 
 			//Hvis det er den sms vi gerne vil ha fat i...
-			if(messages.getOriginatingAddress().contains(MainActivity.devicePhoneNum)){
+			if(messages.getOriginatingAddress().contains("")){ // IndsÃ¦t nummer her.
 				this.abortBroadcast();
-				//TODO: Håndtér svaret
+				//TODO: Hï¿½ndtï¿½r svaret
 			}
 
 			//		Log.i(TAG, messages.getMessageBody());

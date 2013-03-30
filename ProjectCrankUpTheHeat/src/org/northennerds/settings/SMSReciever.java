@@ -26,11 +26,11 @@ public class SMSReciever extends BroadcastReceiver {
 			SmsMessage messages = SmsMessage.createFromPdu((byte[]) pdus[0]);
 
 			// Hvis det er den sms vi gerne vil ha fat i...
-			if (messages.getOriginatingAddress().contains("")) { // Indsæt
+			if (messages.getOriginatingAddress().contains("")) { // IndsÔøΩt
 																	// nummer
 																	// her.
 				this.abortBroadcast();
-				// TODO: Håndter svaret
+				// TODO: HÔøΩndter svaret
 			}
 
 			// Log.i(TAG, messages.getMessageBody());
@@ -47,17 +47,17 @@ public class SMSReciever extends BroadcastReceiver {
 	}
 
 	private void parseRespone(String message) {
-		String navn = "", aktuel = "", set = "", lav = "", høj = "", batteri = "", gsm = "";
+		String navn = "", aktuel = "", set = "", lav = "", h√∏j = "", batteri = "", gsm = "";
 
-		// TODO: Hvis navn indeholder nogle af de strenge der bliver spillet på
+		// TODO: Hvis navn indeholder nogle af de strenge der bliver spillet p√•
 		// ender det galt, fx "Aktuel"/"Set"/"Advarsel".
 
-		//Indexes til at holde styr på hvor i message vi er
+		//Indexes til at holde styr p√• hvor i message vi er
 		int indexAktuel = message.indexOf("Aktuel:");
 		int indexSet = message.indexOf("Set:");
 		int indexAdvarsel = message.indexOf("Advarsel");
 		int indexLav = message.indexOf("Lav:");
-		int indexHøj = message.indexOf("Høj:");
+		int indexH√∏j = message.indexOf("H√∏j:");
 		int indexBatteri = message.indexOf("Batteri:");
 		int indexGSM = message.indexOf("GSM signal");
 
@@ -90,9 +90,9 @@ public class SMSReciever extends BroadcastReceiver {
 		lav = message.substring(indexLav + 4,message.indexOf("-", indexLav));
 		lav = lav.trim();
 		
-		//Hiv HØJ ud
-		høj = message.substring(indexHøj + 4, indexBatteri);
-		høj = høj.trim();
+		//Hiv H√∏j ud
+		h√∏j = message.substring(indexH√∏j + 4, indexBatteri);
+		h√∏j = h√∏j.trim();
 		
 		//Hiv BATTERI niveauet ud
 		batteri = message.substring(indexBatteri + 8, indexGSM);
@@ -110,7 +110,7 @@ public class SMSReciever extends BroadcastReceiver {
 //		editor.putString(SettingsNames.phoneNum.getName(), devicePhoneNum);
 //		editor.putString(SettingsNames.password.getName(), passwd);
 		editor.putInt(SettingsNames.minTemp.getName(), Integer.parseInt(lav));
-		editor.putInt(SettingsNames.maxTemp.getName(), Integer.parseInt(høj));
+		editor.putInt(SettingsNames.maxTemp.getName(), Integer.parseInt(h√∏j));
 		editor.putInt(SettingsNames.HeatTemp.getName(), Integer.parseInt(heatingTemp));
 		editor.putInt(SettingsNames.CoolTemp.getName(), Integer.parseInt(coolingTemp));
 		editor.putString(SettingsNames.GSMBat.getName(), batteri);

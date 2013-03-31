@@ -1,10 +1,6 @@
 package org.northernnerds.projectcrankuptheheat;
 
-import org.northennerds.enums.SettingsNames;
-
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.media.audiofx.BassBoost.Settings;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,20 +21,6 @@ import com.slidingmenu.lib.app.SlidingFragmentActivity;
 public class MainActivity extends SlidingFragmentActivity implements OnTouchListener, OnClickListener {
 	private LinearLayout buttonLayout;
 	private Button sendButton, cancelButton;
-		
-//	//Final strings to hold preferences names, not values
-//	public static final String PREFSNAME = "CrankUpDaHeatPREFERENCES";
-//	public static final String PREFS_isOldController = "isOldController";
-//	public static final String PREFS_phoneNum = "phoneNum";
-//	public static final String PREFS_password = "password";
-//	public static final String PREFS_minTemp = "minTemp";
-//	public static final String PREFS_maxTemp = "maxTemp";
-//	public static final String PREFS_deviceName = "deviceName";
-//	public static final String PREFS_HeatingTemp = "HeatTemp";
-//	public static final String PREFS_CoolingTemp = "CoolTemp";
-//	public static final String PREFS_GSMBat = "GSMBat";
-//	public static final String PREFS_GSMSignal = "GSMSignal";
-	
 	private ThermostatView thermostat;
 	private TextView tempTextView;
 
@@ -55,7 +37,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 		tempTextView = (TextView) findViewById(R.id.temperatureTextView);
 		Typeface roboto = Typeface.createFromAsset(getAssets(), "Roboto-Bold.ttf");
 		tempTextView.setTypeface(roboto);
-		tempTextView.setTextSize(98);
+		tempTextView.setTextSize(70);
 		
 		thermostat = (ThermostatView) findViewById(R.id.thermostatView1);
 		thermostat.setTempTextView(tempTextView);

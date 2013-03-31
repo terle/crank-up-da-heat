@@ -80,6 +80,7 @@ public class ThermostatView extends ImageView {
 			// only move it, if so.
 			if (isXYInCenterRing(event.getX(), event.getY())) {
 				updateRotation(newX, newY);
+				updateTextView(thermostatAngle);
 			}
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			// x = event.getX();
@@ -132,6 +133,7 @@ public class ThermostatView extends ImageView {
 		textViewTempGauge.setText(text);
 
 	}
+
 
 	private Temperatures getClosestTemperature(int angle) {
 		Temperatures closestTempSoFar = Temperatures.t16;
@@ -220,6 +222,51 @@ public class ThermostatView extends ImageView {
 		}
 	}
 
+	private void updateTextView(int currentAngle) {
+		Temperatures temp = getClosestTemperature(currentAngle);
+		switch (temp) {
+		case t00:
+			textViewTempGauge.setText("0" + degreeSign);
+			break;
+		case t08:
+			textViewTempGauge.setText("8" + degreeSign);
+			break;
+		case t10:
+			textViewTempGauge.setText("10" + degreeSign);
+			break;
+		case t16:
+			textViewTempGauge.setText("16" + degreeSign);
+			break;
+		case t17:
+			textViewTempGauge.setText("17" + degreeSign);
+			break;
+		case t18:
+			textViewTempGauge.setText("18" + degreeSign);
+			break;
+		case t19:
+			textViewTempGauge.setText("19" + degreeSign);
+			break;
+		case t20:
+			textViewTempGauge.setText("20" + degreeSign);
+			break;
+		case t21:
+			textViewTempGauge.setText("21" + degreeSign);
+			break;
+		case t22:
+			textViewTempGauge.setText("22" + degreeSign);
+			break;
+		case t23:
+			textViewTempGauge.setText("23" + degreeSign);
+			break;
+		case t24:
+			textViewTempGauge.setText("24" + degreeSign);
+			break;
+		default:
+			textViewTempGauge.setText("16" + degreeSign);
+			break;
+		}
+	}
+
 	/**
 	 * determines if the touch event is relevant to us
 	 * 
@@ -251,10 +298,14 @@ public class ThermostatView extends ImageView {
 	 * used to determine if a (x,y)-coordinate set is within the circle
 	 * <p>
 	 * The formula for a circle (x-x0)^2+(y-y0)^2 = r
-	 * @param x X-coordinate
-	 * @param y Y-coordinate
-	 * @param radius the radius of the circle
-	 * @return true if the (x,y) is either ON or within the circle 
+	 * 
+	 * @param x
+	 *            X-coordinate
+	 * @param y
+	 *            Y-coordinate
+	 * @param radius
+	 *            the radius of the circle
+	 * @return true if the (x,y) is either ON or within the circle
 	 * */
 	private boolean isXYInCircle(float x, float y, float radius) {
 		/*

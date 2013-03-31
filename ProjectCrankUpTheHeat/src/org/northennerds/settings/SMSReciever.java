@@ -47,7 +47,7 @@ public class SMSReciever extends BroadcastReceiver {
 	}
 
 	private void parseRespone(String message) {
-		String navn = "", aktuel = "", set = "", lav = "", høj = "", batteri = "", gsm = "";
+		String navn = "", aktuel = "", set = "", lav = "", hoej = "", batteri = "", gsm = "";
 
 		// TODO: Hvis navn indeholder nogle af de strenge der bliver spillet på
 		// ender det galt, fx "Aktuel"/"Set"/"Advarsel".
@@ -57,7 +57,7 @@ public class SMSReciever extends BroadcastReceiver {
 		int indexSet = message.indexOf("Set:");
 		int indexAdvarsel = message.indexOf("Advarsel");
 		int indexLav = message.indexOf("Lav:");
-		int indexHøj = message.indexOf("Høj:");
+		int indexHoej = message.indexOf("Høj:");
 		int indexBatteri = message.indexOf("Batteri:");
 		int indexGSM = message.indexOf("GSM signal");
 
@@ -91,8 +91,8 @@ public class SMSReciever extends BroadcastReceiver {
 		lav = lav.trim();
 		
 		//Hiv Høj ud
-		høj = message.substring(indexHøj + 4, indexBatteri);
-		høj = høj.trim();
+		hoej = message.substring(indexHoej + 4, indexBatteri);
+		hoej = hoej.trim();
 		
 		//Hiv BATTERI niveauet ud
 		batteri = message.substring(indexBatteri + 8, indexGSM);
@@ -110,7 +110,7 @@ public class SMSReciever extends BroadcastReceiver {
 //		editor.putString(SettingsNames.phoneNum.getName(), devicePhoneNum);
 //		editor.putString(SettingsNames.password.getName(), passwd);
 		editor.putInt(SettingsNames.minTemp.getName(), Integer.parseInt(lav));
-		editor.putInt(SettingsNames.maxTemp.getName(), Integer.parseInt(høj));
+		editor.putInt(SettingsNames.maxTemp.getName(), Integer.parseInt(hoej));
 		editor.putInt(SettingsNames.HeatTemp.getName(), Integer.parseInt(heatingTemp));
 		editor.putInt(SettingsNames.CoolTemp.getName(), Integer.parseInt(coolingTemp));
 		editor.putString(SettingsNames.GSMBat.getName(), batteri);

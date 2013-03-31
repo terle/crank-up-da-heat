@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg_kold"
+    android:background="@drawable/bg_varm"
     android:gravity="bottom"
     android:orientation="vertical" >
 
@@ -49,14 +50,6 @@
         android:layout_centerVertical="true"
         android:src="@drawable/thermo1" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/thermostatView1"
-        android:layout_centerHorizontal="true"
-        android:text="ToggleButton" />
-
     <TextView
         android:id="@+id/temperatureTextView"
         android:layout_width="wrap_content"
@@ -68,7 +61,7 @@
         android:textColor="@color/black" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/coldImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/thermostatView1"
@@ -76,11 +69,23 @@
         android:src="@drawable/kulde_ikon" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/hotImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/thermostatView1"
         android:layout_below="@+id/thermostatView1"
         android:src="@drawable/varme_ikon" />
+
+    <SeekBar
+        android:id="@+id/hotColdSeekBar"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/coldImageView"
+        android:layout_centerHorizontal="true"
+        android:max="1"
+        android:maxHeight="5dp"
+        android:background="@drawable/progressbar"
+        android:progressDrawable="@drawable/progressbar"
+        android:thumb="@drawable/custom_switch_48" />
 
 </RelativeLayout>

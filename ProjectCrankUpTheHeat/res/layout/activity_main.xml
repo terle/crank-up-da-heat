@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/coldImageView"
         android:layout_centerHorizontal="true"
-        android:max="1"
+        android:max="100"
         android:maxHeight="5dp"
         android:background="@drawable/progressbar"
         android:progressDrawable="@drawable/progressbar"

@@ -167,7 +167,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		if(progress == 0) {
+		if(progress <= hotColdSeekBar.getMax() / 2) {
 			// TODO: This is deprecated, but since the app is working from API = 8, then we need it.
 			// From API = 16, we should use setBackground(drawable) - make a check for the OS version.
 			mainLayout.setBackgroundDrawable(hotBackground);
@@ -189,6 +189,10 @@ public class MainActivity extends SlidingFragmentActivity implements OnTouchList
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
+		if(hotColdSeekBar.getProgress() <= hotColdSeekBar.getMax() / 2) {
+			hotColdSeekBar.setProgress(0);
+		} else {
+			hotColdSeekBar.setProgress(100);
+		}
 	}
 }

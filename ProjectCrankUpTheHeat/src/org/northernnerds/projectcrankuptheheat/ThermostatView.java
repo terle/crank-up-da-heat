@@ -71,9 +71,9 @@ public class ThermostatView extends ImageView {
 			// newX = centerX - x;
 			// newY = centerY - y;
 			// updateRotation(newX, newY);
-//			if (isXYInCenterRing(event.getX(), event.getY())) {
-//			setRotation(thermostatAngle);
-//			}
+			// if (isXYInCenterRing(event.getX(), event.getY())) {
+			// setRotation(thermostatAngle);
+			// }
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			x = event.getX();
 			y = event.getY();
@@ -125,7 +125,7 @@ public class ThermostatView extends ImageView {
 				&& thermostatAngle >= Temperatures.t24.getAngle()) {
 			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
 
-//			 textViewTempGauge.setText("" + thermostatAngle);
+			// textViewTempGauge.setText("" + thermostatAngle);
 
 			setRotation(thermostatAngle);
 		}
@@ -136,7 +136,6 @@ public class ThermostatView extends ImageView {
 		textViewTempGauge.setText(text);
 
 	}
-
 
 	private Temperatures getClosestTemperature(int angle) {
 		Temperatures closestTempSoFar = Temperatures.t16;
@@ -171,8 +170,9 @@ public class ThermostatView extends ImageView {
 
 		switch (temp) {
 		case t00:
-			setTextViewAndRotation(Temperatures.t00.getAngle(), "0"
-					+ degreeSign);
+//			setTextViewAndRotation(Temperatures.t00.getAngle(), "0"
+//					+ degreeSign);
+			setTextViewAndRotation(Temperatures.t00.getAngle(), "OFF");
 			thermostatAngle = Temperatures.t00.getAngle();
 			break;
 		case t08:
@@ -242,7 +242,8 @@ public class ThermostatView extends ImageView {
 		Temperatures temp = getClosestTemperature(currentAngle);
 		switch (temp) {
 		case t00:
-			textViewTempGauge.setText("0" + degreeSign);
+			// textViewTempGauge.setText("0" + degreeSign);
+			textViewTempGauge.setText("OFF");
 			break;
 		case t08:
 			textViewTempGauge.setText("8" + degreeSign);

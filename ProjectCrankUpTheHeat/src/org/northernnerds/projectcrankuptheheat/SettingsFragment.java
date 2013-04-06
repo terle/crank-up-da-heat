@@ -37,6 +37,11 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	private int coolingTemp = 30;
 	private int gsmBat = 34;
 	private int gsmSignal = 0;
+	private int aktuelTemp =18;
+	private String phNum01 = "+4528921237";
+	private String phNum02 = "";
+	private String phNum03 = "";
+	private String phNum04 = "";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,14 +78,21 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString(SettingsNames.deviceName.getName(), name);
 		editor.putBoolean(SettingsNames.isOldController.getName(), oldControlCheckBox.isChecked());
-		editor.putString(SettingsNames.phoneNum.getName(), phonenoEditText.getText().toString());
+		editor.putString(SettingsNames.DevicePhoneNum.getName(), phonenoEditText.getText().toString());
 		editor.putString(SettingsNames.password.getName(), passwordEditText.getText().toString()); 
-		editor.putInt(SettingsNames.minTemp.getName(), minTemp);
-		editor.putInt(SettingsNames.maxTemp.getName(), maxTemp);
+		editor.putInt(SettingsNames.warningTempLOW.getName(), minTemp);
+		editor.putInt(SettingsNames.warningTempHIGH.getName(), maxTemp);
 		editor.putInt(SettingsNames.HeatTemp.getName(), heatingTemp); 
 		editor.putInt(SettingsNames.CoolTemp.getName(), coolingTemp); 
 		editor.putInt(SettingsNames.GSMBat.getName(), gsmBat);
 		editor.putInt(SettingsNames.GSMSignal.getName(), gsmSignal);
+		
+		editor.putInt(SettingsNames.AktuelTemp.getName(), aktuelTemp);
+		editor.putString(SettingsNames.AlarmNum01.getName(), phNum01);
+		editor.putString(SettingsNames.AlarmNum02.getName(), phNum02);
+		editor.putString(SettingsNames.AlarmNum03.getName(), phNum03);
+		editor.putString(SettingsNames.AlarmNum04.getName(), phNum04);
+		
 		editor.commit();
 		super.onPause();
 	}
@@ -89,17 +101,24 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		// Restore preferences
 		SharedPreferences settings = getActivity().getSharedPreferences(SettingsNames.prefsName.getName(), Context.MODE_PRIVATE);
 		unitNameEditText.setText(settings.getString(SettingsNames.deviceName.getName(), "Ingen enhed fundet"));
-		phonenoEditText.setText(settings.getString(SettingsNames.phoneNum.getName(), ""));
+		phonenoEditText.setText(settings.getString(SettingsNames.DevicePhoneNum.getName(), ""));
 		passwordEditText.setText(settings.getString(SettingsNames.password.getName(), ""));
 		oldControlCheckBox.setChecked(settings.getBoolean(SettingsNames.isOldController.getName(), false));
 		
 		gsmBat = settings.getInt(SettingsNames.GSMBat.getName(), gsmBat);
 		gsmSignal = settings.getInt(SettingsNames.GSMSignal.getName(), gsmSignal);
 		
-		minTemp = settings.getInt(SettingsNames.minTemp.getName(), 9);
-		maxTemp = settings.getInt(SettingsNames.maxTemp.getName(), 9);
+		minTemp = settings.getInt(SettingsNames.warningTempLOW.getName(), 9);
+		maxTemp = settings.getInt(SettingsNames.warningTempHIGH.getName(), 9);
 		heatingTemp = settings.getInt(SettingsNames.HeatTemp.getName(), 24);
 		coolingTemp = settings.getInt(SettingsNames.CoolTemp.getName(), 20);
+		
+		aktuelTemp = settings.getInt(SettingsNames.AktuelTemp.getName(), 18);
+		
+		phNum01 = settings.getString(SettingsNames.AlarmNum01.getName(), "N/A");
+		phNum02 = settings.getString(SettingsNames.AlarmNum02.getName(), "N/A");
+		phNum03 = settings.getString(SettingsNames.AlarmNum03.getName(), "N/A");
+		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(), "N/A");
 		
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();

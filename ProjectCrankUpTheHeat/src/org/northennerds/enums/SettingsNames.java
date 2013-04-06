@@ -1,10 +1,10 @@
 package org.northennerds.enums;
 
 public enum SettingsNames {
-	prefsName("CrankUpDaHeatPREFERENCES"), isOldController("isOldController"), phoneNum(
-			"phoneNumber"), password("password"), minTemp("minTemp"), maxTemp(
-			"maxTemp"), deviceName("deviceName"), HeatTemp("HeatTemp"), CoolTemp(
-			"CoolTemp"), GSMBat("GSMBat"), GSMSignal("GSMSignal");
+	prefsName("CrankUpDaHeatPREFERENCES"), isOldController("isOldController"), DevicePhoneNum("phoneNumber"), password(
+			"password"), warningTempLOW("minTemp"), warningTempHIGH("maxTemp"), deviceName("deviceName"), HeatTemp(
+			"HeatTemp"), CoolTemp("CoolTemp"), GSMBat("GSMBat"), GSMSignal("GSMSignal"), AktuelTemp("AktuelTemp"), AlarmNum01(
+			"AlarmNumber01"), AlarmNum02("AlarmNumber02"), AlarmNum03("AlarmNumber03"), AlarmNum04("AlarmNumber04");
 
 	private String name;
 
@@ -15,16 +15,4 @@ public enum SettingsNames {
 	public String getName() {
 		return this.name;
 	}
-
-	// public static final String PREFSNAME = "CrankUpDaHeatPREFERENCES";
-	// public static final String PREFS_isOldController = "isOldController";
-	// public static final String PREFS_phoneNum = "phoneNum";
-	// public static final String PREFS_password = "password";
-	// public static final String PREFS_minTemp = "minTemp";
-	// public static final String PREFS_maxTemp = "maxTemp";
-	// public static final String PREFS_deviceName = "deviceName";
-	// public static final String PREFS_HeatingTemp = "HeatTemp";
-	// public static final String PREFS_CoolingTemp = "CoolTemp";
-	// public static final String PREFS_GSMBat = "GSMBat";
-	// public static final String PREFS_GSMSignal = "GSMSignal";
 }

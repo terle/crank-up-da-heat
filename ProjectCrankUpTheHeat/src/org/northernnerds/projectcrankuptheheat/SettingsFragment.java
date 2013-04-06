@@ -42,6 +42,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	private String phNum02 = "";
 	private String phNum03 = "";
 	private String phNum04 = "";
+	private String brandName ="";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		editor.putString(SettingsNames.AlarmNum02.getName(), phNum02);
 		editor.putString(SettingsNames.AlarmNum03.getName(), phNum03);
 		editor.putString(SettingsNames.AlarmNum04.getName(), phNum04);
+		editor.putString(SettingsNames.BrandName.getName(), brandName);
 		
 		editor.commit();
 		super.onPause();
@@ -119,6 +121,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		phNum02 = settings.getString(SettingsNames.AlarmNum02.getName(), "N/A");
 		phNum03 = settings.getString(SettingsNames.AlarmNum03.getName(), "N/A");
 		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(), "N/A");
+		brandName = settings.getString(SettingsNames.BrandName.getName(), "N/A");
 		
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();

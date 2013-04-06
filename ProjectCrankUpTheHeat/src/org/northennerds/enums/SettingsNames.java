@@ -4,7 +4,7 @@ public enum SettingsNames {
 	prefsName("CrankUpDaHeatPREFERENCES"), isOldController("isOldController"), DevicePhoneNum("phoneNumber"), password(
 			"password"), warningTempLOW("minTemp"), warningTempHIGH("maxTemp"), deviceName("deviceName"), HeatTemp(
 			"HeatTemp"), CoolTemp("CoolTemp"), GSMBat("GSMBat"), GSMSignal("GSMSignal"), AktuelTemp("AktuelTemp"), AlarmNum01(
-			"AlarmNumber01"), AlarmNum02("AlarmNumber02"), AlarmNum03("AlarmNumber03"), AlarmNum04("AlarmNumber04");
+			"AlarmNumber01"), AlarmNum02("AlarmNumber02"), AlarmNum03("AlarmNumber03"), AlarmNum04("AlarmNumber04"), BrandName("Brand Name");
 
 	private String name;
 

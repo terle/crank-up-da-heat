@@ -42,7 +42,7 @@ public class SMSReciever extends BroadcastReceiver {
 			// Hvis det er den sms vi gerne vil ha fat i... (+4561319616)
 			if (messages.getOriginatingAddress().contains(settings.getString(SettingsNames.DevicePhoneNum.getName(), ""))) {
 				this.abortBroadcast();
-				Toast.makeText(context, "BroadCastAboardet", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "BroadCastAboardet", Toast.LENGTH_SHORT).show();
 				Toast.makeText(context, "SMS Received : " + messages.getMessageBody(), Toast.LENGTH_LONG).show();
 
 				decodeRespose(messages.getMessageBody());
@@ -89,7 +89,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			 Ph2:+4561341592
 //			 Ph3:+4528921237
 //			 Ph4:
-			Toast.makeText(context, ResponseTypes.AlarmNumre.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.AlarmNumre.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			
 			editor.putString(SettingsNames.AlarmNum01.getName(), helper.getPhoneNum(msgLines[2]));
 			editor.putString(SettingsNames.AlarmNum02.getName(), helper.getPhoneNum(msgLines[3]));
@@ -104,7 +104,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			Aktivt Brand: Panasonic
 //			Mulige Brand: Panasonic, Daikin, Haier, LG, Bosch, IVT, Mitsubishi, Toshiba, Elux1, Elux2
 			//TODO
-			Toast.makeText(context, ResponseTypes.Brands.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.Brands.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case NORMALIZEDNotification: {
@@ -115,13 +115,13 @@ public class SMSReciever extends BroadcastReceiver {
 //			 Batteri:100%
 //			 GSM signal(1-5):1
 			//TODO
-			Toast.makeText(context, ResponseTypes.NORMALIZEDNotification.getText() + " recieved", Toast.LENGTH_LONG)
+			Toast.makeText(context, ResponseTypes.NORMALIZEDNotification.getText() + " recieved", Toast.LENGTH_SHORT)
 					.show();
 			break;
 		}
 		case PASSWORDUpdate: {
 			//TODO
-			Toast.makeText(context, ResponseTypes.PASSWORDUpdate.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.PASSWORDUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case PowerFailure: {
@@ -133,7 +133,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			GSM signal(1-5):3
 			//TODO
 			
-			Toast.makeText(context, ResponseTypes.PowerFailure.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.PowerFailure.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case PowerRestored: {
@@ -144,7 +144,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:96%
 //			GSM signal(1-5):2
 			//TODO
-			Toast.makeText(context, ResponseTypes.PowerRestored + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.PowerRestored + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case SETUpdate: {
@@ -155,11 +155,11 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:100%
 //			GSM signal(1-5):4
 			//TODO
-			Toast.makeText(context, ResponseTypes.SETUpdate.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.SETUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case Status: {
-			Toast.makeText(context, ResponseTypes.Status.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.Status.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			extractCommonContent(msgLines);
 			break;
 		}
@@ -171,7 +171,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:65%
 //			GSM signal(1-5):3
 			//TODO
-			Toast.makeText(context, ResponseTypes.TempHIGHUpdate.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.TempHIGHUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case TempLOWUpdate: {
@@ -182,11 +182,11 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:64%
 //			GSM signal(1-5):3
 			//TODO
-			Toast.makeText(context, ResponseTypes.TempLOWUpdate.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.TempLOWUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case UNKOWN: {
-			Toast.makeText(context, ResponseTypes.UNKOWN + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.UNKOWN + " recieved", Toast.LENGTH_SHORT).show();
 			// TODO: Make this the default case
 			break;
 		}
@@ -198,7 +198,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:63%
 //			GSM signal(1-5):3
 			//TODO
-			Toast.makeText(context, ResponseTypes.WarningHIGHTemp.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.WarningHIGHTemp.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case WarningLOWTemp: {
@@ -209,7 +209,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			 Batteri:95%
 //			 GSM signal(1-5):2
 			//TODO
-			Toast.makeText(context, ResponseTypes.WarningLOWTemp.getText() + " recieved", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ResponseTypes.WarningLOWTemp.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case WarningUNDER5Degrees: {
@@ -220,12 +220,12 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:100%
 //			GSM signal(1-5):3
 			//TODO
-			Toast.makeText(context, ResponseTypes.WarningUNDER5Degrees.getText() + " recieved", Toast.LENGTH_LONG)
+			Toast.makeText(context, ResponseTypes.WarningUNDER5Degrees.getText() + " recieved", Toast.LENGTH_SHORT)
 					.show();
 			break;
 		}
 		default: {
-			Toast.makeText(context, "Unknown case recieved in SMSReciever", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, "Unknown case recieved in SMSReciever", Toast.LENGTH_SHORT).show();
 			break;
 		}
 

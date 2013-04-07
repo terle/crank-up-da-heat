@@ -95,7 +95,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_marginRight="10dp"
-            android:gravity="right" >
+            android:gravity="left" >
 
             <TextView
                 android:id="@+id/signalTextView"
@@ -127,7 +127,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_marginRight="10dp"
-            android:gravity="right" >
+            android:gravity="left" >
 
             <TextView
                 android:id="@+id/batteryTextView"

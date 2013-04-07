@@ -147,7 +147,7 @@ public class SMSReciever extends BroadcastReceiver {
 //			Batteri:96%
 //			GSM signal(1-5):2
 			//TODO
-			Toast.makeText(context, ResponseTypes.PowerRestored + " recieved", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, ResponseTypes.PowerRestored.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case SETUpdate: {
@@ -189,7 +189,7 @@ public class SMSReciever extends BroadcastReceiver {
 			break;
 		}
 		case UNKOWN: {
-			Toast.makeText(context, ResponseTypes.UNKOWN + " recieved", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, ResponseTypes.UNKOWN.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			// TODO: Make this the default case
 			break;
 		}

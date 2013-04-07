@@ -3,10 +3,12 @@ package org.northennerds.settings;
 import org.northennerds.enums.CommandTypes;
 import org.northennerds.enums.SettingsNames;
 
+import android.R.string;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 public class SMSHandler {
 
@@ -34,83 +36,88 @@ public class SMSHandler {
 
 		// String msg = ", status"; // Add password
 		// sm.sendTextMessage("+4528921237", null, msg, null, null);
-
-		switch (cmdType) {
-		case GetALARMNUMs: {
-			String msg = passWord + ", StatusPhN";
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
+		if (!(deviceNumber.equals(string.emptyPhoneNumber) || deviceNumber == null || deviceNumber.equals(""))) {
+			switch (cmdType) {
+			case GetALARMNUMs: {
+				String msg = passWord + ", StatusPhN";
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case GetBRANDs: {
+				String msg = passWord + ", Brand";
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetALARMNUM01: {
+				String msg = passWord + ", PhN1, " + settings.getString(SettingsNames.AlarmNum01.getName(), "");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetBRAND: {
+				String msg = passWord + ", Brand, "
+						+ settings.getString(SettingsNames.BrandName.getName(), "Tomt Navn");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetCOOL: {
+				String msg = passWord + ", Cool, " + settings.getInt(SettingsNames.CoolTemp.getName(), 16);
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetHEAT: {
+				String msg = passWord + ", Heat, " + settings.getInt(SettingsNames.HeatTemp.getName(), 8);
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetWarningHIGH: {
+				String msg = passWord + ", High, " + settings.getInt(SettingsNames.warningTempHIGH.getName(), 35);
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetWarningLOW: {
+				String msg = passWord + ", Low, " + settings.getInt(SettingsNames.warningTempLOW.getName(), 10);
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case Status: {
+				String msg = passWord + ", Status";
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case setNAME: {
+				String msg = passWord + ", Name, " + settings.getString(SettingsNames.deviceName.getName(), "N/A");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case setPASSWORD: {
+				String msg = passWord + ", NewPass, " + settings.getString(SettingsNames.password.getName(), "");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetALARMNUM02: {
+				String msg = passWord + ", PhN2, " + settings.getString(SettingsNames.AlarmNum02.getName(), "");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetALARMNUM03: {
+				String msg = passWord + ", PhN3, " + settings.getString(SettingsNames.AlarmNum03.getName(), "");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			case SetALARMNUM04: {
+				String msg = passWord + ", PhN4, " + settings.getString(SettingsNames.AlarmNum04.getName(), "");
+				sm.sendTextMessage(deviceNumber, null, msg, null, null);
+				break;
+			}
+			default: {
+				break;
+			}
+			}
 		}
-		case GetBRANDs: {
-			String msg = passWord + ", Brand";
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetALARMNUM01: {
-			String msg = passWord + ", PhN1, " + settings.getString(SettingsNames.AlarmNum01.getName(), "");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetBRAND: {
-			String msg = passWord + ", Brand, " + settings.getString(SettingsNames.BrandName.getName(), "Tomt Navn");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetCOOL: {
-			String msg = passWord + ", Cool, " + settings.getInt(SettingsNames.CoolTemp.getName(), 16);
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetHEAT: {
-			String msg = passWord + ", Heat, " + settings.getInt(SettingsNames.HeatTemp.getName(), 8);
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetWarningHIGH: {
-			String msg = passWord + ", High, " + settings.getInt(SettingsNames.warningTempHIGH.getName(), 35);
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetWarningLOW: {
-			String msg = passWord + ", Low, " + settings.getInt(SettingsNames.warningTempLOW.getName(), 10);
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case Status: {
-			String msg = passWord + ", Status";
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case setNAME: {
-			String msg = passWord + ", Name, " + settings.getString(SettingsNames.deviceName.getName(), "N/A");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case setPASSWORD: {
-			String msg = passWord + ", NewPass, " + settings.getString(SettingsNames.password.getName(), "");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetALARMNUM02: {
-			String msg = passWord + ", PhN2, " + settings.getString(SettingsNames.AlarmNum02.getName(), "");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetALARMNUM03: {
-			String msg = passWord + ", PhN3, " + settings.getString(SettingsNames.AlarmNum03.getName(), "");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		case SetALARMNUM04: {
-			String msg = passWord + ", PhN4, " + settings.getString(SettingsNames.AlarmNum04.getName(), "");
-			sm.sendTextMessage(deviceNumber, null, msg, null, null);
-			break;
-		}
-		default: {
-			break;
-		}
+		else
+		{
+			Toast.makeText(context, "Device Phone number is not set", Toast.LENGTH_LONG).show();
 		}
 	}
-
 	// this.unregisterReceiver(smsReceiver);
 }

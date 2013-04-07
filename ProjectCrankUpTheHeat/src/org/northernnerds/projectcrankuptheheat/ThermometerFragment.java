@@ -68,12 +68,12 @@ public class ThermometerFragment extends SherlockFragment implements OnSeekBarCh
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		Toast.makeText(getSherlockActivity(), "Started tracking...", Toast.LENGTH_LONG).show();
+		Toast.makeText(getSherlockActivity(), "Started tracking...", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		Toast.makeText(getSherlockActivity(), "Stopped tracking...", Toast.LENGTH_LONG).show();
+		Toast.makeText(getSherlockActivity(), "Stopped tracking...", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

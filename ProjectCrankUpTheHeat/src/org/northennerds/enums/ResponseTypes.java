@@ -6,7 +6,7 @@ public enum ResponseTypes {
 			"**Brand status**"), Status("**Status**"), AlarmNumre("**Alarmnumre**"), WarningHIGHTemp(
 			"**ADVARSEL H¿j temp**"), WarningLOWTemp("**ADVARSEL Lav temp**"), NORMALIZEDNotification(
 			"**Temp normal igen**"), PowerFailure("**Netforsyning afbrudt**"), PowerRestored("**Netforsyning tilbage**"), WarningUNDER5Degrees(
-			"**ADVARSEL under 5gC**"), PASSWORDUpdate("TODO"), UNKOWN("Unknown Repose from device");
+			"**ADVARSEL under 5gC**"), PASSWORDUpdate("**Din kode er ¾ndret**"), UNKOWN("Unknown Repose from device");
 
 	private String text;
 

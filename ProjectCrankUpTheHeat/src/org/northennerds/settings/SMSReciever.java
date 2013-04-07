@@ -120,6 +120,9 @@ public class SMSReciever extends BroadcastReceiver {
 			break;
 		}
 		case PASSWORDUpdate: {
+//			Sommerhuset i R¿dhus 
+//			**Din kode er ¾ndret**
+//			Din nye kode er:8110 
 			//TODO
 			Toast.makeText(context, ResponseTypes.PASSWORDUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;

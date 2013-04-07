@@ -28,7 +28,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/modelimageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
@@ -37,7 +37,7 @@
                 android:src="@drawable/house_white_icon" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/modelTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/alarm02TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Advarsler"
@@ -85,7 +85,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/alarm03TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/alarm04TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
@@ -272,7 +272,7 @@
                 android:orientation="vertical" >
 
                 <ImageButton
-                    android:id="@+id/imageButton1"
+                    android:id="@+id/lockButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/refresh_icon_ugly" />

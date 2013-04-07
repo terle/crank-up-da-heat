@@ -1,6 +1,8 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northennerds.enums.CommandTypes;
 import org.northennerds.enums.SettingsNames;
+import org.northennerds.settings.SMSHandler;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,8 +31,8 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	//Values for SharedPrefs
 	private String name = "Sommerfjong i bingbong";
 //	private boolean isOldController = true;
-//	private String devicePhoneNum = "004528921237";
-//	private String passwd = "1234";
+	private String devicePhoneNum = "+4561319616";
+	private String passwd = "8110";
 	private int minTemp = 8;
 	private int maxTemp = 8;
 	private int heatingTemp = 24;
@@ -180,7 +182,9 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.updateStatusButton:
-			Toast.makeText(getActivity(), "Send opdat√©r status her!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Sender status SMS! Vent på svar", Toast.LENGTH_SHORT).show();
+			SMSHandler handler = new SMSHandler(getActivity());
+			handler.SendSMS(CommandTypes.Status);
 			break;
 		case R.id.alarmButton:
 			Intent intent = new Intent(getSherlockActivity(), ThermometerActivity.class);

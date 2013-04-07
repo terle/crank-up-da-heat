@@ -1,5 +1,6 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northennerds.enums.CommandTypes;
 import org.northennerds.settings.SMSHandler;
 
 import android.os.Bundle;
@@ -78,8 +79,8 @@ public class ThermometerActivity extends SherlockActivity implements
 
 	@Override
 	public void onClick(View v) {
-		SMSHandler handler = new SMSHandler();
-//		handler.SendSMS();
+		SMSHandler handler = new SMSHandler(this);
+		handler.SendSMS(CommandTypes.Status);
 		Toast.makeText(this, "Should send sms here to unit!", Toast.LENGTH_LONG).show();
 
 	}

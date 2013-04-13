@@ -61,7 +61,6 @@ public class SMSReciever extends BroadcastReceiver {
 //				noti.flags |= Notification.FLAG_AUTO_CANCEL;
 //				notificationManager.notify(0, noti);
 
-				// TODO: HŒndter svaret
 			}
 
 			Log.i(TAG, messages.getMessageBody());
@@ -211,11 +210,7 @@ public class SMSReciever extends BroadcastReceiver {
 			Toast.makeText(context, ResponseTypes.TempLOWUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
-		case UNKOWN: {
-			Toast.makeText(context, ResponseTypes.UNKOWN.getText() + " recieved", Toast.LENGTH_SHORT).show();
-			// TODO: Make this the default case
-			break;
-		}
+		
 		case WarningHIGHTemp: {
 			// Sommerhuset i R¿dhus
 			// **ADVARSEL H¿j temp**

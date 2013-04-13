@@ -1,7 +1,7 @@
 package org.northernnerds.projectcrankuptheheat;
 
-import org.northennerds.enums.CommandTypes;
-import org.northennerds.settings.SMSHandler;
+import org.northernnerds.enums.CommandTypes;
+import org.northernnerds.settings.SMSHandler;
 
 import android.os.Bundle;
 import android.view.View;

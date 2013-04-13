@@ -1,6 +1,6 @@
 package org.northernnerds.projectcrankuptheheat;
 
-import org.northennerds.enums.Temperatures;
+import org.northernnerds.enums.Temperatures;
 
 import android.content.Context;
 import android.graphics.Canvas;

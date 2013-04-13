@@ -1,4 +1,4 @@
-package org.northennerds.enums;
+package org.northernnerds.enums;
 
 public enum ResponseTypes {
 

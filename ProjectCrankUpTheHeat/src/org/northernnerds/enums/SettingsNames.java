@@ -1,4 +1,4 @@
-package org.northennerds.enums;
+package org.northernnerds.enums;
 
 public enum SettingsNames {
 	prefsName("CrankUpDaHeatPREFERENCES"), isOldController("isOldController"), DevicePhoneNum("phoneNumber"), password(

@@ -1,6 +1,6 @@
-package org.northennerds.settings;
+package org.northernnerds.settings;
 
-import org.northennerds.enums.ResponseTypes;
+import org.northernnerds.enums.ResponseTypes;
 
 import android.content.Context;
 import android.widget.Toast;

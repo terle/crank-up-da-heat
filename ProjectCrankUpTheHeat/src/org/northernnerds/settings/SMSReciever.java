@@ -1,7 +1,7 @@
-package org.northennerds.settings;
+package org.northernnerds.settings;
 
-import org.northennerds.enums.ResponseTypes;
-import org.northennerds.enums.SettingsNames;
+import org.northernnerds.enums.ResponseTypes;
+import org.northernnerds.enums.SettingsNames;
 
 //import android.R;
 import android.annotation.TargetApi;

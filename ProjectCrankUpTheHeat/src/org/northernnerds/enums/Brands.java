@@ -1,4 +1,4 @@
-package org.northennerds.enums;
+package org.northernnerds.enums;
 
 public enum Brands {
 	Panasonic("Panasonic"),Haier("Haier"), Daikin("Daikin"), LG("LG"), Bosch("Bosch"), IVT("IVT"),Electrolux_old("Elux1"), Mitsubishi("Mitsubishi"),

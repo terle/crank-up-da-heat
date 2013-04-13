@@ -1,8 +1,8 @@
 package org.northernnerds.projectcrankuptheheat;
 
-import org.northennerds.enums.CommandTypes;
-import org.northennerds.enums.SettingsNames;
-import org.northennerds.settings.SMSHandler;
+import org.northernnerds.enums.CommandTypes;
+import org.northernnerds.enums.SettingsNames;
+import org.northernnerds.settings.SMSHandler;
 
 import android.content.Context;
 import android.content.Intent;

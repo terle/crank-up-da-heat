@@ -181,5 +181,18 @@ public class SMSHelper {
 		return result;
 	}
 
-	
+	public String getPassword(String str) {
+		// Sommerhuset i R¿dhus
+		// **Din kode er ¾ndret**
+		// Din nye kode er:8110
+
+		String result = "";
+		if (str.contains("Din nye kode er:")) {
+
+			String s = str.substring(str.indexOf(":") + 1);
+			result = s.trim();
+		}
+		return result;
+
+	}
 }

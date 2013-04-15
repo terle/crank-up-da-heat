@@ -59,7 +59,7 @@ public class ThermostatView extends ImageView {
 		centerX = width / 2;
 		centerY = height / 2;
 		canvas.rotate(degree, centerX, centerY);
-		Log.d(this.getClass().getSimpleName(), "Direction is now: " + degree);
+		Log.d(this.getClass().getSimpleName(), "onDraw(): degree is now: " + degree);
 		super.onDraw(canvas);
 	}
 
@@ -70,17 +70,20 @@ public class ThermostatView extends ImageView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		System.out.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
+//		System.out.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
 
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			// x = event.getX();
-			// y = event.getY();
-			// newX = centerX - x;
-			// newY = centerY - y;
+//			x = event.getX();
+//			y = event.getY();
+//			newX = centerX - x;
+//			newY = centerY - y;
 			// updateRotation(newX, newY);
 			// if (isXYInCenterRing(event.getX(), event.getY())) {
 			// setRotation(thermostatAngle);
 			// }
+			Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_DOWN. degree:" + degree + " ThermostatAngle:"
+					+ thermostatAngle);
+
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			x = event.getX();
 			y = event.getY();
@@ -91,8 +94,12 @@ public class ThermostatView extends ImageView {
 			if (isXYInCenterRing(event.getX(), event.getY())) {
 				updateRotation(newX, newY);
 				updateTextView(thermostatAngle);
+				Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_MOVE. degree:" + degree + " ThermostatAngle:"
+						+ thermostatAngle);
 			}
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
+			Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_UP.   degree:" + degree + " ThermostatAngle:"
+					+ thermostatAngle);
 			// x = event.getX();
 			// y = event.getY();
 			// newX = centerX - x;
@@ -112,7 +119,6 @@ public class ThermostatView extends ImageView {
 			} else {
 				snapToDegree(thermostatAngle);
 			}
-
 		}
 		return true;
 	}
@@ -123,9 +129,11 @@ public class ThermostatView extends ImageView {
 
 	private void updateRotation(float newX2, float newY2) {
 		thermostatAngle = (int) Math.toDegrees(Math.atan2(newY, newX)) - 90;
+		
+		// Log.d(this.getClass().getSimpleName(),
+				// "updateRotation(): Angle is now: " + thermostatAngle);
 
 		if (Temperatures.t00.getAngle() >= thermostatAngle && thermostatAngle >= Temperatures.t24.getAngle()) {
-			Log.d("Thermostat angle", "Angle is now: " + thermostatAngle);
 
 			// textViewTempGauge.setText("" + thermostatAngle);
 
@@ -176,6 +184,7 @@ public class ThermostatView extends ImageView {
 	private void snapToDegree(int currentAngle) {
 
 		Temperatures temp = getClosestTemperature(currentAngle);
+		Log.d(this.getClass().getSimpleName(), "----------SNAP to " + temp.getAngle() + "-----------");
 
 		switch (temp) {
 		case t00:
@@ -239,6 +248,8 @@ public class ThermostatView extends ImageView {
 
 		Temperatures temp = getClosestTemperature(currentAngle);
 		currentTemperature = temp;
+		// Log.d(this.getClass().getSimpleName(),
+		// "TextView Updated to "+temp.getAngle());
 
 		switch (temp) {
 		case t00:
@@ -341,6 +352,7 @@ public class ThermostatView extends ImageView {
 	private void makeVibration() {
 		if (shouldIVibrate) {
 			vibrator.vibrate(20);
+			Log.d(this.getClass().getSimpleName(), "brrrrrrrrm");
 			shouldIVibrate = false;
 		}
 	}

@@ -9,14 +9,14 @@ import com.viewpagerindicator.IconPagerAdapter;
 // TODO: Skal omd¿bes og renses for un¿dig kode...
 class TestFragmentAdapter extends FragmentPagerAdapter implements
 		IconPagerAdapter {
-	protected static final String[] CONTENT = new String[] { "This", "Is", "A",
-			"Test", };
+	protected static final String[] CONTENT = new String[] { "Info",
+			"Programvalg", "Advarsler" };
 
 	private int mCount = CONTENT.length;
 
 	public TestFragmentAdapter(FragmentManager fm) {
 		super(fm);
-	}
+    }
 
 	@Override
 	public Fragment getItem(int position) {

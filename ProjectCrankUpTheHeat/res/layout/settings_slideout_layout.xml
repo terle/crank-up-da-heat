@@ -23,7 +23,7 @@
         android:text="+4551972378" />
 
     <TextView
-        android:id="@+id/modelTextView"
+        android:id="@+id/currentTemperatureTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Model:" />
@@ -91,7 +91,7 @@
                 android:layout_margin="4dp" />
 
             <TextView
-                android:id="@+id/alarm02TextView"
+                android:id="@+id/alarmsTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/alarm03TextView"
+                android:id="@+id/alarmsHighTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
@@ -126,7 +126,7 @@
                 android:layout_margin="4dp" />
 
             <TextView
-                android:id="@+id/alarm04TextView"
+                android:id="@+id/alarmsLowTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -156,7 +156,7 @@
     </TableLayout>
 
     <ImageButton
-        android:id="@+id/lockButton"
+        android:id="@+id/lockButtonImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"

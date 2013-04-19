@@ -11,7 +11,7 @@ import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
 public class MainActivity extends SlidingFragmentActivity  {
-	private TestFragmentAdapter mAdapter;
+	private HeatFragmentAdapter mAdapter;
     private ViewPager mPager;
     private PageIndicator mIndicator;
 	
@@ -25,7 +25,7 @@ public class MainActivity extends SlidingFragmentActivity  {
 		// Setting the behind view
 		setBehindContentView(R.layout.menu_layout);
 		
-		TestFragmentAdapter mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+		HeatFragmentAdapter mAdapter = new HeatFragmentAdapter(getSupportFragmentManager());
 
         mPager = (ViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);

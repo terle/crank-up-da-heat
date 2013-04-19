@@ -7,14 +7,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.viewpagerindicator.IconPagerAdapter;
 
 // TODO: Skal omd¿bes og renses for un¿dig kode...
-class TestFragmentAdapter extends FragmentPagerAdapter implements
+class HeatFragmentAdapter extends FragmentPagerAdapter implements
 		IconPagerAdapter {
 	protected static final String[] CONTENT = new String[] { "Info",
 			"Programvalg", "Advarsler" };
 
 	private int mCount = CONTENT.length;
 
-	public TestFragmentAdapter(FragmentManager fm) {
+	public HeatFragmentAdapter(FragmentManager fm) {
 		super(fm);
     }
 
@@ -22,7 +22,7 @@ class TestFragmentAdapter extends FragmentPagerAdapter implements
 	public Fragment getItem(int position) {
 		switch (position) {
 		case 0:
-			return new ThermometerFragment();
+			return new InfoFragment();
 		case 1:
 			return new ThermostatFragment();
 		default:
@@ -37,7 +37,7 @@ class TestFragmentAdapter extends FragmentPagerAdapter implements
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		return TestFragmentAdapter.CONTENT[position % CONTENT.length];
+		return HeatFragmentAdapter.CONTENT[position % CONTENT.length];
 	}
 
 	public void setCount(int count) {

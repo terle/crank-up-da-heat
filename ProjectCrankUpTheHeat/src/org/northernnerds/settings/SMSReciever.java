@@ -35,10 +35,11 @@ public class SMSReciever extends BroadcastReceiver {
 
 			// Hvis det er den sms vi gerne vil ha fat i... (+4561319616)
 			if (messages.getOriginatingAddress().contains(
-					settings.getString(SettingsNames.DevicePhoneNum.getName(), ""))) {
+					settings.getString(SettingsNames.devicePhoneNum.getName(), ""))) {
 				this.abortBroadcast();
 				// Toast.makeText(context, "BroadCastAboardet",
 				// Toast.LENGTH_SHORT).show();
+				
 				Toast.makeText(context, "SMS Received : " + messages.getMessageBody(), Toast.LENGTH_LONG).show();
 
 				Log.i(TAG, messages.getMessageBody());
@@ -132,7 +133,7 @@ public class SMSReciever extends BroadcastReceiver {
 
 			// TODO Make the system aware that the password has been changed.
 
-			editor.putString(SettingsNames.password.getName(), helper.getPassword(msgLines[2]));
+			editor.putString(SettingsNames.devicePassword.getName(), helper.getPassword(msgLines[2]));
 			Toast.makeText(context, ResponseTypes.PASSWORDUpdate.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
@@ -270,7 +271,7 @@ public class SMSReciever extends BroadcastReceiver {
 
 		editor.putString(SettingsNames.deviceName.getName(), msgLines[0]);
 
-		editor.putInt(SettingsNames.AktuelTemp.getName(), helper.getCurrentTemp(msgLines[2]));
+		editor.putInt(SettingsNames.currentTemperatur.getName(), helper.getCurrentTemp(msgLines[2]));
 
 		if (helper.isSetTempHEAT(msgLines[2])) {
 			editor.putInt(SettingsNames.HeatTemp.getName(), helper.getSetTemp(msgLines[2]));
@@ -280,7 +281,7 @@ public class SMSReciever extends BroadcastReceiver {
 			editor.putInt(SettingsNames.CoolTemp.getName(), helper.getSetTemp(msgLines[2]));
 		}
 
-		editor.putInt(SettingsNames.warningTempLOW.getName(), helper.getWarningLOWTemp(msgLines[2]));
+		editor.putInt(SettingsNames.warningTempLOW.getName(), helper.getWarningLOWTemp(msgLines[3]));
 		editor.putInt(SettingsNames.warningTempHIGH.getName(), helper.getWarningHIGHTemp(msgLines[3]));
 
 		editor.putInt(SettingsNames.GSMBat.getName(), helper.getBatteryStatus(msgLines[4]));

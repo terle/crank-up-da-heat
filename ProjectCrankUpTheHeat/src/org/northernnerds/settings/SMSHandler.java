@@ -30,10 +30,12 @@ public class SMSHandler {
 
 		SharedPreferences settings = context.getSharedPreferences(SettingsNames.prefsName.getName(),
 				Context.MODE_PRIVATE);
-		String passWord = settings.getString(SettingsNames.password.getName(), "1234");
+		String passWord = settings.getString(SettingsNames.devicePassword.getName(), "1234");
 
-		String deviceNumber = settings.getString(SettingsNames.DevicePhoneNum.getName(), "");
+		String deviceNumber = settings.getString(SettingsNames.devicePhoneNum.getName(), "");
 
+//		Toast.makeText(context, "Hello fra SendSMS()", Toast.LENGTH_SHORT).show();
+		
 		// String msg = ", status"; // Add password
 		// sm.sendTextMessage("+4528921237", null, msg, null, null);
 		if (!(deviceNumber.equals(string.emptyPhoneNumber) || deviceNumber == null || deviceNumber.equals(""))) {
@@ -81,6 +83,7 @@ public class SMSHandler {
 			}
 			case Status: {
 				String msg = passWord + ", Status";
+				Toast.makeText(context, "Status Sent: Num:"+deviceNumber+" password:"+passWord, Toast.LENGTH_LONG).show();
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
@@ -90,7 +93,7 @@ public class SMSHandler {
 				break;
 			}
 			case setPASSWORD: {
-				String msg = passWord + ", NewPass, " + settings.getString(SettingsNames.password.getName(), "");
+				String msg = passWord + ", NewPass, " + settings.getString(SettingsNames.devicePassword.getName(), "");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}

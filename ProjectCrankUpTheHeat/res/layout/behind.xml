@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/behind"
@@ -7,7 +8,7 @@
     android:background="#ff888888"
     android:baselineAligned="true"
     android:orientation="vertical" >
-
+<!--
     <TextView
         android:id="@+id/unitNameTextView"
         android:layout_width="wrap_content"
@@ -142,5 +143,5 @@
                 android:src="@drawable/bat7" />
         </TableRow>
     </TableLayout>
-
+  -->
 </LinearLayout>

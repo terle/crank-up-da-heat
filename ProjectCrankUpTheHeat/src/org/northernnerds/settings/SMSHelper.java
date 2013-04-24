@@ -159,7 +159,7 @@ public class SMSHelper {
 			int indexLav = str.indexOf("Lav") + 4;
 			String s = str.substring(indexLav, indexLav + 2);
 			try {
-				result = Integer.parseInt(s);
+				result = Integer.parseInt(s.trim());
 			} catch (NumberFormatException e) {
 				Toast.makeText(context, "Error in parsing the Low WarningTemp. Trying to parse: " + s,
 						Toast.LENGTH_LONG).show();

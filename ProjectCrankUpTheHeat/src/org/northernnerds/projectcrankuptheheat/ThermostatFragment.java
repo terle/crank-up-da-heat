@@ -45,30 +45,37 @@ public class ThermostatFragment extends SherlockFragment implements
 
 		View inflatedView = inflater.inflate(R.layout.activity_main, null);
 
-		tempTextView = (TextView) inflatedView.findViewById(R.id.temperatureTextView);
-		Typeface roboto = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Bold.ttf");
+		tempTextView = (TextView) inflatedView
+				.findViewById(R.id.temperatureTextView);
+		Typeface roboto = Typeface.createFromAsset(getActivity().getAssets(),
+				"Roboto-Bold.ttf");
 		tempTextView.setTypeface(roboto);
 		tempTextView.setTextSize(70);
-		
-		thermostat = (ThermostatView) inflatedView.findViewById(R.id.thermostatView1);
+
+		thermostat = (ThermostatView) inflatedView
+				.findViewById(R.id.thermostatView1);
 		thermostat.setTempTextView(tempTextView);
 		thermostat.setOnTouchListener(this);
-		
-		buttonLayout = (LinearLayout) inflatedView.findViewById(R.id.sendCancelButtonLayout);
-		
+
+		buttonLayout = (LinearLayout) inflatedView
+				.findViewById(R.id.sendCancelButtonLayout);
+
 		sendButton = (Button) inflatedView.findViewById(R.id.sendButton);
 		sendButton.setOnClickListener(this);
 		cancelButton = (Button) inflatedView.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(this);
-		
-		hotColdSeekBar = (SeekBar) inflatedView.findViewById(R.id.hotColdSeekBar);
+
+		hotColdSeekBar = (SeekBar) inflatedView
+				.findViewById(R.id.hotColdSeekBar);
 		hotColdSeekBar.setOnSeekBarChangeListener(this);
-		
-		mainLayout = (RelativeLayout) inflatedView.findViewById(R.id.mainLayout);
-		
-		hotImageView = (ImageView) inflatedView.findViewById(R.id.hotImageView); 
-		coldImageView = (ImageView) inflatedView.findViewById(R.id.coldImageView);
-		
+
+		mainLayout = (RelativeLayout) inflatedView
+				.findViewById(R.id.mainLayout);
+
+		hotImageView = (ImageView) inflatedView.findViewById(R.id.hotImageView);
+		coldImageView = (ImageView) inflatedView
+				.findViewById(R.id.coldImageView);
+
 		return inflatedView;
 	}
 
@@ -78,7 +85,8 @@ public class ThermostatFragment extends SherlockFragment implements
 
 		if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (buttonLayout.getVisibility() == View.INVISIBLE) {
-				Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_anim);
+				Animation anim = AnimationUtils.loadAnimation(getActivity(),
+						R.anim.slide_in_anim);
 				buttonLayout.startAnimation(anim);
 				buttonLayout.setVisibility(View.VISIBLE);
 				System.out.println("Is this called??!");

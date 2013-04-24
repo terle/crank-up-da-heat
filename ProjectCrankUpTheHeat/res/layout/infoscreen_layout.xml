@@ -272,7 +272,7 @@
                 android:orientation="vertical" >
 
                 <ImageButton
-                    android:id="@+id/lockButtonImageButton"
+                    android:id="@+id/refreshButtonImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/refresh_icon_ugly" />

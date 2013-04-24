@@ -9,6 +9,20 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/unitNameTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enhedens Navn"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/unitNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Bingeling Dong" />
+
+    <TextView
         android:id="@+id/phonenoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,16 +56,23 @@
         android:layout_gravity="left"
         android:text="Password:" />
 
-    <EditText
+   <!--  <EditText
         android:id="@+id/unitPasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:enabled="false"
+        android:inputType="text"
         android:text="1234" >
 
         <requestFocus />
     </EditText>
+ -->
+    <EditText
+        android:id="@+id/unitPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -85,7 +106,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
             <QuickContactBadge
-                android:id="@+id/qlarm01QuickContactBadge"
+                android:id="@+id/alarm01QuickContactBadge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp" />

@@ -34,7 +34,7 @@
                 android:layout_gravity="center|right"
                 android:baselineAlignBottom="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/house_white_icon" />
+                android:src="@drawable/current_temperature_icon" />
 
             <TextView
                 android:id="@+id/currentTemperatureTextView"
@@ -76,13 +76,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/alarmsHighTitleTextView"
+            <ImageView
+                android:id="@+id/alarmsHighImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:text="Høj:"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:layout_gravity="right"
+                android:src="@drawable/warning_high_icon" />
 
             <TextView
                 android:id="@+id/alarmsHighTextView"
@@ -99,13 +98,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/alarmsLowTitleTextView"
+            <ImageView
+                android:id="@+id/alarmsLowImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:text="Lav:"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:layout_gravity="right"
+                android:src="@drawable/warning_low_icon" />
 
             <TextView
                 android:id="@+id/alarmsLowTextView"
@@ -228,19 +226,19 @@
             android:layout_marginRight="10dp"
             android:gravity="left" >
 
+            <ImageView
+                android:id="@+id/batteryImageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/bat7" />
+
             <TextView
                 android:id="@+id/batteryTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
                 android:text="75%" />
-
-            <ImageView
-                android:id="@+id/batteryImageView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/bat7" />
 
         </TableRow>
 
@@ -275,7 +273,7 @@
                     android:id="@+id/refreshButtonImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/refresh_icon_ugly" />
+                    android:src="@drawable/refresh" />
 
                 <TextView
                     android:id="@+id/updateStatusTextView"

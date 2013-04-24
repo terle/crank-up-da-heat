@@ -37,7 +37,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	private String currentProgram;
 	// private Button thermometerButton, updateStatusButton;
 	private ImageButton refreshImageButton;
-	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView;
+	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView, warnningHighImageView, warningLowImageView;
 	private TextView batteryTextView, currentTemperatureTextView, warningHighTextView, warningLowTextView,
 			currentProgramTextView;
 
@@ -53,6 +53,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		View inflatedView = inflater.inflate(R.layout.infoscreen_layout, null);
 
 		currentTemperatureTextView = (TextView) inflatedView.findViewById(R.id.currentTemperatureTextView);
+		
 		warningHighTextView = (TextView) inflatedView.findViewById(R.id.alarmsHighTextView);
 		warningLowTextView = (TextView) inflatedView.findViewById(R.id.alarmsLowTextView);
 		currentProgramImageView = (ImageView) inflatedView.findViewById(R.id.currentProgramImageView);
@@ -195,6 +196,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		warningTempLow= settings.getInt(SettingsNames.warningTempLOW.getName(), iDefaultValue);
 		gsmBat = settings.getInt(SettingsNames.GSMBat.getName(), iDefaultValue);
 		gsmSignal = settings.getInt(SettingsNames.GSMSignal.getName(), iDefaultValue);
+
 		// String strCProgram = settings.getString(SettingsNames.,
 		// strDefaultValue);
 		
@@ -214,9 +216,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		currentTemperatureTextView.setText("" + currentTemp+degreeSign);
 		warningHighTextView.setText("" + warningTempHigh+degreeSign);
 		warningLowTextView.setText("" + warningTempLow+degreeSign);
-		
-//		batteryTextView.setText(""+gsmBat);
-		
+
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();
 

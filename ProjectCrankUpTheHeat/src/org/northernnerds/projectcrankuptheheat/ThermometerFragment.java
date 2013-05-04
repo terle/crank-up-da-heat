@@ -1,85 +1,165 @@
 package org.northernnerds.projectcrankuptheheat;
 
-import org.northernnerds.enums.CommandTypes;
-import org.northernnerds.settings.SMSHandler;
-
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.View.MeasureSpec;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class ThermometerFragment extends SherlockFragment implements OnSeekBarChangeListener, OnClickListener{
-	private SeekBar seekbarMin, seekbarMax;
-	private TextView counterMin, counterMax;
-	private int minTemp, maxTemp;
-	private Button sendButt;
-	
-	
+public class ThermometerFragment extends SherlockFragment implements OnTouchListener {
+	private ImageView maxTempImageView, minTempImageView;
+	private ImageView thermoWarm, thermoCold;
+	private ViewGroup rootView;
+	private int xDelta;
+	private int yDelta;
+	private float warmMaxValueInDp;// = 50 px
+	private float coolMaxValueInDp;// = 200 px
+	private float warmMinValueInDp;// = 500 px
+	private float coolMinValueInDp;// = 500 px
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	}
+		
+		View inflatedView = inflater.inflate(R.layout.thermometer_layout, null);
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		rootView = (ViewGroup) inflatedView.findViewById(R.id.root);
 
-		View inflatedView = inflater.inflate(R.layout.thermometer, null);
+		addThermometer();
+		addImages();
 		
-		seekbarMin = (SeekBar) inflatedView.findViewById(R.id.seekBarMin);
-		seekbarMin.setOnSeekBarChangeListener(this);
-		
-		seekbarMax = (SeekBar) inflatedView.findViewById(R.id.seekBarMax);
-		seekbarMax.setOnSeekBarChangeListener(this);
-		
-		counterMin = (TextView) inflatedView.findViewById(R.id.textViewMin);
-		counterMax = (TextView) inflatedView.findViewById(R.id.textViewMax);
-		
-		inflatedView.setRotation(270);
-		
-		sendButt = (Button) inflatedView.findViewById(R.id.button1);
-		sendButt.setOnClickListener(this);
 		return inflatedView;
 	}
 
-	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-		//Toast.makeText(getSherlockActivity(), "Progress changed... " + progress, Toast.LENGTH_LONG).show();
-		//Next 2 lines are to make seekbars "follow" eachother.
-		if(maxTemp <= minTemp)seekbarMin.setProgress(maxTemp);
-		if(minTemp >= maxTemp)seekbarMax.setProgress(minTemp);
-		
-		if(seekBar == seekbarMax){
-			maxTemp = progress;
-			counterMax.setText("Max: "+progress);		
+	private void addThermometer() {
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		int width = displaymetrics.widthPixels;
+
+		// Max
+		thermoWarm = new ImageView(getActivity());
+		thermoWarm.setImageDrawable(getResources().getDrawable(R.drawable.termometer_varm));
+		thermoWarm.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(thermoWarm.getMeasuredWidth(), thermoWarm.getMeasuredHeight());
+		layoutParams.leftMargin = (width / 2) - layoutParams.width;
+		layoutParams.topMargin = 20;
+
+		layoutParams.bottomMargin = -250;
+		layoutParams.rightMargin = -250;
+		thermoWarm.setLayoutParams(layoutParams);
+
+		rootView.addView(thermoWarm);
+
+		thermoCold = new ImageView(getActivity());
+		thermoCold.setImageDrawable(getResources().getDrawable(R.drawable.termometer_kold));
+		thermoCold.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
+		RelativeLayout.LayoutParams minLayoutParams = new RelativeLayout.LayoutParams(thermoCold.getMeasuredWidth(), thermoCold.getMeasuredHeight());
+		minLayoutParams.leftMargin = width / 2;
+		minLayoutParams.topMargin = 20;
+		minLayoutParams.bottomMargin = -250;
+		minLayoutParams.rightMargin = -250;
+		thermoCold.setLayoutParams(minLayoutParams);
+		rootView.addView(thermoCold);
+
+		warmMaxValueInDp = 50 / (displaymetrics.densityDpi / 160f);
+		warmMinValueInDp = 500 / (displaymetrics.densityDpi / 160f);
+
+		coolMaxValueInDp = 200 / (displaymetrics.densityDpi / 160f);
+		coolMinValueInDp = warmMinValueInDp;
+	}
+
+	private void addImages() {
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		int height = displaymetrics.heightPixels;
+		int width = displaymetrics.widthPixels;
+
+		System.out.println("Window: height: " + height + ", width: " + width);
+
+		// Max
+		maxTempImageView = new ImageView(getActivity());
+		maxTempImageView.setId(666);
+		maxTempImageView.setImageDrawable(getResources().getDrawable(R.drawable.max));
+		maxTempImageView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(maxTempImageView.getMeasuredWidth(), maxTempImageView.getMeasuredHeight());
+		layoutParams.leftMargin = (width / 2) - layoutParams.width - (thermoWarm.getMeasuredWidth() / 2);
+		layoutParams.topMargin = 50;
+		layoutParams.bottomMargin = -250;
+		layoutParams.rightMargin = -250;
+		maxTempImageView.setLayoutParams(layoutParams);
+
+		maxTempImageView.setOnTouchListener(this);
+		rootView.addView(maxTempImageView);
+
+		// Min
+		minTempImageView = new ImageView(getActivity());
+		minTempImageView.setId(777);
+		minTempImageView.setImageDrawable(getResources().getDrawable(R.drawable.min));
+		minTempImageView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+
+		System.out
+				.println("View width: " + minTempImageView.getMeasuredWidth());
+
+		RelativeLayout.LayoutParams minLayoutParams = new RelativeLayout.LayoutParams(minTempImageView.getMeasuredWidth(), minTempImageView.getMeasuredHeight());
+		minLayoutParams.leftMargin = width / 2 + (thermoCold.getMeasuredWidth() / 2);
+		minLayoutParams.topMargin = 200;
+		minLayoutParams.bottomMargin = -250;
+		minLayoutParams.rightMargin = -250;
+		minTempImageView.setLayoutParams(minLayoutParams);
+
+		minTempImageView.setOnTouchListener(this);
+
+		System.out.println("Width!: " + minTempImageView.getMeasuredWidth());
+		rootView.addView(minTempImageView);
+	}
+
+	public boolean onTouch(View view, MotionEvent event) {
+		final int X = (int) event.getRawX();
+		final int Y = (int) event.getRawY();
+		switch (event.getAction() & MotionEvent.ACTION_MASK) {
+		case MotionEvent.ACTION_DOWN:
+			RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+			xDelta = lParams.leftMargin;
+			yDelta = Y - lParams.topMargin;
+			break;
+		case MotionEvent.ACTION_UP:
+			break;
+		case MotionEvent.ACTION_POINTER_DOWN:
+			break;
+		case MotionEvent.ACTION_POINTER_UP:
+			break;
+		case MotionEvent.ACTION_MOVE:
+			int newVal = Y - yDelta;
+			if (view.getId() == 666) { // Max temp image.
+				if (newVal < warmMaxValueInDp || newVal > warmMinValueInDp) {
+					break;
+				}
+			} else if (view.getId() == 777) { // Min temp image
+				if (newVal < coolMaxValueInDp || newVal > coolMinValueInDp) {
+					break;
+				}
+			}
+
+			RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+			layoutParams.leftMargin = xDelta;
+			layoutParams.topMargin = Y - yDelta;
+			layoutParams.rightMargin = -250;
+			layoutParams.bottomMargin = -250;
+			view.setLayoutParams(layoutParams);
+			break;
 		}
-		if(seekBar == seekbarMin){
-			minTemp = progress;
-			counterMin.setText("Min: "+progress);		
-		}
-	}
-
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-		Toast.makeText(getSherlockActivity(), "Started tracking...", Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
-		Toast.makeText(getSherlockActivity(), "Stopped tracking...", Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onClick(View v) {
-		SMSHandler handler = new SMSHandler(getActivity());
-		handler.SendSMS(CommandTypes.Status);
-		
+		rootView.invalidate();
+		return true;
 	}
 }

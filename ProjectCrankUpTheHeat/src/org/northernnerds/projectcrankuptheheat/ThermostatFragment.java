@@ -45,10 +45,8 @@ public class ThermostatFragment extends SherlockFragment implements
 
 		View inflatedView = inflater.inflate(R.layout.activity_main, null);
 
-		tempTextView = (TextView) inflatedView
-				.findViewById(R.id.temperatureTextView);
-		Typeface roboto = Typeface.createFromAsset(getActivity().getAssets(),
-				"Roboto-Bold.ttf");
+		tempTextView = (TextView) inflatedView.findViewById(R.id.temperatureTextView);
+		Typeface roboto = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Bold.ttf");
 		tempTextView.setTypeface(roboto);
 		tempTextView.setTextSize(70);
 
@@ -57,8 +55,7 @@ public class ThermostatFragment extends SherlockFragment implements
 		thermostat.setTempTextView(tempTextView);
 		thermostat.setOnTouchListener(this);
 
-		buttonLayout = (LinearLayout) inflatedView
-				.findViewById(R.id.sendCancelButtonLayout);
+		buttonLayout = (LinearLayout) inflatedView.findViewById(R.id.sendCancelButtonLayout);
 
 		sendButton = (Button) inflatedView.findViewById(R.id.sendButton);
 		sendButton.setOnClickListener(this);
@@ -69,12 +66,10 @@ public class ThermostatFragment extends SherlockFragment implements
 				.findViewById(R.id.hotColdSeekBar);
 		hotColdSeekBar.setOnSeekBarChangeListener(this);
 
-		mainLayout = (RelativeLayout) inflatedView
-				.findViewById(R.id.mainLayout);
+		mainLayout = (RelativeLayout) inflatedView.findViewById(R.id.mainLayout);
 
 		hotImageView = (ImageView) inflatedView.findViewById(R.id.hotImageView);
-		coldImageView = (ImageView) inflatedView
-				.findViewById(R.id.coldImageView);
+		coldImageView = (ImageView) inflatedView.findViewById(R.id.coldImageView);
 
 		return inflatedView;
 	}
@@ -85,8 +80,7 @@ public class ThermostatFragment extends SherlockFragment implements
 
 		if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (buttonLayout.getVisibility() == View.INVISIBLE) {
-				Animation anim = AnimationUtils.loadAnimation(getActivity(),
-						R.anim.slide_in_anim);
+				Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_anim);
 				buttonLayout.startAnimation(anim);
 				buttonLayout.setVisibility(View.VISIBLE);
 				System.out.println("Is this called??!");
@@ -96,8 +90,7 @@ public class ThermostatFragment extends SherlockFragment implements
 	}
 
 	private void slideOutButtons() {
-		Animation anim = AnimationUtils.loadAnimation(getActivity(),
-				R.anim.slide_out_anim);
+		Animation anim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_anim);
 		buttonLayout.startAnimation(anim);
 		buttonLayout.setVisibility(View.INVISIBLE);
 	}
@@ -106,8 +99,7 @@ public class ThermostatFragment extends SherlockFragment implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.sendButton:
-			Toast.makeText(getActivity(), "Sending something!",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Sending something!", Toast.LENGTH_SHORT).show();
 			// Should call SMSHandler here...
 			slideOutButtons();
 			break;
@@ -129,11 +121,9 @@ public class ThermostatFragment extends SherlockFragment implements
 		// load them from files. Makes sense, since
 		// I/O is always performance heavy.
 		hotUnselected = getResources().getDrawable(R.drawable.varme_ikon);
-		hotSelected = getResources()
-				.getDrawable(R.drawable.varme_ikon_selected);
+		hotSelected = getResources().getDrawable(R.drawable.varme_ikon_selected);
 		coldUnselected = getResources().getDrawable(R.drawable.kulde_ikon);
-		coldSelected = getResources().getDrawable(
-				R.drawable.kulde_ikon_selected);
+		coldSelected = getResources().getDrawable(R.drawable.kulde_ikon_selected);
 
 		hotBackground = getResources().getDrawable(R.drawable.bg_varm);
 		coldBackground = getResources().getDrawable(R.drawable.bg_kold);

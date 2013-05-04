@@ -59,7 +59,7 @@ public class ThermostatView extends ImageView {
 		centerX = width / 2;
 		centerY = height / 2;
 		canvas.rotate(degree, centerX, centerY);
-		Log.d(this.getClass().getSimpleName(), "onDraw(): degree is now: " + degree);
+		//Log.d(this.getClass().getSimpleName(), "onDraw(): degree is now: " + degree);
 		super.onDraw(canvas);
 	}
 
@@ -81,8 +81,8 @@ public class ThermostatView extends ImageView {
 			// if (isXYInCenterRing(event.getX(), event.getY())) {
 			// setRotation(thermostatAngle);
 			// }
-			Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_DOWN. degree:" + degree + " ThermostatAngle:"
-					+ thermostatAngle);
+			//Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_DOWN. degree:" + degree + " ThermostatAngle:"
+					//+ thermostatAngle);
 
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			x = event.getX();
@@ -94,8 +94,8 @@ public class ThermostatView extends ImageView {
 			if (isXYInCenterRing(event.getX(), event.getY())) {
 				updateRotation(newX, newY);
 				updateTextView(thermostatAngle);
-				Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_MOVE. degree:" + degree + " ThermostatAngle:"
-						+ thermostatAngle);
+				//Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_MOVE. degree:" + degree + " ThermostatAngle:"
+					//	+ thermostatAngle);
 			}
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_UP.   degree:" + degree + " ThermostatAngle:"
@@ -133,12 +133,11 @@ public class ThermostatView extends ImageView {
 		// Log.d(this.getClass().getSimpleName(),
 				// "updateRotation(): Angle is now: " + thermostatAngle);
 
-		if (Temperatures.t00.getAngle() >= thermostatAngle && thermostatAngle >= Temperatures.t24.getAngle()) {
-
-			// textViewTempGauge.setText("" + thermostatAngle);
-
+		//This block will prevent the view from being updated between 0 & 24
+//		if (Temperatures.t00.getAngle() >= thermostatAngle && thermostatAngle >= Temperatures.t24.getAngle()) {
+//			// textViewTempGauge.setText("" + thermostatAngle);
 			setRotation(thermostatAngle);
-		}
+//		}
 	}
 
 	private void setTextViewAndRotation(int rotation, String text) {

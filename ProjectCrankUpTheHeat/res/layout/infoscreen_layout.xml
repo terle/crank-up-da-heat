@@ -254,7 +254,7 @@
         <TextView
             android:id="@+id/emptyTextView04"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/imageViewHeight"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </TableRow>
 
@@ -274,12 +274,13 @@
             android:orientation="vertical" 
            android:layout_marginLeft="@dimen/rowMargin" >
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/updateStatusTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Opdater Status"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+                 --> 
 
             <ImageButton
                 android:id="@+id/refreshButtonImageButton"
@@ -287,7 +288,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@null"
-                android:src="@drawable/refresh" />
+                android:scaleType="fitStart"
+                android:src="@drawable/updatestatusbuttonselector" />
 
         </LinearLayout>
     </TableRow>

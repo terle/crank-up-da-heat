@@ -152,14 +152,16 @@ public class ThermostatView extends ImageView {
 		int smallestAngleSoFar = Integer.MAX_VALUE;
 		Temperatures[] tempEnums = Temperatures.values();
 
+		makeVibration();
+		
 		if (angle < Temperatures.t00.getAngle() && angle > Temperatures.t08.getAngle()) {
 			int midValue = (Math.abs(Temperatures.t00.getAngle()) + Math.abs(Temperatures.t08.getAngle())) / 2;
 			if (angle > midValue) {
-				makeVibration();
+				if(currentTemperature != Temperatures.t00) shouldIVibrate = true;
 				return Temperatures.t00;
 			}
 			// else
-			makeVibration();
+			if(currentTemperature != Temperatures.t08) shouldIVibrate = true;
 			return Temperatures.t08;
 		}
 
@@ -171,12 +173,11 @@ public class ThermostatView extends ImageView {
 				closestTempSoFar = t;
 			}
 		}
-		makeVibration();
-		// for vibrating. If thermostat has changed it value. A vibration should
+		
+		// FOR VIBRATING. If thermostat has changed it value. A vibration should
 		// occure
-		if (currentTemperature != closestTempSoFar)
-			shouldIVibrate = true;
-
+		if (currentTemperature != closestTempSoFar) shouldIVibrate = true;
+		
 		return closestTempSoFar;
 	}
 

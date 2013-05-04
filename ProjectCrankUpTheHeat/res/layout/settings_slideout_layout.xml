@@ -45,8 +45,9 @@
     <ImageView
         android:id="@+id/modelimageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_height="30dp"
+        android:layout_gravity="center|start"
+        android:scaleType="fitStart"
         android:src="@drawable/logo_panasonic_small" />
 
     <TextView
@@ -80,7 +81,7 @@
 
         <TableRow
             android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <TextView
@@ -92,79 +93,99 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" >
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/alarm01TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Hovednummer"
+                android:layout_marginLeft="@dimen/rowMargin"
+                android:text="1"
                 android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
-            <QuickContactBadge
-                android:id="@+id/alarm01QuickContactBadge"
+            <EditText
+                android:id="@+id/alarmNum01EditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp" />
+                android:ems="10"
+                android:inputType="phone" >
+
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/alarmsTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/rowMargin"
                 android:text="2."
                 android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
-            <QuickContactBadge
-                android:id="@+id/alarm02QuickContactBadge"
+            <EditText
+                android:id="@+id/alarmNum02EditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp" />
+                android:ems="10"
+                android:inputType="phone" />
 
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
+            android:id="@+id/tableRow6"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/alarmsHighTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|bottom"
+                android:layout_marginLeft="@dimen/rowMargin"
                 android:text="3."
                 android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
-            <QuickContactBadge
-                android:id="@+id/alarm03QuickContactBadge"
+            <EditText
+                android:id="@+id/alarmNum03EditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp" />
+                android:ems="10"
+                android:inputType="phone" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/alarmsLowTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/rowMargin"
                 android:text="4."
                 android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
-            <QuickContactBadge
-                android:id="@+id/alarm04QuickContactBadge"
+            <EditText
+                android:id="@+id/alarmNum04EditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp" />
+                android:ems="10"
+                android:inputType="phone" />
 
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <CheckBox

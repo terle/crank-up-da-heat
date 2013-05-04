@@ -10,14 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -46,6 +49,10 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	private boolean shouldShowWizard = false;
 	private Context context;
 	private ImageView brandImageView;
+	
+	String[] DayOfWeek = {"Sunday", "Monday", "Tuesday",
+			  "Wednesday", "Thursday", "Friday", "Saturday"};
+	Brands[] brandList ={Brands.Bosch, Brands.Daikin, Brands.Electrolux_new, Brands.Electrolux_old, Brands.Fujitsu, Brands.Haier, Brands.IVT, Brands.LG, Brands.Mitsubishi, Brands.Panasonic, Brands.Toshiba, Brands.Zibro};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -103,6 +110,16 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		lockButton.setOnClickListener(this);
 
 		// TODO: get phonenumbers
+		
+//		
+//		Spinner mySpinner = (Spinner) inflatedView.findViewById(R.id.spinner);
+////	      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.row, R.id.weekofday, DayOfWeek);
+////		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getSherlockActivity(), R.layout.row, R.id.weekofday, DayOfWeek);
+//		ArrayAdapter<Brands> adapter = new ArrayAdapter<Brands>(getSherlockActivity(), R.layout.row, R.id.weekofday, brandList);
+//	      mySpinner.setAdapter(adapter);
+	      
+	      Spinner mySpinner = (Spinner)inflatedView.findViewById(R.id.spinner);
+	        mySpinner.setAdapter(new MyCustomAdapter(context, R.layout.row, brandList));
 		
 		return inflatedView;
 	}
@@ -301,5 +318,83 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		break;
 		}
 	}
+	
+	 
+    public class MyCustomAdapter extends ArrayAdapter<Brands>{
+        
+        public MyCustomAdapter(Context context, int textViewResourceId,
+                               Brands[] objects) {
+            super(context, textViewResourceId, objects);
+            // TODO Auto-generated constructor stub
+        }
+        
+        @Override
+        public View getDropDownView(int position, View convertView,
+                                    ViewGroup parent) {
+            // TODO Auto-generated method stub
+            return getCustomView(position, convertView, parent);
+        }
+        
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            return getCustomView(position, convertView, parent);
+        }
+        
+        public View getCustomView(int position, View convertView, ViewGroup parent) {
+            // TODO Auto-generated method stub
+            //return super.getView(position, convertView, parent);
+            
+            LayoutInflater inflater= getLayoutInflater(getArguments());
+            View row=inflater.inflate(R.layout.row, parent, false);
+            TextView label=(TextView)row.findViewById(R.id.weekofday);
+            label.setText(brandList[position].getName());
+            
+            ImageView icon=(ImageView)row.findViewById(R.id.icon);
+            
+            if (brandList[position]==Brands.Bosch){
+                icon.setImageResource(R.drawable.bosch);
+            }
+            else if (brandList[position]==Brands.Daikin){
+                icon.setImageResource(R.drawable.daikin);
+            }
+            else if (brandList[position]==Brands.Electrolux_new){
+                icon.setImageResource(R.drawable.electrolux);
+            }
+            else if (brandList[position]==Brands.Electrolux_old){
+                icon.setImageResource(R.drawable.electrolux);
+            }
+            else if (brandList[position]==Brands.Fujitsu){
+                icon.setImageResource(R.drawable.fujitsu);
+            }
+            else if (brandList[position]==Brands.Haier){
+                icon.setImageResource(R.drawable.haier);
+            }
+            else if (brandList[position]==Brands.IVT){
+                icon.setImageResource(R.drawable.ivt);
+            }
+            else if (brandList[position]==Brands.LG){
+                icon.setImageResource(R.drawable.lg);
+            }
+            else if (brandList[position]==Brands.Mitsubishi){
+                icon.setImageResource(R.drawable.mitsubishi);
+            }
+            else if (brandList[position]==Brands.Panasonic){
+                icon.setImageResource(R.drawable.panasonic);
+            }
+            else if (brandList[position]==Brands.Toshiba){
+                icon.setImageResource(R.drawable.toshiba);
+            }
+            else if (brandList[position]==Brands.Zibro){
+                icon.setImageResource(R.drawable.zibro);
+            }
+            else
+            {
+            	icon.setImageResource(R.drawable.refresh);
+            }
+            
+            return row;
+        }
+    }
 
 }

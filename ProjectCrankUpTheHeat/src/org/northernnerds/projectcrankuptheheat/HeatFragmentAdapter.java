@@ -46,7 +46,7 @@ class HeatFragmentAdapter extends FragmentPagerAdapter implements
 			notifyDataSetChanged();
 		}
 	}
-
+	
 	@Override
 	public int getIconResId(int index) {
 		// TODO Auto-generated method stub

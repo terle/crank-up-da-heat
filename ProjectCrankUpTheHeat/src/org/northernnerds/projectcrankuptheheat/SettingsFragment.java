@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -195,6 +196,11 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 				for(int i = 0; i < parentView.getChildCount(); i++) {
 					parentView.getChildAt(i).setEnabled(true);
 				}
+				alarmNum01EditText.setEnabled(true);
+				alarmNum02EditText.setEnabled(true);
+				alarmNum03EditText.setEnabled(true);
+				alarmNum04EditText.setEnabled(true);
+				showWizardCheckBox.setEnabled(true);
 			} else {
 				lockButton.setImageResource(R.drawable.lock_locked_icon);
 				isLocked = true;
@@ -203,6 +209,12 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 						parentView.getChildAt(i).setEnabled(false);
 					}
 				}
+				alarmNum01EditText.setEnabled(false);
+				alarmNum02EditText.setEnabled(false);
+				alarmNum03EditText.setEnabled(false);
+				alarmNum04EditText.setEnabled(false);
+				showWizardCheckBox.setEnabled(false);
+				
 			}
 			break;
 		default:

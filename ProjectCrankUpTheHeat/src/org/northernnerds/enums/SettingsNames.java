@@ -17,7 +17,8 @@ public enum SettingsNames {
 	AlarmNum02("AlarmNumber02"), 
 	AlarmNum03("AlarmNumber03"), 
 	AlarmNum04("AlarmNumber04"), 
-	BrandName("Brand Name");
+	BrandName("Brand Name"),
+	ShouldShowWizzard("ShowWizzard");
 
 	private String name;
 

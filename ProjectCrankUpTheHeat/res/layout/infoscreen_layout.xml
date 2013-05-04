@@ -1,291 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TableLayout
+    <TableRow
+        android:id="@+id/tableRow14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <TableRow
-            android:id="@+id/tableRow14"
+        <TextView
+            android:id="@+id/currentTemperarureTitleTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:text="Aktuel Temperatur"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="@dimen/rowMargin" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/currentTemperarureTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aktuel Temperatur"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/tableRowPadding" >
 
-        </TableRow>
+        <ImageView
+            android:id="@+id/modelimageView"
+            android:layout_width="@dimen/imageViewPadding"
+            android:layout_height="@dimen/imageViewHeight"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/rowMargin"
+            android:baselineAlignBottom="true"
+            android:scaleType="fitStart"
+            android:src="@drawable/current_temperature_icon" />
 
-        <TableRow
-            android:id="@+id/tableRow5"
+        <TextView
+            android:id="@+id/currentTemperatureTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:text="12*"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
 
-            <ImageView
-                android:id="@+id/modelimageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:baselineAlignBottom="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/current_temperature_icon" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/currentTemperatureTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:text="12*"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow6"
+        <TextView
+            android:id="@+id/emptyTextview01"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/emptyTextview01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
+    <TableRow
+        android:id="@+id/tableRow7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        >
 
-        <TableRow
-            android:id="@+id/tableRow7"
+        <TextView
+            android:id="@+id/alarmsTitleTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:text="Advarsler"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="@dimen/rowMargin" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/alarmsTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Advarsler"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
+    <TableRow
+        android:id="@+id/tableRow8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/tableRowPadding" >
 
-        <TableRow
-            android:id="@+id/tableRow8"
+        <ImageView
+            android:id="@+id/alarmsHighImageView"
+            android:layout_width="@dimen/imageViewPadding"
+            android:layout_height="@dimen/halfImageViewHeight"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/rowMargin"
+            android:scaleType="fitStart"
+            android:src="@drawable/warning_high_icon" />
+
+        <TextView
+            android:id="@+id/alarmsHighTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/alarmsHighImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:src="@drawable/warning_high_icon" />
-
-            <TextView
-                android:id="@+id/alarmsHighTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="30*"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/alarmsLowImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:src="@drawable/warning_low_icon" />
-
-            <TextView
-                android:id="@+id/alarmsLowTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="5*"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/emptyTextView02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/currentProgramTitleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kørende Program"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/currentProgramImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:src="@drawable/varme_ikon_selected" />
-
-            <TextView
-                android:id="@+id/currentProgramTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:text="16*"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/emptyTextView03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/gsmModuleTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GSM Modul"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/signalTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:text="Signal" />
-
-            <ImageView
-                android:id="@+id/gsmSignalImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/net0" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/emptyTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_marginRight="10dp"
-            android:gravity="left" >
-
-            <ImageView
-                android:id="@+id/batteryImageView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:src="@drawable/bat7" />
-
-            <TextView
-                android:id="@+id/batteryTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:text="75%" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/TableRow02"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/emptyTextView04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/TableRow01"
-            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="10dp"
+            android:text="30*"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/alarmsLowImageView"
+            android:layout_width="@dimen/imageViewPadding"
+            android:layout_height="@dimen/halfImageViewHeight"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/rowMargin"
+            android:scaleType="fitStart"
+            android:src="@drawable/warning_low_icon" />
+
+        <TextView
+            android:id="@+id/alarmsLowTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="5*"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/emptyTextView02"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/currentProgramTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kørende Program"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="@dimen/rowMargin" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/tableRowPadding" >
+
+        <ImageView
+            android:id="@+id/currentProgramImageView"
+            android:layout_width="@dimen/imageViewPadding"
+            android:layout_height="@dimen/imageViewHeight"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/rowMargin"
+            android:scaleType="fitStart"
+            android:src="@drawable/varme_ikon" />
+
+        <TextView
+            android:id="@+id/currentProgramTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:text="16*"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/emptyTextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/gsmModuleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GSM Modul"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="@dimen/rowMargin" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/signalTextView"
+            android:layout_width="@dimen/imageViewPadding"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_marginLeft="@dimen/rowMargin"
+            android:text="Signal"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/gsmSignalImageView"
+           android:layout_width="wrap_content"
+            android:layout_height="@dimen/imageViewHeight"
+            android:layout_gravity="center"
+            android:src="@drawable/net0" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:gravity="left" >
+
+        <TextView
+            android:id="@+id/batteryTextView"
+            android:layout_width="@dimen/imageViewPadding"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/rowMargin"
+            android:text="75%"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/batteryImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bat7" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/TableRow02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/emptyTextView04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/TableRow01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:gravity="left"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:gravity="left"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+           android:layout_marginLeft="@dimen/rowMargin" >
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/updateStatusTextView"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content"
+                android:text="Opdater Status"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <ImageButton
-                    android:id="@+id/refreshButtonImageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/refresh" />
+            <ImageButton
+                android:id="@+id/refreshButtonImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:src="@drawable/refresh" />
 
-                <TextView
-                    android:id="@+id/updateStatusTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Opdater Status"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            </LinearLayout>
-
-        </TableRow>
-
-    </TableLayout>
+        </LinearLayout>
+    </TableRow>
 
 </LinearLayout>

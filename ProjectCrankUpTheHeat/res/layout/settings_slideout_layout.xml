@@ -43,7 +43,7 @@
         android:text="Model:" />
 
     <ImageView
-        android:id="@+id/modelimageView"
+        android:id="@+id/brandimageView"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center|start"

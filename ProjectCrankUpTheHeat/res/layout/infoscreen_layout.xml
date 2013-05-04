@@ -25,7 +25,7 @@
         android:paddingTop="@dimen/tableRowPadding" >
 
         <ImageView
-            android:id="@+id/modelimageView"
+            android:id="@+id/brandimageView"
             android:layout_width="@dimen/imageViewPadding"
             android:layout_height="@dimen/imageViewHeight"
             android:layout_gravity="left"

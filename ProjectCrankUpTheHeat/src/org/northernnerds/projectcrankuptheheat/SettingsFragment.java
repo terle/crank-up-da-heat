@@ -15,6 +15,8 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -30,7 +32,7 @@ public class SettingsFragment extends SherlockFragment implements
 	// Values for SharedPrefs
 	private String deviceName = "Sommerfjong i bingbong";
 	private Brands brand = Brands.Panasonic;
-	private String brandName = "Panasonic";
+//	private String brandName = "Panasonic";
 	private String devicePhoneNum = "+4561319616"; // Dette er tlf nr til device
 	private String devicePasswd = "8110"; // Dette er password til device
 	private String phNum01 = "+4528921237";
@@ -41,8 +43,9 @@ public class SettingsFragment extends SherlockFragment implements
 	private EditText alarmNum01EditText, alarmNum02EditText,
 			alarmNum03EditText, alarmNum04EditText;
 	private boolean isLocked = false;
-	boolean shouldShowWizard = false;
+	private boolean shouldShowWizard = false;
 	private Context context;
+	private ImageView brandImageView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class SettingsFragment extends SherlockFragment implements
 		editor.putString(SettingsNames.deviceName.getName(), deviceName);
 		editor.putString(SettingsNames.devicePhoneNum.getName(), devicePhoneNum);
 		editor.putString(SettingsNames.devicePassword.getName(), devicePasswd);
+		editor.putString(SettingsNames.BrandName.getName(), brand.getName());
 		editor.commit();
 
 		showWizardCheckBox = (CheckBox) inflatedView
@@ -85,6 +89,12 @@ public class SettingsFragment extends SherlockFragment implements
 				.findViewById(R.id.unitPasswordEditText);
 		passwordEditText.setText(settings.getString(
 				SettingsNames.devicePassword.getName(), strDefaultValue));
+
+		brandImageView = (ImageView) inflatedView
+				.findViewById(R.id.brandimageView);
+//		brandName = settings.getString(SettingsNames.BrandName.getName(),
+//				strDefaultValue);
+		setBrandImageView(brand);
 
 		alarmNum01EditText = (EditText) inflatedView
 				.findViewById(R.id.alarmNum01EditText);
@@ -135,8 +145,8 @@ public class SettingsFragment extends SherlockFragment implements
 		SharedPreferences sharedPreferences = getSherlockActivity()
 				.getSharedPreferences(SettingsNames.prefsName.getName(),
 						Context.MODE_PRIVATE);
-		boolean shouldShowWizard = sharedPreferences.getBoolean(SettingsNames.ShouldShowWizzard.getName(),
-				false);
+		boolean shouldShowWizard = sharedPreferences.getBoolean(
+				SettingsNames.ShouldShowWizzard.getName(), false);
 		showWizardCheckBox.setChecked(shouldShowWizard);
 	}
 
@@ -160,8 +170,9 @@ public class SettingsFragment extends SherlockFragment implements
 		editor.putString(SettingsNames.AlarmNum04.getName(), number);
 
 		editor.putString(SettingsNames.BrandName.getName(), brand.getName());
-		editor.putBoolean(SettingsNames.ShouldShowWizzard.getName(), shouldShowWizard);
-		
+		editor.putBoolean(SettingsNames.ShouldShowWizzard.getName(),
+				shouldShowWizard);
+
 		editor.commit();
 	}
 
@@ -185,9 +196,12 @@ public class SettingsFragment extends SherlockFragment implements
 		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(),
 				strDefaultValue);
 
-		brandName = settings.getString(SettingsNames.BrandName.getName(),
+		String temp = settings.getString(SettingsNames.BrandName.getName(),
 				strDefaultValue);
-		shouldShowWizard = settings.getBoolean(SettingsNames.ShouldShowWizzard.getName(), false);
+		brand = getBrandfromString(temp);
+		
+		shouldShowWizard = settings.getBoolean(
+				SettingsNames.ShouldShowWizzard.getName(), false);
 
 		unitNameEditText.setText(deviceName);
 		phoneNumEditText.setText(devicePhoneNum);
@@ -196,8 +210,9 @@ public class SettingsFragment extends SherlockFragment implements
 		alarmNum02EditText.setText(phNum02);
 		alarmNum03EditText.setText(phNum03);
 		alarmNum04EditText.setText(phNum04);
-		
+
 		// TODO: Set Brand Logo
+		setBrandImageView(brand);
 	}
 
 	@Override
@@ -226,4 +241,76 @@ public class SettingsFragment extends SherlockFragment implements
 		editor.putBoolean(SettingsNames.ShouldShowWizzard.getName(), isChecked);
 		editor.commit();
 	}
+
+	private Brands getBrandfromString(String name) {
+		Brands result = Brands.Bosch;
+		if (name.equals(Brands.Bosch.getName()))
+			return Brands.Bosch;
+		else if (name.equals(Brands.Daikin.getName()))
+			return Brands.Daikin;
+
+		else if (name.equals(Brands.Electrolux_new.getName()))
+			return Brands.Electrolux_new;
+
+		else if (name.equals(Brands.Electrolux_old.getName()))
+			return Brands.Electrolux_old;
+
+		else if (name.equals(Brands.Fujitsu.getName()))
+			return Brands.Fujitsu;
+
+		else if (name.equals(Brands.Haier.getName()))
+			return Brands.Haier;
+
+		else if (name.equals(Brands.IVT.getName()))
+			return Brands.IVT;
+
+		else if (name.equals(Brands.LG.getName()))
+			return Brands.LG;
+
+		else if (name.equals(Brands.Mitsubishi.getName()))
+			return Brands.Mitsubishi;
+
+		else if (name.equals(Brands.Panasonic.getName()))
+			return Brands.Panasonic;
+
+		else if (name.equals(Brands.Toshiba.getName()))
+			return Brands.Toshiba;
+
+		else if (name.equals(Brands.Zibro.getName()))
+			return Brands.Zibro;
+
+		return result;
+	}
+
+	private void setBrandImageView(Brands brand) {
+		switch (brand) {
+		case Bosch: brandImageView.setImageResource(R.drawable.bosch);
+			break;
+		case Daikin:brandImageView.setImageResource(R.drawable.daikin);
+			break;
+		case Electrolux_new:brandImageView.setImageResource(R.drawable.electrolux);
+			break;
+		case Electrolux_old:brandImageView.setImageResource(R.drawable.electrolux);
+			break;
+		case Fujitsu:brandImageView.setImageResource(R.drawable.fujitsu);
+			break;
+		case Haier: brandImageView.setImageResource(R.drawable.haier);
+			break;
+		case IVT: brandImageView.setImageResource(R.drawable.ivt);
+			break;
+		case LG:brandImageView.setImageResource(R.drawable.lg);
+			break;
+		case Mitsubishi: brandImageView.setImageResource(R.drawable.mitsubishi);
+			break;
+		case Panasonic: brandImageView.setImageResource(R.drawable.panasonic);
+			break;
+		case Toshiba:brandImageView.setImageResource(R.drawable.toshiba);
+			break;
+		case Zibro:brandImageView.setImageResource(R.drawable.zibro);
+			break;
+		default: brandImageView.setImageResource(R.drawable.bosch);
+		break;
+		}
+	}
+
 }

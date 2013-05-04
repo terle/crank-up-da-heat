@@ -1,5 +1,7 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northernnerds.wizard.NonSwipableViewPager;
+
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
@@ -27,7 +29,7 @@ public class MainActivity extends SlidingFragmentActivity  {
 		
 		HeatFragmentAdapter mAdapter = new HeatFragmentAdapter(getSupportFragmentManager());
 
-        mPager = (ViewPager)findViewById(R.id.pager);
+        mPager = (NonSwipableViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
         mIndicator = (TitlePageIndicator)findViewById(R.id.indicator);
@@ -49,26 +51,6 @@ public class MainActivity extends SlidingFragmentActivity  {
 		.commit();
 		
 		getSupportActionBar().setHomeButtonEnabled(true);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getSupportMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			toggle();
-			return true;
-		case R.id.menu_settings:
-			toggle();
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

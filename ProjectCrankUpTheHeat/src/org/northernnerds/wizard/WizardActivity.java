@@ -5,6 +5,7 @@ import org.northernnerds.projectcrankuptheheat.R;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Window;
 import com.viewpagerindicator.LinePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
@@ -16,6 +17,10 @@ public class WizardActivity extends SherlockFragmentActivity  {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		//Remove title bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.wizard_layout);
 
 		mAdapter = new WizardFragmentAdapter(getSupportFragmentManager());

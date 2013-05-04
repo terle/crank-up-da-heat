@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="reddish">#DB5A63</color>
-    <color name="red">#f00</color>
-    
-    <color name="greenish">#82FA9A</color>
-    <color name="green">#00871B</color>
-
+    <color name="reddish">#DA1B42</color>
+    <color name="greenish">#1BDA48</color>
     <color name="black">#000</color>
     <color name="white">#FFFFFF</color>
-    
+    <color name="greyish">#323232</color>
+    <color name="lightgrey">#656565</color>
+
 </resources>

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dip"
         android:visibility="invisible" >
 
         <Button
@@ -23,10 +24,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/cancel_button_drawable"
+            android:background="@drawable/thermostat_button_drawable"
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/afbryd_ikon"
-            android:text="Afbryd" />
+            android:text="Afbryd"
+            android:textColor="@color/reddish" />
 
         <Button
             android:id="@+id/sendButton"
@@ -36,10 +38,11 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/accept_button_drawable"
+            android:background="@drawable/thermostat_button_drawable"
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/send_ikon"
-            android:text="Send" />
+            android:text="Send"
+            android:textColor="@color/greenish" />
     </LinearLayout>
 
     <org.northernnerds.projectcrankuptheheat.ThermostatView
@@ -82,9 +85,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/coldImageView"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/progressbar"
         android:max="100"
         android:maxHeight="5dp"
-        android:background="@drawable/progressbar"
         android:progressDrawable="@drawable/progressbar"
         android:thumb="@drawable/custom_switch_48" />
 

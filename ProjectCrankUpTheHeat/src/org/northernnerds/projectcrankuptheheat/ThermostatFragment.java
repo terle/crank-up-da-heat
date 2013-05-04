@@ -43,7 +43,7 @@ public class ThermostatFragment extends SherlockFragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View inflatedView = inflater.inflate(R.layout.activity_main, null);
+		View inflatedView = inflater.inflate(R.layout.thermostat_layout, null);
 
 		tempTextView = (TextView) inflatedView.findViewById(R.id.temperatureTextView);
 		Typeface roboto = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Bold.ttf");

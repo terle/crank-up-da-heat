@@ -1,55 +1,38 @@
 package org.northernnerds.projectcrankuptheheat;
 
 import org.northernnerds.enums.Brands;
-import org.northernnerds.enums.CommandTypes;
 import org.northernnerds.enums.SettingsNames;
-import org.northernnerds.settings.SMSHandler;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.QuickContactBadge;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class SettingsFragment extends SherlockFragment implements OnClickListener {
+public class SettingsFragment extends SherlockFragment implements OnClickListener, OnCheckedChangeListener {
 	private final String strDefaultValue = "N/A";
 	private final int iDefaultValue = -111;
 	
 	private EditText unitNameEditText, phoneNumEditText, passwordEditText;
-//	private Button thermometerButton, updateStatusButton;
-//	private CheckBox oldControlCheckBox;
-//	private ImageView gsmSignalImageView, batteryImageView;
-//	private TextView batteryTextView;
-	
+	private CheckBox showWizardCheckBox;
+
 	//Values for SharedPrefs
 	private String deviceName = "Sommerfjong i bingbong";
 	private Brands brand = Brands.Panasonic;
 	private String brandName = "Panasonic";
-//	private boolean isOldController = true;
 	private String devicePhoneNum = "+4561319616"; //Dette er tlf nr til device
 	private String devicePasswd = "8110"; //Dette er password til device
-//	private int minTemp = 8;
-//	private int maxTemp = 8;
-//	private int heatingTemp = 24;
-//	private int coolingTemp = 30;
-//	private int gsmBat = 34;
-//	private int gsmSignal = 0;
-//	private int aktuelTemp =18;
 	private String phNum01 = "+4528921237";
 	private String phNum02 = "";
 	private String phNum03 = "";
@@ -77,6 +60,8 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		editor.putString(SettingsNames.devicePassword.getName(), devicePasswd);
 		editor.commit();
 		
+		showWizardCheckBox = (CheckBox) inflatedView.findViewById(R.id.showWizardCheckBox);
+		showWizardCheckBox.setOnCheckedChangeListener(this);
 		
 		unitNameEditText = (EditText) inflatedView.findViewById(R.id.unitNameEditText);
 		unitNameEditText.setText(settings.getString(SettingsNames.deviceName.getName(), "N/A"));
@@ -101,20 +86,22 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		super.onPause();
 		
 		updateSharedPreferencesfromFields();
-		
 	}
+	
 	@Override
 	public void onResume() {
 		Toast.makeText(getActivity(), "SettingsFragment: OnResume", Toast.LENGTH_SHORT).show();
 		super.onResume();
 		// Restore preferences
-		updateFieldsfromSharedPreferences();	
+		updateFieldsfromSharedPreferences();
+		
+		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(), Context.MODE_PRIVATE);
+	    boolean shouldShowWizard = sharedPreferences.getBoolean("showWizard", false);
+	    showWizardCheckBox.setChecked(shouldShowWizard);
 	}
 	
-	
 	private void updateSharedPreferencesfromFields(){
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(), Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 		
 		editor.putString(SettingsNames.deviceName.getName(), deviceName);
@@ -153,35 +140,28 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		//TODO: Set Brand Logo
 	}
 	
-	
-	
 	@Override
 	public void onClick(View v) {
-//		Toast.makeText(context, "Button Pushed", Toast.LENGTH_SHORT).show();
 		switch (v.getId()) {
 		case R.id.lockButtonImageButton:
-			if(isLocked)
-				{
+			if(isLocked) {
 				lockButton.setImageResource(R.drawable.lock_unlocked_icon);
 				isLocked = false;
-				}
-			else{
+			} else{
 				lockButton.setImageResource(R.drawable.lock_locked_icon);
 				isLocked = true;
 			}
-			
 			break;
-//		case R.id.updateStatusButton:
-//			Toast.makeText(getActivity(), "Sender status SMS! Vent på svar", Toast.LENGTH_SHORT).show();
-//			SMSHandler handler = new SMSHandler(getActivity());
-//			handler.SendSMS(CommandTypes.Status);
-//			break;
-//		case R.id.alarmButton:
-//			Intent intent = new Intent(getSherlockActivity(), ThermometerActivity.class);
-//			startActivity(intent);
-//			break;
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(), Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+	    editor.putBoolean("showWizard", isChecked);
+	    editor.commit();
 	}
 }

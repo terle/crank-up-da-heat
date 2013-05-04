@@ -145,7 +145,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		} else if (gsmBat > 80 && gsmBat <= 90) {
 			batteryImageView.setImageResource(R.drawable.bat9);
 		} else {
-			batteryImageView.setBackgroundResource(R.drawable.bat10);
+			batteryImageView.setImageResource(R.drawable.bat10);
 		}
 		batteryTextView.setText("" + gsmBat + "%");
 	}

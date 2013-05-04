@@ -1,7 +1,12 @@
 package org.northernnerds.wizard;
 
+import org.northernnerds.enums.SettingsNames;
+import org.northernnerds.projectcrankuptheheat.MainActivity;
 import org.northernnerds.projectcrankuptheheat.R;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -17,6 +22,14 @@ public class WizardActivity extends SherlockFragmentActivity  {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		SharedPreferences sharedPreferences = getSharedPreferences(SettingsNames.prefsName.getName(), Context.MODE_PRIVATE);
+	    boolean shouldShowWizard = sharedPreferences.getBoolean("showWizard", true);
+	    if(!shouldShowWizard) {
+	    	finish();
+	    	Intent appIntent = new Intent(this, MainActivity.class);
+	    	startActivity(appIntent);
+	    }
 		
 		//Remove title bar
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);

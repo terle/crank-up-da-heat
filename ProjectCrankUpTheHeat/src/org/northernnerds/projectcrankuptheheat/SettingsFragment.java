@@ -38,6 +38,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	private String phNum03 = "";
 	private String phNum04 = "";
 	private ImageButton lockButton;
+	private EditText alarmNum01EditText,alarmNum02EditText,alarmNum03EditText,alarmNum04EditText; 
 	private boolean isLocked = false;
 	private Context context;
 	
@@ -71,6 +72,11 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		
 		passwordEditText = (EditText) inflatedView.findViewById(R.id.unitPasswordEditText);
 		passwordEditText.setText(settings.getString(SettingsNames.devicePassword.getName(), "N/A"));
+		
+		alarmNum01EditText = (EditText) inflatedView.findViewById(R.id.alarmNum01EditText);
+		alarmNum02EditText = (EditText) inflatedView.findViewById(R.id.alarmNum02EditText);
+		alarmNum03EditText = (EditText) inflatedView.findViewById(R.id.alarmNum03EditText);
+		alarmNum04EditText = (EditText) inflatedView.findViewById(R.id.alarmNum04EditText);
 		
 		lockButton = (ImageButton) inflatedView.findViewById(R.id.lockButtonImageButton);
 		lockButton.setOnClickListener(this);

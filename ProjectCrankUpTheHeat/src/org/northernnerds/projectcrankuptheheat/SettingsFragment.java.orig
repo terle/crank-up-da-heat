@@ -32,7 +32,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	// Values for SharedPrefs
 	private String deviceName = "Sommerfjong i bingbong";
 	private Brands brand = Brands.Panasonic;
-	private String brandName = "Panasonic";
+//	private String brandName = "Panasonic";
 	private String devicePhoneNum = "+4561319616"; // Dette er tlf nr til device
 	private String devicePasswd = "8110"; // Dette er password til device
 	private String phNum01 = "+4528921237";
@@ -69,14 +69,21 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		showWizardCheckBox = (CheckBox) inflatedView.findViewById(R.id.showWizardCheckBox);
 		showWizardCheckBox.setOnCheckedChangeListener(this);
 
-		unitNameEditText = (EditText) inflatedView.findViewById(R.id.unitNameEditText);
-		unitNameEditText.setText(settings.getString(SettingsNames.deviceName.getName(), strDefaultValue));
+<<<<<<< HEAD
+		unitNameEditText = (EditText) inflatedView
+				.findViewById(R.id.unitNameEditText);
+		unitNameEditText.setText(settings.getString(
+				SettingsNames.deviceName.getName(), strDefaultValue));
 
-		phoneNumEditText = (EditText) inflatedView.findViewById(R.id.phonenoEditText);
-		phoneNumEditText.setText(settings.getString(SettingsNames.devicePhoneNum.getName(), strDefaultValue));
+		phoneNumEditText = (EditText) inflatedView
+				.findViewById(R.id.phonenoEditText);
+		phoneNumEditText.setText(settings.getString(
+				SettingsNames.devicePhoneNum.getName(), strDefaultValue));
 
-		passwordEditText = (EditText) inflatedView.findViewById(R.id.unitPasswordEditText);
-		passwordEditText.setText(settings.getString(SettingsNames.devicePassword.getName(), strDefaultValue));
+		passwordEditText = (EditText) inflatedView
+				.findViewById(R.id.unitPasswordEditText);
+		passwordEditText.setText(settings.getString(
+				SettingsNames.devicePassword.getName(), strDefaultValue));
 
 		brandImageView = (ImageView) inflatedView
 				.findViewById(R.id.brandimageView);
@@ -89,6 +96,36 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		alarmNum01EditText.setText(settings.getString(
 				SettingsNames.AlarmNum01.getName(), strDefaultValue));
 
+		alarmNum02EditText = (EditText) inflatedView
+				.findViewById(R.id.alarmNum02EditText);
+		alarmNum02EditText.setText(settings.getString(
+				SettingsNames.AlarmNum02.getName(), strDefaultValue));
+
+		alarmNum03EditText = (EditText) inflatedView
+				.findViewById(R.id.alarmNum03EditText);
+		alarmNum03EditText.setText(settings.getString(
+				SettingsNames.AlarmNum03.getName(), strDefaultValue));
+
+		alarmNum04EditText = (EditText) inflatedView
+				.findViewById(R.id.alarmNum04EditText);
+		alarmNum04EditText.setText(settings.getString(
+				SettingsNames.AlarmNum04.getName(), strDefaultValue));
+
+		lockButton = (ImageButton) inflatedView
+				.findViewById(R.id.lockButtonImageButton);
+=======
+		unitNameEditText = (EditText) inflatedView.findViewById(R.id.unitNameEditText);
+		unitNameEditText.setText(settings.getString(SettingsNames.deviceName.getName(), strDefaultValue));
+
+		phoneNumEditText = (EditText) inflatedView.findViewById(R.id.phonenoEditText);
+		phoneNumEditText.setText(settings.getString(SettingsNames.devicePhoneNum.getName(), strDefaultValue));
+
+		passwordEditText = (EditText) inflatedView.findViewById(R.id.unitPasswordEditText);
+		passwordEditText.setText(settings.getString(SettingsNames.devicePassword.getName(), strDefaultValue));
+
+		alarmNum01EditText = (EditText) inflatedView.findViewById(R.id.alarmNum01EditText);
+		alarmNum01EditText.setText(settings.getString(SettingsNames.AlarmNum01.getName(), strDefaultValue));
+
 		alarmNum02EditText = (EditText) inflatedView.findViewById(R.id.alarmNum02EditText);
 		alarmNum02EditText.setText(settings.getString(SettingsNames.AlarmNum02.getName(), strDefaultValue));
 
@@ -99,6 +136,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		alarmNum04EditText.setText(settings.getString(SettingsNames.AlarmNum04.getName(), strDefaultValue));
 
 		lockButton = (ImageButton) inflatedView.findViewById(R.id.lockButtonImageButton);
+>>>>>>> aa98d83f209e287ccfc7b732e98e694d40b368f0
 		lockButton.setOnClickListener(this);
 
 		// TODO: get phonenumbers
@@ -123,8 +161,12 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
 						Context.MODE_PRIVATE);
+<<<<<<< HEAD
 		boolean shouldShowWizard = sharedPreferences.getBoolean(
 				SettingsNames.ShouldShowWizzard.getName(), false);
+=======
+		boolean shouldShowWizard = sharedPreferences.getBoolean(SettingsNames.ShouldShowWizzard.getName(), false);
+>>>>>>> aa98d83f209e287ccfc7b732e98e694d40b368f0
 		showWizardCheckBox.setChecked(shouldShowWizard);
 	}
 
@@ -154,6 +196,33 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	}
 
 	private void updateFieldsfromSharedPreferences() {
+<<<<<<< HEAD
+		SharedPreferences settings = getSherlockActivity()
+				.getSharedPreferences(SettingsNames.prefsName.getName(),
+						Context.MODE_PRIVATE);
+		deviceName = settings.getString(SettingsNames.deviceName.getName(),
+				strDefaultValue);
+		devicePhoneNum = settings.getString(
+				SettingsNames.devicePhoneNum.getName(), strDefaultValue);
+		devicePasswd = settings.getString(
+				SettingsNames.devicePassword.getName(), strDefaultValue);
+
+		phNum01 = settings.getString(SettingsNames.AlarmNum01.getName(),
+				strDefaultValue);
+		phNum02 = settings.getString(SettingsNames.AlarmNum02.getName(),
+				strDefaultValue);
+		phNum03 = settings.getString(SettingsNames.AlarmNum03.getName(),
+				strDefaultValue);
+		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(),
+				strDefaultValue);
+
+		String temp = settings.getString(SettingsNames.BrandName.getName(),
+				strDefaultValue);
+		brand = getBrandfromString(temp);
+		
+		shouldShowWizard = settings.getBoolean(
+				SettingsNames.ShouldShowWizzard.getName(), false);
+=======
 		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(), 
 				Context.MODE_PRIVATE);
 		deviceName = settings.getString(SettingsNames.deviceName.getName(), strDefaultValue);
@@ -165,12 +234,9 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		phNum03 = settings.getString(SettingsNames.AlarmNum03.getName(), strDefaultValue);
 		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(), strDefaultValue);
 
-		String temp = settings.getString(SettingsNames.BrandName.getName(),
-				strDefaultValue);
-		brand = getBrandfromString(temp);
-		
-		shouldShowWizard = settings.getBoolean(
-				SettingsNames.ShouldShowWizzard.getName(), false);
+		brandName = settings.getString(SettingsNames.BrandName.getName(), strDefaultValue);
+		shouldShowWizard = settings.getBoolean(SettingsNames.ShouldShowWizzard.getName(), false);
+>>>>>>> aa98d83f209e287ccfc7b732e98e694d40b368f0
 
 		unitNameEditText.setText(deviceName);
 		phoneNumEditText.setText(devicePhoneNum);

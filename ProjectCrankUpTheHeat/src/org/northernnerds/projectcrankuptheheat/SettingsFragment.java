@@ -5,11 +5,14 @@ import org.northernnerds.enums.SettingsNames;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Path.Direction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,7 +28,8 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class SettingsFragment extends SherlockFragment implements OnClickListener, OnCheckedChangeListener {
+public class SettingsFragment extends SherlockFragment implements
+		OnClickListener, OnCheckedChangeListener, OnItemSelectedListener {
 	private final String strDefaultValue = "N/A";
 	private final int iDefaultValue = -111;
 
@@ -36,7 +40,6 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	// Values for SharedPrefs
 	private String deviceName = "Sommerfjong i bingbong";
 	private Brands brand = Brands.Panasonic;
-	private String brandName = "Panasonic";
 	private String devicePhoneNum = "+4561319616"; // Dette er tlf nr til device
 	private String devicePasswd = "8110"; // Dette er password til device
 	private String phNum01 = "+4528921237";
@@ -44,15 +47,17 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	private String phNum03 = "";
 	private String phNum04 = "";
 	private ImageButton lockButton;
-	private EditText alarmNum01EditText, alarmNum02EditText, alarmNum03EditText, alarmNum04EditText;
+	private EditText alarmNum01EditText, alarmNum02EditText,
+			alarmNum03EditText, alarmNum04EditText;
 	private boolean isLocked = false;
 	private boolean shouldShowWizard = false;
 	private Context context;
-	private ImageView brandImageView;
-	
-	String[] DayOfWeek = {"Sunday", "Monday", "Tuesday",
-			  "Wednesday", "Thursday", "Friday", "Saturday"};
-	Brands[] brandList ={Brands.Bosch, Brands.Daikin, Brands.Electrolux_new, Brands.Electrolux_old, Brands.Fujitsu, Brands.Haier, Brands.IVT, Brands.LG, Brands.Mitsubishi, Brands.Panasonic, Brands.Toshiba, Brands.Zibro};
+	private Spinner brandSpinner;
+
+	private Brands[] brandList = { Brands.Bosch, Brands.Daikin,
+			Brands.Electrolux_new, Brands.Electrolux_old, Brands.Fujitsu,
+			Brands.Haier, Brands.IVT, Brands.LG, Brands.Mitsubishi,
+			Brands.Panasonic, Brands.Toshiba, Brands.Zibro };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,72 +66,82 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		Toast.makeText(getActivity(), "SettingsFragment: OnCreateView", Toast.LENGTH_SHORT).show();
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		Toast.makeText(getActivity(), "SettingsFragment: OnCreateView",
+				Toast.LENGTH_SHORT).show();
 
-		inflatedView = inflater.inflate(R.layout.settings_slideout_layout, null);
+		inflatedView = inflater
+				.inflate(R.layout.settings_slideout_layout, null);
 
-		SharedPreferences settings = getActivity().getSharedPreferences(SettingsNames.prefsName.getName(), 0);
+		SharedPreferences settings = getActivity().getSharedPreferences(
+				SettingsNames.prefsName.getName(), 0);
+
+		// --FOR DEVELOPEMNT----
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString(SettingsNames.deviceName.getName(), deviceName);
 		editor.putString(SettingsNames.devicePhoneNum.getName(), devicePhoneNum);
 		editor.putString(SettingsNames.devicePassword.getName(), devicePasswd);
 		editor.putString(SettingsNames.BrandName.getName(), brand.getName());
 		editor.commit();
+		// ---------------------
 
-		showWizardCheckBox = (CheckBox) inflatedView.findViewById(R.id.showWizardCheckBox);
+		showWizardCheckBox = (CheckBox) inflatedView
+				.findViewById(R.id.showWizardCheckBox);
 		showWizardCheckBox.setOnCheckedChangeListener(this);
 
-		unitNameEditText = (EditText) inflatedView.findViewById(R.id.unitNameEditText);
-		unitNameEditText.setText(settings.getString(SettingsNames.deviceName.getName(), strDefaultValue));
+		unitNameEditText = (EditText) inflatedView
+				.findViewById(R.id.unitNameEditText);
+		unitNameEditText.setText(settings.getString(
+				SettingsNames.deviceName.getName(), strDefaultValue));
 
-		phoneNumEditText = (EditText) inflatedView.findViewById(R.id.phonenoEditText);
-		phoneNumEditText.setText(settings.getString(SettingsNames.devicePhoneNum.getName(), strDefaultValue));
+		phoneNumEditText = (EditText) inflatedView
+				.findViewById(R.id.phonenoEditText);
+		phoneNumEditText.setText(settings.getString(
+				SettingsNames.devicePhoneNum.getName(), strDefaultValue));
 
-		passwordEditText = (EditText) inflatedView.findViewById(R.id.unitPasswordEditText);
-		passwordEditText.setText(settings.getString(SettingsNames.devicePassword.getName(), strDefaultValue));
-
-		brandImageView = (ImageView) inflatedView
-				.findViewById(R.id.brandimageView);
-//		brandName = settings.getString(SettingsNames.BrandName.getName(),
-//				strDefaultValue);
-		setBrandImageView(brand);
+		passwordEditText = (EditText) inflatedView
+				.findViewById(R.id.unitPasswordEditText);
+		passwordEditText.setText(settings.getString(
+				SettingsNames.devicePassword.getName(), strDefaultValue));
 
 		alarmNum01EditText = (EditText) inflatedView
 				.findViewById(R.id.alarmNum01EditText);
 		alarmNum01EditText.setText(settings.getString(
 				SettingsNames.AlarmNum01.getName(), strDefaultValue));
 
-		alarmNum02EditText = (EditText) inflatedView.findViewById(R.id.alarmNum02EditText);
-		alarmNum02EditText.setText(settings.getString(SettingsNames.AlarmNum02.getName(), strDefaultValue));
+		alarmNum02EditText = (EditText) inflatedView
+				.findViewById(R.id.alarmNum02EditText);
+		alarmNum02EditText.setText(settings.getString(
+				SettingsNames.AlarmNum02.getName(), strDefaultValue));
 
-		alarmNum03EditText = (EditText) inflatedView.findViewById(R.id.alarmNum03EditText);
-		alarmNum03EditText.setText(settings.getString(SettingsNames.AlarmNum03.getName(), strDefaultValue));
+		alarmNum03EditText = (EditText) inflatedView
+				.findViewById(R.id.alarmNum03EditText);
+		alarmNum03EditText.setText(settings.getString(
+				SettingsNames.AlarmNum03.getName(), strDefaultValue));
 
-		alarmNum04EditText = (EditText) inflatedView.findViewById(R.id.alarmNum04EditText);
-		alarmNum04EditText.setText(settings.getString(SettingsNames.AlarmNum04.getName(), strDefaultValue));
+		alarmNum04EditText = (EditText) inflatedView
+				.findViewById(R.id.alarmNum04EditText);
+		alarmNum04EditText.setText(settings.getString(
+				SettingsNames.AlarmNum04.getName(), strDefaultValue));
 
-		lockButton = (ImageButton) inflatedView.findViewById(R.id.lockButtonImageButton);
+		lockButton = (ImageButton) inflatedView
+				.findViewById(R.id.lockButtonImageButton);
 		lockButton.setOnClickListener(this);
 
 		// TODO: get phonenumbers
-		
-//		
-//		Spinner mySpinner = (Spinner) inflatedView.findViewById(R.id.spinner);
-////	      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.row, R.id.weekofday, DayOfWeek);
-////		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getSherlockActivity(), R.layout.row, R.id.weekofday, DayOfWeek);
-//		ArrayAdapter<Brands> adapter = new ArrayAdapter<Brands>(getSherlockActivity(), R.layout.row, R.id.weekofday, brandList);
-//	      mySpinner.setAdapter(adapter);
-	      
-	      Spinner mySpinner = (Spinner)inflatedView.findViewById(R.id.spinner);
-	        mySpinner.setAdapter(new MyCustomAdapter(context, R.layout.row, brandList));
-		
+
+		brandSpinner = (Spinner) inflatedView.findViewById(R.id.brandSpinner);
+		brandSpinner.setAdapter(new CustomAdapter(context, R.layout.row,
+				brandList));
+
 		return inflatedView;
 	}
 
 	@Override
 	public void onPause() {
-		Toast.makeText(getActivity(), "SettingsFragment: OnPause", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), "SettingsFragment: OnPause",
+				Toast.LENGTH_SHORT).show();
 		super.onPause();
 
 		updateSharedPreferencesfromFields();
@@ -134,12 +149,14 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	@Override
 	public void onResume() {
-		Toast.makeText(getActivity(), "SettingsFragment: OnResume", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), "SettingsFragment: OnResume",
+				Toast.LENGTH_SHORT).show();
 		super.onResume();
 		// Restore preferences
 		updateFieldsfromSharedPreferences();
 
-		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
+		SharedPreferences sharedPreferences = getSherlockActivity()
+				.getSharedPreferences(SettingsNames.prefsName.getName(),
 						Context.MODE_PRIVATE);
 		boolean shouldShowWizard = sharedPreferences.getBoolean(
 				SettingsNames.ShouldShowWizzard.getName(), false);
@@ -147,8 +164,9 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	}
 
 	private void updateSharedPreferencesfromFields() {
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(), 
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSherlockActivity()
+				.getSharedPreferences(SettingsNames.prefsName.getName(),
+						Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 
 		editor.putString(SettingsNames.deviceName.getName(), deviceName);
@@ -172,21 +190,32 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	}
 
 	private void updateFieldsfromSharedPreferences() {
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(), 
-				Context.MODE_PRIVATE);
-		deviceName = settings.getString(SettingsNames.deviceName.getName(), strDefaultValue);
-		devicePhoneNum = settings.getString(SettingsNames.devicePhoneNum.getName(), strDefaultValue);
-		devicePasswd = settings.getString(SettingsNames.devicePassword.getName(), strDefaultValue);
+		SharedPreferences settings = getSherlockActivity()
+				.getSharedPreferences(SettingsNames.prefsName.getName(),
+						Context.MODE_PRIVATE);
+		deviceName = settings.getString(SettingsNames.deviceName.getName(),
+				strDefaultValue);
+		devicePhoneNum = settings.getString(
+				SettingsNames.devicePhoneNum.getName(), strDefaultValue);
+		devicePasswd = settings.getString(
+				SettingsNames.devicePassword.getName(), strDefaultValue);
 
-		phNum01 = settings.getString(SettingsNames.AlarmNum01.getName(), strDefaultValue);
-		phNum02 = settings.getString(SettingsNames.AlarmNum02.getName(), strDefaultValue);
-		phNum03 = settings.getString(SettingsNames.AlarmNum03.getName(), strDefaultValue);
-		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(), strDefaultValue);
+		phNum01 = settings.getString(SettingsNames.AlarmNum01.getName(),
+				strDefaultValue);
+		phNum02 = settings.getString(SettingsNames.AlarmNum02.getName(),
+				strDefaultValue);
+		phNum03 = settings.getString(SettingsNames.AlarmNum03.getName(),
+				strDefaultValue);
+		phNum04 = settings.getString(SettingsNames.AlarmNum04.getName(),
+				strDefaultValue);
 
 		String temp = settings.getString(SettingsNames.BrandName.getName(),
 				strDefaultValue);
-		brand = getBrandfromString(temp);
-		
+		brand = brand.getBrand(temp);
+		// TODO: SetSelection on brandspinner when loading values from
+		// SharedPrefs.
+		// brandSpinner.setSelection(CustomAdapter.getPosition("Category 2"));
+
 		shouldShowWizard = settings.getBoolean(
 				SettingsNames.ShouldShowWizzard.getName(), false);
 
@@ -197,20 +226,17 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		alarmNum02EditText.setText(phNum02);
 		alarmNum03EditText.setText(phNum03);
 		alarmNum04EditText.setText(phNum04);
-
-		// TODO: Set Brand Logo
-		setBrandImageView(brand);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.lockButtonImageButton:
-			ViewGroup parentView = (ViewGroup)inflatedView;
+			ViewGroup parentView = (ViewGroup) inflatedView;
 			if (isLocked) {
 				lockButton.setImageResource(R.drawable.lock_unlocked_icon);
 				isLocked = false;
-				for(int i = 0; i < parentView.getChildCount(); i++) {
+				for (int i = 0; i < parentView.getChildCount(); i++) {
 					parentView.getChildAt(i).setEnabled(true);
 				}
 				alarmNum01EditText.setEnabled(true);
@@ -221,8 +247,8 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 			} else {
 				lockButton.setImageResource(R.drawable.lock_locked_icon);
 				isLocked = true;
-				for(int i = 0; i < parentView.getChildCount(); i++) {
-					if(parentView.getChildAt(i).getId() != R.id.lockButtonImageButton) {
+				for (int i = 0; i < parentView.getChildCount(); i++) {
+					if (parentView.getChildAt(i).getId() != R.id.lockButtonImageButton) {
 						parentView.getChildAt(i).setEnabled(false);
 					}
 				}
@@ -231,7 +257,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 				alarmNum03EditText.setEnabled(false);
 				alarmNum04EditText.setEnabled(false);
 				showWizardCheckBox.setEnabled(false);
-				
+
 			}
 			break;
 		default:
@@ -241,160 +267,90 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
+		SharedPreferences sharedPreferences = getSherlockActivity()
+				.getSharedPreferences(SettingsNames.prefsName.getName(),
 						Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putBoolean(SettingsNames.ShouldShowWizzard.getName(), isChecked);
 		editor.commit();
 	}
 
-	private Brands getBrandfromString(String name) {
-		Brands result = Brands.Bosch;
-		if (name.equals(Brands.Bosch.getName()))
-			return Brands.Bosch;
-		else if (name.equals(Brands.Daikin.getName()))
-			return Brands.Daikin;
+	public class CustomAdapter extends ArrayAdapter<Brands> {
 
-		else if (name.equals(Brands.Electrolux_new.getName()))
-			return Brands.Electrolux_new;
+		public CustomAdapter(Context context, int textViewResourceId,
+				Brands[] objects) {
+			super(context, textViewResourceId, objects);
+		}
 
-		else if (name.equals(Brands.Electrolux_old.getName()))
-			return Brands.Electrolux_old;
+		@Override
+		public View getDropDownView(int position, View convertView,
+				ViewGroup parent) {
+			return getCustomView(position, convertView, parent);
+		}
 
-		else if (name.equals(Brands.Fujitsu.getName()))
-			return Brands.Fujitsu;
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			return getCustomView(position, convertView, parent);
+		}
 
-		else if (name.equals(Brands.Haier.getName()))
-			return Brands.Haier;
+		public View getCustomView(int position, View convertView,
+				ViewGroup parent) {
 
-		else if (name.equals(Brands.IVT.getName()))
-			return Brands.IVT;
+			LayoutInflater inflater = getLayoutInflater(getArguments());
+			View row = inflater.inflate(R.layout.row, parent, false);
+			ImageView icon = (ImageView) row.findViewById(R.id.icon);
 
-		else if (name.equals(Brands.LG.getName()))
-			return Brands.LG;
+			if (brandList[position] == Brands.Bosch) {
+				icon.setImageResource(R.drawable.bosch);
+				brand = Brands.Bosch;
+			} else if (brandList[position] == Brands.Daikin) {
+				icon.setImageResource(R.drawable.daikin);
+				brand = Brands.Daikin;
+			} else if (brandList[position] == Brands.Electrolux_new) {
+				icon.setImageResource(R.drawable.electrolux);
+				brand = Brands.Electrolux_new;
+			} else if (brandList[position] == Brands.Electrolux_old) {
+				icon.setImageResource(R.drawable.electrolux);
+				brand = Brands.Electrolux_old;
+			} else if (brandList[position] == Brands.Fujitsu) {
+				icon.setImageResource(R.drawable.fujitsu);
+				brand = Brands.Fujitsu;
+			} else if (brandList[position] == Brands.Haier) {
+				icon.setImageResource(R.drawable.haier);
+				brand = Brands.Haier;
+			} else if (brandList[position] == Brands.IVT) {
+				icon.setImageResource(R.drawable.ivt);
+				brand = Brands.IVT;
+			} else if (brandList[position] == Brands.LG) {
+				icon.setImageResource(R.drawable.lg);
+				brand = Brands.LG;
+			} else if (brandList[position] == Brands.Mitsubishi) {
+				icon.setImageResource(R.drawable.mitsubishi);
+				brand = Brands.Mitsubishi;
+			} else if (brandList[position] == Brands.Panasonic) {
+				icon.setImageResource(R.drawable.panasonic);
+				brand = Brands.Panasonic;
+			} else if (brandList[position] == Brands.Toshiba) {
+				icon.setImageResource(R.drawable.toshiba);
+				brand = Brands.Toshiba;
+			} else if (brandList[position] == Brands.Zibro) {
+				icon.setImageResource(R.drawable.zibro);
+				brand = Brands.Zibro;
+			} else {
+				icon.setImageResource(R.drawable.refresh);
+			}
 
-		else if (name.equals(Brands.Mitsubishi.getName()))
-			return Brands.Mitsubishi;
-
-		else if (name.equals(Brands.Panasonic.getName()))
-			return Brands.Panasonic;
-
-		else if (name.equals(Brands.Toshiba.getName()))
-			return Brands.Toshiba;
-
-		else if (name.equals(Brands.Zibro.getName()))
-			return Brands.Zibro;
-
-		return result;
-	}
-
-	private void setBrandImageView(Brands brand) {
-		switch (brand) {
-		case Bosch: brandImageView.setImageResource(R.drawable.bosch);
-			break;
-		case Daikin:brandImageView.setImageResource(R.drawable.daikin);
-			break;
-		case Electrolux_new:brandImageView.setImageResource(R.drawable.electrolux);
-			break;
-		case Electrolux_old:brandImageView.setImageResource(R.drawable.electrolux);
-			break;
-		case Fujitsu:brandImageView.setImageResource(R.drawable.fujitsu);
-			break;
-		case Haier: brandImageView.setImageResource(R.drawable.haier);
-			break;
-		case IVT: brandImageView.setImageResource(R.drawable.ivt);
-			break;
-		case LG:brandImageView.setImageResource(R.drawable.lg);
-			break;
-		case Mitsubishi: brandImageView.setImageResource(R.drawable.mitsubishi);
-			break;
-		case Panasonic: brandImageView.setImageResource(R.drawable.panasonic);
-			break;
-		case Toshiba:brandImageView.setImageResource(R.drawable.toshiba);
-			break;
-		case Zibro:brandImageView.setImageResource(R.drawable.zibro);
-			break;
-		default: brandImageView.setImageResource(R.drawable.bosch);
-		break;
+			return row;
 		}
 	}
-	
-	 
-    public class MyCustomAdapter extends ArrayAdapter<Brands>{
-        
-        public MyCustomAdapter(Context context, int textViewResourceId,
-                               Brands[] objects) {
-            super(context, textViewResourceId, objects);
-            // TODO Auto-generated constructor stub
-        }
-        
-        @Override
-        public View getDropDownView(int position, View convertView,
-                                    ViewGroup parent) {
-            // TODO Auto-generated method stub
-            return getCustomView(position, convertView, parent);
-        }
-        
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            return getCustomView(position, convertView, parent);
-        }
-        
-        public View getCustomView(int position, View convertView, ViewGroup parent) {
-            // TODO Auto-generated method stub
-            //return super.getView(position, convertView, parent);
-            
-            LayoutInflater inflater= getLayoutInflater(getArguments());
-            View row=inflater.inflate(R.layout.row, parent, false);
-            TextView label=(TextView)row.findViewById(R.id.weekofday);
-            label.setText(brandList[position].getName());
-            
-            ImageView icon=(ImageView)row.findViewById(R.id.icon);
-            
-            if (brandList[position]==Brands.Bosch){
-                icon.setImageResource(R.drawable.bosch);
-            }
-            else if (brandList[position]==Brands.Daikin){
-                icon.setImageResource(R.drawable.daikin);
-            }
-            else if (brandList[position]==Brands.Electrolux_new){
-                icon.setImageResource(R.drawable.electrolux);
-            }
-            else if (brandList[position]==Brands.Electrolux_old){
-                icon.setImageResource(R.drawable.electrolux);
-            }
-            else if (brandList[position]==Brands.Fujitsu){
-                icon.setImageResource(R.drawable.fujitsu);
-            }
-            else if (brandList[position]==Brands.Haier){
-                icon.setImageResource(R.drawable.haier);
-            }
-            else if (brandList[position]==Brands.IVT){
-                icon.setImageResource(R.drawable.ivt);
-            }
-            else if (brandList[position]==Brands.LG){
-                icon.setImageResource(R.drawable.lg);
-            }
-            else if (brandList[position]==Brands.Mitsubishi){
-                icon.setImageResource(R.drawable.mitsubishi);
-            }
-            else if (brandList[position]==Brands.Panasonic){
-                icon.setImageResource(R.drawable.panasonic);
-            }
-            else if (brandList[position]==Brands.Toshiba){
-                icon.setImageResource(R.drawable.toshiba);
-            }
-            else if (brandList[position]==Brands.Zibro){
-                icon.setImageResource(R.drawable.zibro);
-            }
-            else
-            {
-            	icon.setImageResource(R.drawable.refresh);
-            }
-            
-            return row;
-        }
-    }
 
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		brand = (Brands) arg0.getItemAtPosition(arg2);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+	}
 }

@@ -20,6 +20,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -50,11 +51,13 @@ public class SettingsFragment extends SherlockFragment implements
 	private boolean shouldShowWizard = false;
 	private Context context; // FIXME - Remove?
 	private ImageView brandImageView;
+	private Spinner brandSpinner;
 
-	private Brands[] brandList = { Brands.Bosch, Brands.Daikin,
-			Brands.Electrolux_new, Brands.Electrolux_old, Brands.Fujitsu,
-			Brands.Haier, Brands.IVT, Brands.LG, Brands.Mitsubishi,
-			Brands.Panasonic, Brands.Toshiba, Brands.Zibro };
+
+	private Brands[] brandList = { Brands.BOSCH, Brands.DAIKIN,
+			Brands.ELECTROLUX_NEW, Brands.ELECTROLUX_OLD, Brands.FUJITSU,
+			Brands.HAIER, Brands.IVT, Brands.LG, Brands.MITSUBISHI,
+			Brands.PANASONIC, Brands.TOSHIBA, Brands.ZIBRA };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class SettingsFragment extends SherlockFragment implements
 				.inflate(R.layout.settings_slideout_layout, null);
 
 		SharedPreferences settings = getActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), 0);
+		// --FOR DEVELOPEMNT----
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString(SettingsNames.DEVICE_NAME.getName(), deviceName);
 		editor.putString(SettingsNames.DEVICE_PHONENO.getName(), devicePhoneNum);
@@ -94,7 +98,7 @@ public class SettingsFragment extends SherlockFragment implements
 		passwordEditText.setText(settings.getString(SettingsNames.DEVICE_PASSWORD.getName(), strDefaultValue));
 
 		brandImageView = (ImageView) inflatedView.findViewById(R.id.brandimageView);
-		setBrandImageView(brand);
+//		setBrandImageView(brand);
 
 		alarmNum01EditText = (EditText) inflatedView.findViewById(R.id.alarmNum01EditText);
 		alarmNum01EditText.setText(settings.getString(SettingsNames.ALARM_NUMBER_01.getName(), strDefaultValue));
@@ -178,7 +182,7 @@ public class SettingsFragment extends SherlockFragment implements
 		phNum03 = settings.getString(SettingsNames.ALARM_NUMBER_03.getName(), strDefaultValue);
 		phNum04 = settings.getString(SettingsNames.ALARM_NUMBER_04.getName(), strDefaultValue);
 
-		String temp = settings.getString(SettingsNames.BrandName.getName(),
+		String temp = settings.getString(SettingsNames.BRAND_NAME.getName(),
 				strDefaultValue);
 		brand = brand.getBrand(temp);
 		// TODO: SetSelection on brandspinner when loading values from
@@ -186,9 +190,10 @@ public class SettingsFragment extends SherlockFragment implements
 		// brandSpinner.setSelection(CustomAdapter.getPosition("Category 2"));
 
 		shouldShowWizard = settings.getBoolean(
-				SettingsNames.ShouldShowWizzard.getName(), false);
-		String temp = settings.getString(SettingsNames.BRAND_NAME.getName(), strDefaultValue);
-		brand = getBrandfromString(temp);
+				SettingsNames.SHOULD_SHOW_WIZARD.getName(), false);
+		String temp1 = settings.getString(SettingsNames.BRAND_NAME.getName(), strDefaultValue);
+		
+		brand = brand.getBrand(temp1);
 		
 		shouldShowWizard = settings.getBoolean(SettingsNames.SHOULD_SHOW_WIZARD.getName(), false);
 
@@ -275,42 +280,42 @@ public class SettingsFragment extends SherlockFragment implements
 			View row = inflater.inflate(R.layout.row, parent, false);
 			ImageView icon = (ImageView) row.findViewById(R.id.icon);
 
-			if (brandList[position] == Brands.Bosch) {
+			if (brandList[position] == Brands.BOSCH) {
 				icon.setImageResource(R.drawable.bosch);
-				brand = Brands.Bosch;
-			} else if (brandList[position] == Brands.Daikin) {
+				brand = Brands.BOSCH;
+			} else if (brandList[position] == Brands.DAIKIN) {
 				icon.setImageResource(R.drawable.daikin);
-				brand = Brands.Daikin;
-			} else if (brandList[position] == Brands.Electrolux_new) {
+				brand = Brands.DAIKIN;
+			} else if (brandList[position] == Brands.ELECTROLUX_NEW) {
 				icon.setImageResource(R.drawable.electrolux);
-				brand = Brands.Electrolux_new;
-			} else if (brandList[position] == Brands.Electrolux_old) {
+				brand = Brands.ELECTROLUX_NEW;
+			} else if (brandList[position] == Brands.ELECTROLUX_OLD) {
 				icon.setImageResource(R.drawable.electrolux);
-				brand = Brands.Electrolux_old;
-			} else if (brandList[position] == Brands.Fujitsu) {
+				brand = Brands.ELECTROLUX_OLD;
+			} else if (brandList[position] == Brands.FUJITSU) {
 				icon.setImageResource(R.drawable.fujitsu);
-				brand = Brands.Fujitsu;
-			} else if (brandList[position] == Brands.Haier) {
+				brand = Brands.FUJITSU;
+			} else if (brandList[position] == Brands.HAIER) {
 				icon.setImageResource(R.drawable.haier);
-				brand = Brands.Haier;
+				brand = Brands.HAIER;
 			} else if (brandList[position] == Brands.IVT) {
 				icon.setImageResource(R.drawable.ivt);
 				brand = Brands.IVT;
 			} else if (brandList[position] == Brands.LG) {
 				icon.setImageResource(R.drawable.lg);
 				brand = Brands.LG;
-			} else if (brandList[position] == Brands.Mitsubishi) {
+			} else if (brandList[position] == Brands.MITSUBISHI) {
 				icon.setImageResource(R.drawable.mitsubishi);
-				brand = Brands.Mitsubishi;
-			} else if (brandList[position] == Brands.Panasonic) {
+				brand = Brands.MITSUBISHI;
+			} else if (brandList[position] == Brands.PANASONIC) {
 				icon.setImageResource(R.drawable.panasonic);
-				brand = Brands.Panasonic;
-			} else if (brandList[position] == Brands.Toshiba) {
+				brand = Brands.PANASONIC;
+			} else if (brandList[position] == Brands.TOSHIBA) {
 				icon.setImageResource(R.drawable.toshiba);
-				brand = Brands.Toshiba;
-			} else if (brandList[position] == Brands.Zibro) {
+				brand = Brands.TOSHIBA;
+			} else if (brandList[position] == Brands.ZIBRA) {
 				icon.setImageResource(R.drawable.zibro);
-				brand = Brands.Zibro;
+				brand = Brands.ZIBRA;
 			} else {
 				icon.setImageResource(R.drawable.refresh);
 			}
@@ -324,36 +329,7 @@ public class SettingsFragment extends SherlockFragment implements
 			long arg3) {
 		brand = (Brands) arg0.getItemAtPosition(arg2);
 	}
-
-	// FIXME - See the fixme from above... this looks aweful!
-	private void setBrandImageView(Brands brand) {
-		switch (brand) {
-		case BOSCH: brandImageView.setImageResource(R.drawable.bosch);
-			break;
-		case DAIKIN:brandImageView.setImageResource(R.drawable.daikin);
-			break;
-		case ELECTROLUX_NEW:brandImageView.setImageResource(R.drawable.electrolux);
-			break;
-		case ELECTROLUX_OLD:brandImageView.setImageResource(R.drawable.electrolux);
-			break;
-		case FUJITSU:brandImageView.setImageResource(R.drawable.fujitsu);
-			break;
-		case HAIER: brandImageView.setImageResource(R.drawable.haier);
-			break;
-		case IVT: brandImageView.setImageResource(R.drawable.ivt);
-			break;
-		case LG:brandImageView.setImageResource(R.drawable.lg);
-			break;
-		case MITSUBISHI: brandImageView.setImageResource(R.drawable.mitsubishi);
-			break;
-		case PANASONIC: brandImageView.setImageResource(R.drawable.panasonic);
-			break;
-		case TOSHIBA:brandImageView.setImageResource(R.drawable.toshiba);
-			break;
-		case ZIBRA:brandImageView.setImageResource(R.drawable.zibro);
-			break;
-		default: brandImageView.setImageResource(R.drawable.bosch);
-		break;
-		}
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
 	}
 }

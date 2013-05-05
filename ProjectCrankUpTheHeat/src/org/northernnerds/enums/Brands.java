@@ -18,22 +18,22 @@ public enum Brands {
 	public Brands getBrand(String name) {
 		Brands result = null;
 
-		if (name.equals(Brands.Bosch.getName()))
-			return Brands.Bosch;
-		else if (name.equals(Brands.Daikin.getName()))
-			return Brands.Daikin;
+		if (name.equals(Brands.BOSCH.getName()))
+			return Brands.BOSCH;
+		else if (name.equals(Brands.DAIKIN.getName()))
+			return Brands.DAIKIN;
 
-		else if (name.equals(Brands.Electrolux_new.getName()))
-			return Brands.Electrolux_new;
+		else if (name.equals(Brands.ELECTROLUX_NEW.getName()))
+			return Brands.ELECTROLUX_NEW;
 
-		else if (name.equals(Brands.Electrolux_old.getName()))
-			return Brands.Electrolux_old;
+		else if (name.equals(Brands.ELECTROLUX_OLD.getName()))
+			return Brands.ELECTROLUX_OLD;
 
-		else if (name.equals(Brands.Fujitsu.getName()))
-			return Brands.Fujitsu;
+		else if (name.equals(Brands.FUJITSU.getName()))
+			return Brands.FUJITSU;
 
-		else if (name.equals(Brands.Haier.getName()))
-			return Brands.Haier;
+		else if (name.equals(Brands.HAIER.getName()))
+			return Brands.HAIER;
 
 		else if (name.equals(Brands.IVT.getName()))
 			return Brands.IVT;
@@ -41,17 +41,17 @@ public enum Brands {
 		else if (name.equals(Brands.LG.getName()))
 			return Brands.LG;
 
-		else if (name.equals(Brands.Mitsubishi.getName()))
-			return Brands.Mitsubishi;
+		else if (name.equals(Brands.MITSUBISHI.getName()))
+			return Brands.MITSUBISHI;
 
-		else if (name.equals(Brands.Panasonic.getName()))
-			return Brands.Panasonic;
+		else if (name.equals(Brands.PANASONIC.getName()))
+			return Brands.PANASONIC;
 
-		else if (name.equals(Brands.Toshiba.getName()))
-			return Brands.Toshiba;
+		else if (name.equals(Brands.TOSHIBA.getName()))
+			return Brands.TOSHIBA;
 
-		else if (name.equals(Brands.Zibro.getName()))
-			return Brands.Zibro;
+		else if (name.equals(Brands.ZIBRA.getName()))
+			return Brands.ZIBRA;
 
 		return result;
 	}

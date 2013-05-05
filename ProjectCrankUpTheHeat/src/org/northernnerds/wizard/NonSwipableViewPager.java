@@ -25,5 +25,4 @@ public class NonSwipableViewPager extends ViewPager {
 	public boolean onTouchEvent(MotionEvent arg0) {
 		return false;
 	}
-
 }

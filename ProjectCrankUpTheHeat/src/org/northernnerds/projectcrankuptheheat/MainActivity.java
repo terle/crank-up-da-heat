@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.slidingmenu.lib.SlidingMenu;
 import com.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.viewpagerindicator.PageIndicator;
@@ -19,14 +20,16 @@ public class MainActivity extends SlidingFragmentActivity  {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		requestWindowFeature(Window.FEATURE_PROGRESS);
+		
 		// Setting main contentview.
 		setContentView(R.layout.fragmentpager_layout);
-
+  
 		// Setting the behind view
 		setBehindContentView(R.layout.menu_layout);
 		
 		HeatFragmentAdapter mAdapter = new HeatFragmentAdapter(getSupportFragmentManager());
-
+		
         mPager = (NonSwipableViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
 
@@ -50,7 +53,7 @@ public class MainActivity extends SlidingFragmentActivity  {
 		
 		getSupportActionBar().setHomeButtonEnabled(true);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		toggle();

@@ -1,10 +1,9 @@
 package org.northernnerds.enums;
 
 public enum Brands {
-	Panasonic("Panasonic"), Haier("Haier"), Daikin("Daikin"), LG("LG"), Bosch(
-			"Bosch"), IVT("IVT"), Electrolux_old("Elux1"), Mitsubishi(
-			"Mitsubishi"), Toshiba("Toshiba"), Electrolux_new("Elux2"), Fujitsu(
-			"Fujitsu"), Zibro("Zibro");
+	PANASONIC("Panasonic"), HAIER("Haier"), DAIKIN("Daikin"), LG("LG"), 
+	BOSCH("Bosch"), IVT("IVT"), ELECTROLUX_OLD("Elux1"), MITSUBISHI("Mitsubishi"), 
+	TOSHIBA("Toshiba"), ELECTROLUX_NEW("Elux2"), FUJITSU("Fujitsu"), ZIBRA("Zibro");
 
 	private String name;
 

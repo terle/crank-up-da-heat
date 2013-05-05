@@ -1,8 +1,10 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,8 +24,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class ThermostatFragment extends SherlockFragment implements
-		OnClickListener, OnTouchListener, OnSeekBarChangeListener {
+public class ThermostatFragment extends SherlockFragment implements OnClickListener, OnTouchListener, OnSeekBarChangeListener {
 	private LinearLayout buttonLayout;
 	private Button sendButton, cancelButton;
 	private ThermostatView thermostat;
@@ -31,8 +32,7 @@ public class ThermostatFragment extends SherlockFragment implements
 	private SeekBar hotColdSeekBar;
 	private RelativeLayout mainLayout;
 	private ImageView hotImageView, coldImageView;
-	private Drawable hotUnselected, hotSelected, coldUnselected, coldSelected,
-			hotBackground, coldBackground;
+	private Drawable hotUnselected, hotSelected, coldUnselected, coldSelected, hotBackground, coldBackground;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,7 @@ public class ThermostatFragment extends SherlockFragment implements
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		View inflatedView = inflater.inflate(R.layout.thermostat_layout, null);
 
@@ -101,6 +100,21 @@ public class ThermostatFragment extends SherlockFragment implements
 		case R.id.sendButton:
 			Toast.makeText(getActivity(), "Sending something!", Toast.LENGTH_SHORT).show();
 			// Should call SMSHandler here...
+			final ProgressDialog progress = new ProgressDialog(getSherlockActivity());
+			progress.setTitle("Vent venligst...");
+			progress.setIndeterminate(true);
+			progress.setCancelable(false);
+			progress.show();
+			
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					progress.hide();
+					progress.cancel();
+				}
+			}, 5000);
+			
 			slideOutButtons();
 			break;
 		case R.id.cancelButton:
@@ -129,6 +143,7 @@ public class ThermostatFragment extends SherlockFragment implements
 		coldBackground = getResources().getDrawable(R.drawable.bg_kold);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
@@ -153,7 +168,7 @@ public class ThermostatFragment extends SherlockFragment implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
+		// Not used, but needs to be implemented.
 	}
 
 	@Override

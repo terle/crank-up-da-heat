@@ -23,8 +23,8 @@ public class WizardActivity extends SherlockFragmentActivity  {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		SharedPreferences sharedPreferences = getSharedPreferences(SettingsNames.prefsName.getName(), Context.MODE_PRIVATE);
-	    boolean shouldShowWizard = sharedPreferences.getBoolean("showWizard", true);
+		SharedPreferences sharedPreferences = getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
+	    boolean shouldShowWizard = sharedPreferences.getBoolean("ShowWizard", true);
 	    if(!shouldShowWizard) {
 	    	finish();
 	    	Intent appIntent = new Intent(this, MainActivity.class);

@@ -20,7 +20,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 public class InfoFragment extends SherlockFragment implements OnClickListener {
 
-	private final String strDefaultValue = "N/A";
 	private final int iDefaultValue = -111;
 	
 	private char degreeSign = (char) 0x00B0;
@@ -33,11 +32,9 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	private int gsmBat = 34;
 	private int gsmSignal = 0;
 
-	private String unitName = "Sommerfjong i bingbong";
-	private String currentProgram;
-	// private Button thermometerButton, updateStatusButton;
 	private ImageButton refreshImageButton;
-	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView, warnningHighImageView, warningLowImageView;
+	// TODO - Are warningHighImageView and warningLowImageView ever used?
+	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView, warningHighImageView, warningLowImageView;
 	private TextView batteryTextView, currentTemperatureTextView, warningHighTextView, warningLowTextView,
 			currentProgramTextView;
 
@@ -68,15 +65,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		setProgramImagePlusTextView();
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();
-
-		// thermometerButton = (Button)
-		// inflatedView.findViewById(R.id.alarmButton);
-		// thermometerButton.setOnClickListener(this);
-
-		// updateStatusButton = (Button)
-		// inflatedView.findViewById(R.id.updateStatusButton);
-		// updateStatusButton.setOnClickListener(this);
-
+		
 		return inflatedView;
 	}
 
@@ -84,12 +73,6 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	public void onPause() {
 		Toast.makeText(getActivity(), "InfoFragment: OnPause", Toast.LENGTH_SHORT).show();
 		super.onPause();
-		// SharedPreferences settings =
-		// getActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
-		// Context.MODE_PRIVATE);
-		// SharedPreferences.Editor editor = settings.edit();
-		//
-		// editor.commit();
 		updateSharedPreferencesfromFields();
 	}
 
@@ -97,24 +80,6 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	public void onResume() {
 		Toast.makeText(getActivity(), "InfoFragment: OnResume", Toast.LENGTH_SHORT).show();
 		super.onResume();
-		// SharedPreferences settings =
-		// getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
-		// Context.MODE_PRIVATE);
-		//
-		// currentTemperatureTextView.setText(settings.getString(SettingsNames.AktuelTemp.getName(),
-		// "N/A"));
-		// warningHighTextView.setText(settings.getString(SettingsNames.warningTempHIGH.getName(),
-		// "N/A"));
-		// warningLowTextView.setText(settings.getString(SettingsNames.warningTempLOW.getName(),
-		// "N/A"));
-		//
-		// currentProgram =
-		// settings.getString(SettingsNames.AktuelTemp.getName(), "N/A");
-		// gsmSignal = settings.getInt(SettingsNames.GSMSignal.getName(), 0);
-		// setGsmSignalImageView();
-		// gsmBat = settings.getInt(SettingsNames.GSMBat.getName(), 0);
-		// setBatteryImageAndTextView();
-
 		updateFieldsfromSharedPreferences();
 	}
 
@@ -171,37 +136,34 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	}
 	
 	private void updateSharedPreferencesfromFields(){
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(),
 				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
 		
-		editor.putInt(SettingsNames.currentTemperatur.getName(), currentTemp);
-		editor.putInt(SettingsNames.warningTempHIGH.getName(), warningTempHigh);
-		editor.putInt(SettingsNames.warningTempLOW.getName(), warningTempLow);
-		editor.putInt(SettingsNames.GSMBat.getName(), gsmBat);
-		editor.putInt(SettingsNames.GSMSignal.getName(), gsmSignal);
+		editor.putInt(SettingsNames.CURRENT_TEMP.getName(), currentTemp);
+		editor.putInt(SettingsNames.WARNING_TEMP_HIGH.getName(), warningTempHigh);
+		editor.putInt(SettingsNames.WARNING_TEMP_LOW.getName(), warningTempLow);
+		editor.putInt(SettingsNames.GSM_BATTERY.getName(), gsmBat);
+		editor.putInt(SettingsNames.GSM_SIGNAL.getName(), gsmSignal);
 		
-		editor.putInt(SettingsNames.CoolTemp.getName(), coolingTemp);
-		editor.putInt(SettingsNames.HeatTemp.getName(), heatingTemp);
+		editor.putInt(SettingsNames.COOL_TEMP.getName(), coolingTemp);
+		editor.putInt(SettingsNames.HEAT_TEMP.getName(), heatingTemp);
 		
 		editor.commit();
 		
 	}
 
 	private void updateFieldsfromSharedPreferences() {
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.prefsName.getName(),
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(),
 				Context.MODE_PRIVATE);
-		currentTemp = settings.getInt(SettingsNames.currentTemperatur.getName(), iDefaultValue);
-		warningTempHigh = settings.getInt(SettingsNames.warningTempHIGH.getName(), iDefaultValue);
-		warningTempLow= settings.getInt(SettingsNames.warningTempLOW.getName(), iDefaultValue);
-		gsmBat = settings.getInt(SettingsNames.GSMBat.getName(), iDefaultValue);
-		gsmSignal = settings.getInt(SettingsNames.GSMSignal.getName(), iDefaultValue);
+		currentTemp = settings.getInt(SettingsNames.CURRENT_TEMP.getName(), iDefaultValue);
+		warningTempHigh = settings.getInt(SettingsNames.WARNING_TEMP_HIGH.getName(), iDefaultValue);
+		warningTempLow= settings.getInt(SettingsNames.WARNING_TEMP_LOW.getName(), iDefaultValue);
+		gsmBat = settings.getInt(SettingsNames.GSM_BATTERY.getName(), iDefaultValue);
+		gsmSignal = settings.getInt(SettingsNames.GSM_SIGNAL.getName(), iDefaultValue);
 
-		// String strCProgram = settings.getString(SettingsNames.,
-		// strDefaultValue);
-		
-		coolingTemp = settings.getInt(SettingsNames.CoolTemp.getName(), iDefaultValue);
-		heatingTemp = settings.getInt(SettingsNames.HeatTemp.getName(), iDefaultValue);
+		coolingTemp = settings.getInt(SettingsNames.COOL_TEMP.getName(), iDefaultValue);
+		heatingTemp = settings.getInt(SettingsNames.HEAT_TEMP.getName(), iDefaultValue);
 		if (coolingTemp == -1) {
 			// program is heat
 			currentProgramImageView.setImageResource(R.drawable.varme_ikon);
@@ -219,18 +181,14 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();
-
 	}
 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.refreshButtonImageButton:
-			// Toast.makeText(getActivity(), "Sender status SMS! Vent på svar",
-			// Toast.LENGTH_SHORT).show();
 			SMSHandler handler = new SMSHandler(getActivity());
-			handler.SendSMS(CommandTypes.Status);
+			handler.SendSMS(CommandTypes.STATUS);
 			break;
-
 		default:
 			break;
 		}

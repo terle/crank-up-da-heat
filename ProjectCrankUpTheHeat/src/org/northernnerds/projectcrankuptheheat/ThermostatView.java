@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.os.Vibrator;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,7 +58,6 @@ public class ThermostatView extends ImageView {
 		centerX = width / 2;
 		centerY = height / 2;
 		canvas.rotate(degree, centerX, centerY);
-		//Log.d(this.getClass().getSimpleName(), "onDraw(): degree is now: " + degree);
 		super.onDraw(canvas);
 	}
 
@@ -70,19 +68,7 @@ public class ThermostatView extends ImageView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-//		System.out.println("now i'm in BEFORE calling MotionEvent.ACTION_MOVE ");
-
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//			x = event.getX();
-//			y = event.getY();
-//			newX = centerX - x;
-//			newY = centerY - y;
-			// updateRotation(newX, newY);
-			// if (isXYInCenterRing(event.getX(), event.getY())) {
-			// setRotation(thermostatAngle);
-			// }
-			//Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_DOWN. degree:" + degree + " ThermostatAngle:"
-					//+ thermostatAngle);
 
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			x = event.getX();
@@ -94,28 +80,17 @@ public class ThermostatView extends ImageView {
 			if (isXYInCenterRing(event.getX(), event.getY())) {
 				updateRotation(newX, newY);
 				updateTextView(thermostatAngle);
-				//Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_MOVE. degree:" + degree + " ThermostatAngle:"
-					//	+ thermostatAngle);
 			}
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
-			Log.d(this.getClass().getSimpleName(), "MotionEvent = ACTION_UP.   degree:" + degree + " ThermostatAngle:"
-					+ thermostatAngle);
-			// x = event.getX();
-			// y = event.getY();
-			// newX = centerX - x;
-			// newY = centerY - y;
-			// updateRotation(newX, newY);
-
-			if (thermostatAngle > Temperatures.t00.getAngle() || thermostatAngle < Temperatures.t24.getAngle()) {
-				int midValue = (Math.abs(Temperatures.t00.getAngle()) + Math.abs(Temperatures.t24.getAngle())) / 2;
+			if (thermostatAngle > Temperatures.T00.getAngle() || thermostatAngle < Temperatures.T24.getAngle()) {
+				int midValue = (Math.abs(Temperatures.T00.getAngle()) + Math.abs(Temperatures.T24.getAngle())) / 2;
 				if (thermostatAngle > midValue) {
 					// Snap to 0
-					setTextViewAndRotation(Temperatures.t00.getAngle(), "0" + degreeSign);
+					setTextViewAndRotation(Temperatures.T00.getAngle(), "0" + degreeSign);
 				} else {
 					// Snap to 24
-					setTextViewAndRotation(Temperatures.t24.getAngle(), "24" + degreeSign);
+					setTextViewAndRotation(Temperatures.T24.getAngle(), "24" + degreeSign);
 				}
-				System.out.println("Under 0 eller over 24");
 			} else {
 				snapToDegree(thermostatAngle);
 			}
@@ -129,40 +104,34 @@ public class ThermostatView extends ImageView {
 
 	private void updateRotation(float newX2, float newY2) {
 		thermostatAngle = (int) Math.toDegrees(Math.atan2(newY, newX)) - 90;
-		
-		// Log.d(this.getClass().getSimpleName(),
-				// "updateRotation(): Angle is now: " + thermostatAngle);
-
-		//This block will prevent the view from being updated between 0 & 24
-//		if (Temperatures.t00.getAngle() >= thermostatAngle && thermostatAngle >= Temperatures.t24.getAngle()) {
-//			// textViewTempGauge.setText("" + thermostatAngle);
-			setRotation(thermostatAngle);
-//		}
+		setRotation(thermostatAngle);
 	}
 
 	private void setTextViewAndRotation(int rotation, String text) {
 		setRotation(rotation);
 		textViewTempGauge.setText(text);
-
 	}
 
 	private Temperatures getClosestTemperature(int angle) {
 
-		Temperatures closestTempSoFar = Temperatures.t16;
+		Temperatures closestTempSoFar = Temperatures.T16;
 		int smallestAngleSoFar = Integer.MAX_VALUE;
 		Temperatures[] tempEnums = Temperatures.values();
 
 		makeVibration();
 		
-		if (angle < Temperatures.t00.getAngle() && angle > Temperatures.t08.getAngle()) {
-			int midValue = (Math.abs(Temperatures.t00.getAngle()) + Math.abs(Temperatures.t08.getAngle())) / 2;
+		if (angle < Temperatures.T00.getAngle() && angle > Temperatures.T08.getAngle()) {
+			int midValue = (Math.abs(Temperatures.T00.getAngle()) + Math.abs(Temperatures.T08.getAngle())) / 2;
 			if (angle > midValue) {
-				if(currentTemperature != Temperatures.t00) shouldIVibrate = true;
-				return Temperatures.t00;
+				if(currentTemperature != Temperatures.T00) { 
+					shouldIVibrate = true;
+				}
+				return Temperatures.T00;
 			}
-			// else
-			if(currentTemperature != Temperatures.t08) shouldIVibrate = true;
-			return Temperatures.t08;
+			if(currentTemperature != Temperatures.T08) { 
+				shouldIVibrate = true;
+			}
+			return Temperatures.T08;
 		}
 
 		for (Temperatures t : tempEnums) {
@@ -174,119 +143,111 @@ public class ThermostatView extends ImageView {
 			}
 		}
 		
-		// FOR VIBRATING. If thermostat has changed it value. A vibration should
-		// occure
-		if (currentTemperature != closestTempSoFar) shouldIVibrate = true;
-		
+		// FOR VIBRATING. If thermostat has changed it value. A vibration should occur
+		if (currentTemperature != closestTempSoFar) { 
+			shouldIVibrate = true;
+		}
 		return closestTempSoFar;
 	}
 
 	private void snapToDegree(int currentAngle) {
-
 		Temperatures temp = getClosestTemperature(currentAngle);
-		Log.d(this.getClass().getSimpleName(), "----------SNAP to " + temp.getAngle() + "-----------");
 
 		switch (temp) {
-		case t00:
-			// setTextViewAndRotation(Temperatures.t00.getAngle(), "0"
-			// + degreeSign);
-			setTextViewAndRotation(Temperatures.t00.getAngle(), "OFF");
-			thermostatAngle = Temperatures.t00.getAngle();
+		case T00:
+			setTextViewAndRotation(Temperatures.T00.getAngle(), "OFF");
+			thermostatAngle = Temperatures.T00.getAngle();
 			break;
-		case t08:
-			setTextViewAndRotation(Temperatures.t08.getAngle(), "8" + degreeSign);
-			thermostatAngle = Temperatures.t08.getAngle();
+		case T08:
+			setTextViewAndRotation(Temperatures.T08.getAngle(), "8" + degreeSign);
+			thermostatAngle = Temperatures.T08.getAngle();
 			break;
-		case t10:
-			setTextViewAndRotation(Temperatures.t10.getAngle(), "10" + degreeSign);
-			thermostatAngle = Temperatures.t10.getAngle();
+		case T10:
+			setTextViewAndRotation(Temperatures.T10.getAngle(), "10" + degreeSign);
+			thermostatAngle = Temperatures.T10.getAngle();
 			break;
-		case t16:
-			setTextViewAndRotation(Temperatures.t16.getAngle(), "16" + degreeSign);
-			thermostatAngle = Temperatures.t16.getAngle();
+		case T16:
+			setTextViewAndRotation(Temperatures.T16.getAngle(), "16" + degreeSign);
+			thermostatAngle = Temperatures.T16.getAngle();
 			break;
-		case t17:
-			setTextViewAndRotation(Temperatures.t17.getAngle(), "17" + degreeSign);
-			thermostatAngle = Temperatures.t17.getAngle();
+		case T17:
+			setTextViewAndRotation(Temperatures.T17.getAngle(), "17" + degreeSign);
+			thermostatAngle = Temperatures.T17.getAngle();
 			break;
-		case t18:
-			setTextViewAndRotation(Temperatures.t18.getAngle(), "18" + degreeSign);
-			thermostatAngle = Temperatures.t18.getAngle();
+		case T18:
+			setTextViewAndRotation(Temperatures.T18.getAngle(), "18" + degreeSign);
+			thermostatAngle = Temperatures.T18.getAngle();
 			break;
-		case t19:
-			setTextViewAndRotation(Temperatures.t19.getAngle(), "19" + degreeSign);
-			thermostatAngle = Temperatures.t19.getAngle();
+		case T19:
+			setTextViewAndRotation(Temperatures.T19.getAngle(), "19" + degreeSign);
+			thermostatAngle = Temperatures.T19.getAngle();
 			break;
-		case t20:
-			setTextViewAndRotation(Temperatures.t20.getAngle(), "20" + degreeSign);
-			thermostatAngle = Temperatures.t20.getAngle();
+		case T20:
+			setTextViewAndRotation(Temperatures.T20.getAngle(), "20" + degreeSign);
+			thermostatAngle = Temperatures.T20.getAngle();
 			break;
-		case t21:
-			setTextViewAndRotation(Temperatures.t21.getAngle(), "21" + degreeSign);
-			thermostatAngle = Temperatures.t21.getAngle();
+		case T21:
+			setTextViewAndRotation(Temperatures.T21.getAngle(), "21" + degreeSign);
+			thermostatAngle = Temperatures.T21.getAngle();
 			break;
-		case t22:
-			setTextViewAndRotation(Temperatures.t22.getAngle(), "22" + degreeSign);
-			thermostatAngle = Temperatures.t22.getAngle();
+		case T22:
+			setTextViewAndRotation(Temperatures.T22.getAngle(), "22" + degreeSign);
+			thermostatAngle = Temperatures.T22.getAngle();
 			break;
-		case t23:
-			setTextViewAndRotation(Temperatures.t23.getAngle(), "23" + degreeSign);
-			thermostatAngle = Temperatures.t23.getAngle();
+		case T23:
+			setTextViewAndRotation(Temperatures.T23.getAngle(), "23" + degreeSign);
+			thermostatAngle = Temperatures.T23.getAngle();
 			break;
-		case t24:
-			setTextViewAndRotation(Temperatures.t24.getAngle(), "24" + degreeSign);
-			thermostatAngle = Temperatures.t24.getAngle();
+		case T24:
+			setTextViewAndRotation(Temperatures.T24.getAngle(), "24" + degreeSign);
+			thermostatAngle = Temperatures.T24.getAngle();
 			break;
 		default:
-			setTextViewAndRotation(Temperatures.t16.getAngle(), "16" + degreeSign);
-			thermostatAngle = Temperatures.t16.getAngle();
+			setTextViewAndRotation(Temperatures.T16.getAngle(), "16" + degreeSign);
+			thermostatAngle = Temperatures.T16.getAngle();
 			break;
 		}
 	}
 
 	private void updateTextView(int currentAngle) {
-
 		Temperatures temp = getClosestTemperature(currentAngle);
 		currentTemperature = temp;
-		// Log.d(this.getClass().getSimpleName(),
-		// "TextView Updated to "+temp.getAngle());
 
 		switch (temp) {
-		case t00:
-			// textViewTempGauge.setText("0" + degreeSign);
+		case T00:
 			textViewTempGauge.setText("OFF");
 			break;
-		case t08:
+		case T08:
 			textViewTempGauge.setText("8" + degreeSign);
 			break;
-		case t10:
+		case T10:
 			textViewTempGauge.setText("10" + degreeSign);
 			break;
-		case t16:
+		case T16:
 			textViewTempGauge.setText("16" + degreeSign);
 			break;
-		case t17:
+		case T17:
 			textViewTempGauge.setText("17" + degreeSign);
 			break;
-		case t18:
+		case T18:
 			textViewTempGauge.setText("18" + degreeSign);
 			break;
-		case t19:
+		case T19:
 			textViewTempGauge.setText("19" + degreeSign);
 			break;
-		case t20:
+		case T20:
 			textViewTempGauge.setText("20" + degreeSign);
 			break;
-		case t21:
+		case T21:
 			textViewTempGauge.setText("21" + degreeSign);
 			break;
-		case t22:
+		case T22:
 			textViewTempGauge.setText("22" + degreeSign);
 			break;
-		case t23:
+		case T23:
 			textViewTempGauge.setText("23" + degreeSign);
 			break;
-		case t24:
+		case T24:
 			textViewTempGauge.setText("24" + degreeSign);
 			break;
 		default:
@@ -296,29 +257,21 @@ public class ThermostatView extends ImageView {
 	}
 
 	/**
-	 * determines if the touch event is relevant to us
+	 * Determines if the touch event is relevant to us
 	 * 
-	 * @param x
-	 *            The x coordinate
-	 * @param y
-	 *            The y coordinate
+	 * @param x The x coordinate
+	 * @param y The y coordinate
 	 * @return true if the (x,y)-coordinates are on the outer rim of the
-	 *         thermostat
-	 * 
-	 * */
+	 * thermostat
+	 */
 	private boolean isXYInCenterRing(float x, float y) {
 		float bigRadius = this.getWidth() / 2;
-		float smallRadius = this.getWidth() / 2 - 100; // TODO: Verify this
-		// number OR Find a
-		// better way of
-		// estimating that
-		// radius.
-		// textViewTempGauge.setTextSize(10);
-		// textViewTempGauge.setText("x:"+x+"\ny:"+y+"\nBig-r:"+bigRadius+"\nSmall-r:"+smallRadius);
+		float smallRadius = this.getWidth() / 2 - 100; 
+		// TODO: Verify this number OR Find a better way of estimating that radius.
 
-		if (isXYInCircle(x, y, bigRadius) && !isXYInCircle(x, y, smallRadius))
+		if (isXYInCircle(x, y, bigRadius) && !isXYInCircle(x, y, smallRadius)) {
 			return true;
-
+		}
 		return false;
 	}
 
@@ -327,14 +280,11 @@ public class ThermostatView extends ImageView {
 	 * <p>
 	 * The formula for a circle (x-x0)^2+(y-y0)^2 = r
 	 * 
-	 * @param x
-	 *            X-coordinate
-	 * @param y
-	 *            Y-coordinate
-	 * @param radius
-	 *            the radius of the circle
+	 * @param x X-coordinate
+	 * @param y Y-coordinate
+	 * @param radius the radius of the circle
 	 * @return true if the (x,y) is either ON or within the circle
-	 * */
+	 */
 	private boolean isXYInCircle(float x, float y, float radius) {
 		/*
 		 * Cirklen formel: (x-x0)^2 + (y-y0)^2 = r^2
@@ -343,16 +293,15 @@ public class ThermostatView extends ImageView {
 		float y0 = centerY;
 		double result = Math.pow((x - x0), 2) + Math.pow((y - y0), 2);
 
-		if (result <= Math.pow(radius, 2))
+		if (result <= Math.pow(radius, 2)) {
 			return true;
-
+		}
 		return false;
 	}
 
 	private void makeVibration() {
 		if (shouldIVibrate) {
 			vibrator.vibrate(20);
-			Log.d(this.getClass().getSimpleName(), "brrrrrrrrm");
 			shouldIVibrate = false;
 		}
 	}

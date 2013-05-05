@@ -27,9 +27,9 @@ public class Notifier {
 				.setContentText(type.getText()).setSmallIcon(android.R.drawable.ic_menu_camera)
 				.setContentIntent(pIntent).addAction(android.R.drawable.ic_menu_compass, "View", pIntent)
 				.setStyle(new Notification.BigTextStyle().bigText(message)).build();
+		// FIXME - Text needs to changed...
 
-		NotificationManager notificationManager = (NotificationManager) context
-				.getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		noti.flags |= Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(0, noti);
 	}

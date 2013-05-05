@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.viewpagerindicator.IconPagerAdapter;
 
-// TODO: Skal omd¿bes og renses for un¿dig kode...
 class HeatFragmentAdapter extends FragmentPagerAdapter implements
 		IconPagerAdapter {
 	protected static final String[] CONTENT = new String[] { "Info",
@@ -49,7 +48,6 @@ class HeatFragmentAdapter extends FragmentPagerAdapter implements
 	
 	@Override
 	public int getIconResId(int index) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

@@ -16,99 +16,87 @@ public class SMSHandler {
 	private IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
 	private Context context;
 
-	// private BroadcastReceiver smsReceiver = new SmsReceiver();
-
 	public SMSHandler(Context context) {
 		filter.setPriority(Integer.MAX_VALUE);
 		this.context = context;
-		// this.registerReceiver(smsReceiver, filter);
 	}
 
 	public void SendSMS(CommandTypes cmdType) {
-		// System.out.println("DeviceNumber: "); // Add device number...
 		SmsManager sm = SmsManager.getDefault();
 
-		SharedPreferences settings = context.getSharedPreferences(SettingsNames.prefsName.getName(),
-				Context.MODE_PRIVATE);
-		String passWord = settings.getString(SettingsNames.devicePassword.getName(), "1234");
+		SharedPreferences settings = context.getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
+		String passWord = settings.getString(SettingsNames.DEVICE_PASSWORD.getName(), "1234");
+		String deviceNumber = settings.getString(SettingsNames.DEVICE_PHONENO.getName(), "");
 
-		String deviceNumber = settings.getString(SettingsNames.devicePhoneNum.getName(), "");
-
-//		Toast.makeText(context, "Hello fra SendSMS()", Toast.LENGTH_SHORT).show();
-		
-		// String msg = ", status"; // Add password
-		// sm.sendTextMessage("+4528921237", null, msg, null, null);
 		if (!(deviceNumber.equals(string.emptyPhoneNumber) || deviceNumber == null || deviceNumber.equals(""))) {
 			switch (cmdType) {
-			case GetALARMNUMs: {
+			case GET_ALARM_NUMBERS: {
 				String msg = passWord + ", StatusPhN";
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case GetBRANDs: {
+			case GET_BRANDS: {
 				String msg = passWord + ", Brand";
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetALARMNUM01: {
-				String msg = passWord + ", PhN1, " + settings.getString(SettingsNames.AlarmNum01.getName(), "");
+			case SET_ALARM_NO_01: {
+				String msg = passWord + ", PhN1, " + settings.getString(SettingsNames.ALARM_NUMBER_01.getName(), "");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetBRAND: {
-				String msg = passWord + ", Brand, "
-						+ settings.getString(SettingsNames.BrandName.getName(), "Tomt Navn");
+			case SET_BRAND: {
+				String msg = passWord + ", Brand, " + settings.getString(SettingsNames.BRAND_NAME.getName(), "Tomt Navn");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetCOOL: {
-				String msg = passWord + ", Cool, " + settings.getInt(SettingsNames.CoolTemp.getName(), 16);
+			case SET_COOL: {
+				String msg = passWord + ", Cool, " + settings.getInt(SettingsNames.COOL_TEMP.getName(), 16);
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetHEAT: {
-				String msg = passWord + ", Heat, " + settings.getInt(SettingsNames.HeatTemp.getName(), 8);
+			case SET_HEAT: {
+				String msg = passWord + ", Heat, " + settings.getInt(SettingsNames.HEAT_TEMP.getName(), 8);
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetWarningHIGH: {
-				String msg = passWord + ", High, " + settings.getInt(SettingsNames.warningTempHIGH.getName(), 35);
+			case SET_WARNING_HIGH: {
+				String msg = passWord + ", High, " + settings.getInt(SettingsNames.WARNING_TEMP_HIGH.getName(), 35);
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetWarningLOW: {
-				String msg = passWord + ", Low, " + settings.getInt(SettingsNames.warningTempLOW.getName(), 10);
+			case SET_WARNING_LOW: {
+				String msg = passWord + ", Low, " + settings.getInt(SettingsNames.WARNING_TEMP_LOW.getName(), 10);
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case Status: {
+			case STATUS: {
 				String msg = passWord + ", Status";
-				Toast.makeText(context, "Status Sent: Num:"+deviceNumber+" password:"+passWord, Toast.LENGTH_LONG).show();
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case setNAME: {
-				String msg = passWord + ", Name, " + settings.getString(SettingsNames.deviceName.getName(), "N/A");
+			case SET_NAME: {
+				String msg = passWord + ", Name, " + settings.getString(SettingsNames.DEVICE_NAME.getName(), "N/A");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case setPASSWORD: {
-				String msg = passWord + ", NewPass, " + settings.getString(SettingsNames.devicePassword.getName(), "");
+			case SET_PASSWORD: {
+				String msg = passWord + ", NewPass, " + settings.getString(SettingsNames.DEVICE_PASSWORD.getName(), "");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetALARMNUM02: {
-				String msg = passWord + ", PhN2, " + settings.getString(SettingsNames.AlarmNum02.getName(), "");
+			case SET_ALARM_NO_02: {
+				String msg = passWord + ", PhN2, " + settings.getString(SettingsNames.ALARM_NUMBER_02.getName(), "");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetALARMNUM03: {
-				String msg = passWord + ", PhN3, " + settings.getString(SettingsNames.AlarmNum03.getName(), "");
+			case SET_ALARM_NO_03: {
+				String msg = passWord + ", PhN3, " + settings.getString(SettingsNames.ALARM_NUMBER_03.getName(), "");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
-			case SetALARMNUM04: {
-				String msg = passWord + ", PhN4, " + settings.getString(SettingsNames.AlarmNum04.getName(), "");
+			case SET_ALARM_NO_04: {
+				String msg = passWord + ", PhN4, " + settings.getString(SettingsNames.ALARM_NUMBER_04.getName(), "");
 				sm.sendTextMessage(deviceNumber, null, msg, null, null);
 				break;
 			}
@@ -116,11 +104,9 @@ public class SMSHandler {
 				break;
 			}
 			}
-		}
-		else
-		{
-			Toast.makeText(context, "Device Phone number is not set", Toast.LENGTH_LONG).show();
+		} else {
+			Toast.makeText(context, "Device Phone number is not set",
+					Toast.LENGTH_LONG).show();
 		}
 	}
-	// this.unregisterReceiver(smsReceiver);
 }

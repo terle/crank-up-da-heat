@@ -30,9 +30,8 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 		super.onCreate(savedInstanceState);
 		
 		View inflatedView = inflater.inflate(R.layout.thermometer_layout, null);
-
 		rootView = (ViewGroup) inflatedView.findViewById(R.id.root);
-
+		
 		addThermometer();
 		addImages();
 		
@@ -44,7 +43,7 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 		int width = displaymetrics.widthPixels;
 
-		// Max
+		// Max thermometer ImageView
 		thermoWarm = new ImageView(getActivity());
 		thermoWarm.setImageDrawable(getResources().getDrawable(R.drawable.termometer_varm));
 		thermoWarm.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
@@ -59,6 +58,7 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 
 		rootView.addView(thermoWarm);
 
+		// Min thermometer ImageView
 		thermoCold = new ImageView(getActivity());
 		thermoCold.setImageDrawable(getResources().getDrawable(R.drawable.termometer_kold));
 		thermoCold.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
@@ -71,6 +71,7 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 		thermoCold.setLayoutParams(minLayoutParams);
 		rootView.addView(thermoCold);
 
+		// Getting the relative values for the min and max values.
 		warmMaxValueInDp = 50 / (displaymetrics.densityDpi / 160f);
 		warmMinValueInDp = 500 / (displaymetrics.densityDpi / 160f);
 
@@ -81,14 +82,11 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 	private void addImages() {
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-		int height = displaymetrics.heightPixels;
 		int width = displaymetrics.widthPixels;
 
-		System.out.println("Window: height: " + height + ", width: " + width);
-
-		// Max
+		// Max temp ImageView
 		maxTempImageView = new ImageView(getActivity());
-		maxTempImageView.setId(666);
+		maxTempImageView.setId(666); // Creating the ImageView in code, so we need to set the Id on our own.
 		maxTempImageView.setImageDrawable(getResources().getDrawable(R.drawable.max));
 		maxTempImageView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
 
@@ -102,14 +100,11 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 		maxTempImageView.setOnTouchListener(this);
 		rootView.addView(maxTempImageView);
 
-		// Min
+		// Min temp ImageView
 		minTempImageView = new ImageView(getActivity());
-		minTempImageView.setId(777);
+		minTempImageView.setId(777); // Creating the ImageView in code, so we need to set the Id on our own.
 		minTempImageView.setImageDrawable(getResources().getDrawable(R.drawable.min));
 		minTempImageView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-
-		System.out
-				.println("View width: " + minTempImageView.getMeasuredWidth());
 
 		RelativeLayout.LayoutParams minLayoutParams = new RelativeLayout.LayoutParams(minTempImageView.getMeasuredWidth(), minTempImageView.getMeasuredHeight());
 		minLayoutParams.leftMargin = width / 2 + (thermoCold.getMeasuredWidth() / 2);
@@ -125,7 +120,6 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 	}
 
 	public boolean onTouch(View view, MotionEvent event) {
-		final int X = (int) event.getRawX();
 		final int Y = (int) event.getRawY();
 		switch (event.getAction() & MotionEvent.ACTION_MASK) {
 		case MotionEvent.ACTION_DOWN:

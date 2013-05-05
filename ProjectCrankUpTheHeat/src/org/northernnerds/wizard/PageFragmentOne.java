@@ -20,7 +20,6 @@ public class PageFragmentOne extends SherlockFragment implements OnClickListener
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		
 		View page = (View) inflater.inflate(R.layout.fragment_one, null);
 		Button button1 = (Button) page.findViewById(R.id.button1);
 		button1.setOnClickListener(this);

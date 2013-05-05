@@ -49,7 +49,6 @@ class WizardFragmentAdapter extends FragmentPagerAdapter implements IconPagerAda
 
 	@Override
 	public int getIconResId(int index) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

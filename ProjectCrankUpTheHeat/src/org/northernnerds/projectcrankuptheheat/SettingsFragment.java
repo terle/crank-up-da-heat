@@ -5,7 +5,6 @@ import org.northernnerds.enums.SettingsNames;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Path.Direction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +36,6 @@ public class SettingsFragment extends SherlockFragment implements
 	// Values for SharedPrefs
 	private String deviceName = "Sommerfjong i bingbong";
 	private Brands brand = Brands.PANASONIC;
-	private String brandName = "Panasonic"; // FIXME - Remove?
 	private String devicePhoneNum = "+4561319616"; // Dette er tlf nr til device
 	private String devicePasswd = "8110"; // Dette er password til device
 	private String phNum01 = "+4528921237";
@@ -49,10 +47,7 @@ public class SettingsFragment extends SherlockFragment implements
 			alarmNum03EditText, alarmNum04EditText;
 	private boolean isLocked = false;
 	private boolean shouldShowWizard = false;
-	private Context context; // FIXME - Remove?
-	private ImageView brandImageView;
 	private Spinner brandSpinner;
-
 
 	private Brands[] brandList = { Brands.BOSCH, Brands.DAIKIN,
 			Brands.ELECTROLUX_NEW, Brands.ELECTROLUX_OLD, Brands.FUJITSU,
@@ -62,7 +57,6 @@ public class SettingsFragment extends SherlockFragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.context = getActivity();
 	}
 
 	@Override
@@ -97,9 +91,6 @@ public class SettingsFragment extends SherlockFragment implements
 		passwordEditText = (EditText) inflatedView.findViewById(R.id.unitPasswordEditText);
 		passwordEditText.setText(settings.getString(SettingsNames.DEVICE_PASSWORD.getName(), strDefaultValue));
 
-		brandImageView = (ImageView) inflatedView.findViewById(R.id.brandimageView);
-//		setBrandImageView(brand);
-
 		alarmNum01EditText = (EditText) inflatedView.findViewById(R.id.alarmNum01EditText);
 		alarmNum01EditText.setText(settings.getString(SettingsNames.ALARM_NUMBER_01.getName(), strDefaultValue));
 
@@ -116,10 +107,8 @@ public class SettingsFragment extends SherlockFragment implements
 				.findViewById(R.id.lockButtonImageButton);
 		lockButton.setOnClickListener(this);
 
-		// TODO: get phonenumbers
-
 		brandSpinner = (Spinner) inflatedView.findViewById(R.id.brandSpinner);
-		brandSpinner.setAdapter(new CustomAdapter(context, R.layout.row,
+		brandSpinner.setAdapter(new CustomAdapter(getActivity(), R.layout.row,
 				brandList));
 
 		return inflatedView;
@@ -189,12 +178,6 @@ public class SettingsFragment extends SherlockFragment implements
 		// SharedPrefs.
 		// brandSpinner.setSelection(CustomAdapter.getPosition("Category 2"));
 
-		shouldShowWizard = settings.getBoolean(
-				SettingsNames.SHOULD_SHOW_WIZARD.getName(), false);
-		String temp1 = settings.getString(SettingsNames.BRAND_NAME.getName(), strDefaultValue);
-		
-		brand = brand.getBrand(temp1);
-		
 		shouldShowWizard = settings.getBoolean(SettingsNames.SHOULD_SHOW_WIZARD.getName(), false);
 
 		unitNameEditText.setText(deviceName);
@@ -319,7 +302,6 @@ public class SettingsFragment extends SherlockFragment implements
 			} else {
 				icon.setImageResource(R.drawable.refresh);
 			}
-
 			return row;
 		}
 	}

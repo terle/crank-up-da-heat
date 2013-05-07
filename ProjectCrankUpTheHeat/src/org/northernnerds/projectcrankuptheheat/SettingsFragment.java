@@ -24,10 +24,9 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class SettingsFragment extends SherlockFragment implements
-		OnClickListener, OnCheckedChangeListener, OnItemSelectedListener {
+public class SettingsFragment extends SherlockFragment implements OnClickListener, OnCheckedChangeListener, OnItemSelectedListener {
 	private final String strDefaultValue = "N/A";
-//	private final int iDefaultValue = -111;
+	// private final int iDefaultValue = -111;
 
 	private EditText unitNameEditText, phoneNumEditText, passwordEditText;
 	private CheckBox showWizardCheckBox;
@@ -43,16 +42,13 @@ public class SettingsFragment extends SherlockFragment implements
 	private String phNum03 = "";
 	private String phNum04 = "";
 	private ImageButton lockButton;
-	private EditText alarmNum01EditText, alarmNum02EditText,
-			alarmNum03EditText, alarmNum04EditText;
+	private EditText alarmNum01EditText, alarmNum02EditText, alarmNum03EditText, alarmNum04EditText;
 	private boolean isLocked = false;
 	private boolean shouldShowWizard = false;
 	private Spinner brandSpinner;
 
-	private Brands[] brandList = { Brands.BOSCH, Brands.DAIKIN,
-			Brands.ELECTROLUX_NEW, Brands.ELECTROLUX_OLD, Brands.FUJITSU,
-			Brands.HAIER, Brands.IVT, Brands.LG, Brands.MITSUBISHI,
-			Brands.PANASONIC, Brands.TOSHIBA, Brands.ZIBRA };
+	private Brands[] brandList = { Brands.BOSCH, Brands.DAIKIN, Brands.ELECTROLUX_NEW, Brands.ELECTROLUX_OLD, Brands.FUJITSU, Brands.HAIER,
+			Brands.IVT, Brands.LG, Brands.MITSUBISHI, Brands.PANASONIC, Brands.TOSHIBA, Brands.ZIBRA };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,13 +56,10 @@ public class SettingsFragment extends SherlockFragment implements
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		Toast.makeText(getActivity(), "SettingsFragment: OnCreateView",
-				Toast.LENGTH_SHORT).show();
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		Toast.makeText(getActivity(), "SettingsFragment: OnCreateView", Toast.LENGTH_SHORT).show();
 
-		inflatedView = inflater
-				.inflate(R.layout.settings_slideout_layout, null);
+		inflatedView = inflater.inflate(R.layout.settings_slideout_layout, null);
 
 		SharedPreferences settings = getActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), 0);
 		// --FOR DEVELOPEMNT----
@@ -78,8 +71,7 @@ public class SettingsFragment extends SherlockFragment implements
 		editor.commit();
 		// ---------------------
 
-		showWizardCheckBox = (CheckBox) inflatedView
-				.findViewById(R.id.showWizardCheckBox);
+		showWizardCheckBox = (CheckBox) inflatedView.findViewById(R.id.showWizardCheckBox);
 		showWizardCheckBox.setOnCheckedChangeListener(this);
 
 		unitNameEditText = (EditText) inflatedView.findViewById(R.id.unitNameEditText);
@@ -103,21 +95,18 @@ public class SettingsFragment extends SherlockFragment implements
 		alarmNum04EditText = (EditText) inflatedView.findViewById(R.id.alarmNum04EditText);
 		alarmNum04EditText.setText(settings.getString(SettingsNames.ALARM_NUMBER_04.getName(), strDefaultValue));
 
-		lockButton = (ImageButton) inflatedView
-				.findViewById(R.id.lockButtonImageButton);
+		lockButton = (ImageButton) inflatedView.findViewById(R.id.lockButtonImageButton);
 		lockButton.setOnClickListener(this);
 
 		brandSpinner = (Spinner) inflatedView.findViewById(R.id.brandSpinner);
-		brandSpinner.setAdapter(new CustomAdapter(getActivity(), R.layout.row,
-				brandList));
+		brandSpinner.setAdapter(new CustomAdapter(getActivity(), R.layout.row, brandList));
 
 		return inflatedView;
 	}
 
 	@Override
 	public void onPause() {
-		Toast.makeText(getActivity(), "SettingsFragment: OnPause",
-				Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), "SettingsFragment: OnPause", Toast.LENGTH_SHORT).show();
 		super.onPause();
 		updateSharedPreferencesfromFields();
 	}
@@ -130,16 +119,15 @@ public class SettingsFragment extends SherlockFragment implements
 		updateFieldsfromSharedPreferences();
 
 		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(),
-						Context.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		boolean shouldShowWizard = sharedPreferences.getBoolean(SettingsNames.SHOULD_SHOW_WIZARD.getName(), false);
 		showWizardCheckBox.setChecked(shouldShowWizard);
 	}
 
 	private void updateSharedPreferencesfromFields() {
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), 
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
-		
+
 		editor.putString(SettingsNames.DEVICE_NAME.getName(), deviceName);
 		editor.putString(SettingsNames.DEVICE_PHONENO.getName(), devicePhoneNum);
 		editor.putString(SettingsNames.DEVICE_PASSWORD.getName(), devicePasswd);
@@ -160,8 +148,7 @@ public class SettingsFragment extends SherlockFragment implements
 	}
 
 	private void updateFieldsfromSharedPreferences() {
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), 
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
 		deviceName = settings.getString(SettingsNames.DEVICE_NAME.getName(), strDefaultValue);
 		devicePhoneNum = settings.getString(SettingsNames.DEVICE_PHONENO.getName(), strDefaultValue);
 		devicePasswd = settings.getString(SettingsNames.DEVICE_PASSWORD.getName(), strDefaultValue);
@@ -171,8 +158,7 @@ public class SettingsFragment extends SherlockFragment implements
 		phNum03 = settings.getString(SettingsNames.ALARM_NUMBER_03.getName(), strDefaultValue);
 		phNum04 = settings.getString(SettingsNames.ALARM_NUMBER_04.getName(), strDefaultValue);
 
-		String temp = settings.getString(SettingsNames.BRAND_NAME.getName(),
-				strDefaultValue);
+		String temp = settings.getString(SettingsNames.BRAND_NAME.getName(), strDefaultValue);
 		brand = brand.getBrand(temp);
 		// TODO: SetSelection on brandspinner when loading values from
 		// SharedPrefs.
@@ -197,7 +183,7 @@ public class SettingsFragment extends SherlockFragment implements
 			if (isLocked) {
 				lockButton.setImageResource(R.drawable.lock_unlocked_icon);
 				isLocked = false;
-				for(int i = 0; i < parentView.getChildCount(); i++) {
+				for (int i = 0; i < parentView.getChildCount(); i++) {
 					parentView.getChildAt(i).setEnabled(true);
 				}
 				setTableLayoutEnabled(true);
@@ -216,9 +202,10 @@ public class SettingsFragment extends SherlockFragment implements
 			break;
 		}
 	}
-	
+
 	/**
 	 * Keep it DRY...
+	 * 
 	 * @param enabled
 	 */
 	private void setTableLayoutEnabled(boolean enabled) {
@@ -232,7 +219,7 @@ public class SettingsFragment extends SherlockFragment implements
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(),
-						Context.MODE_PRIVATE);
+				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putBoolean(SettingsNames.SHOULD_SHOW_WIZARD.getName(), isChecked);
 		editor.commit();
@@ -240,14 +227,12 @@ public class SettingsFragment extends SherlockFragment implements
 
 	public class CustomAdapter extends ArrayAdapter<Brands> {
 
-		public CustomAdapter(Context context, int textViewResourceId,
-				Brands[] objects) {
+		public CustomAdapter(Context context, int textViewResourceId, Brands[] objects) {
 			super(context, textViewResourceId, objects);
 		}
 
 		@Override
-		public View getDropDownView(int position, View convertView,
-				ViewGroup parent) {
+		public View getDropDownView(int position, View convertView, ViewGroup parent) {
 			return getCustomView(position, convertView, parent);
 		}
 
@@ -256,8 +241,7 @@ public class SettingsFragment extends SherlockFragment implements
 			return getCustomView(position, convertView, parent);
 		}
 
-		public View getCustomView(int position, View convertView,
-				ViewGroup parent) {
+		public View getCustomView(int position, View convertView, ViewGroup parent) {
 
 			LayoutInflater inflater = getLayoutInflater(getArguments());
 			View row = inflater.inflate(R.layout.row, parent, false);
@@ -307,10 +291,10 @@ public class SettingsFragment extends SherlockFragment implements
 	}
 
 	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		brand = (Brands) arg0.getItemAtPosition(arg2);
 	}
+
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 	}

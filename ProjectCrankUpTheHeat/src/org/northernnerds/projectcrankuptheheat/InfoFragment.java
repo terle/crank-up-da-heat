@@ -21,7 +21,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class InfoFragment extends SherlockFragment implements OnClickListener {
 
 	private final int iDefaultValue = -111;
-	
+
 	private char degreeSign = (char) 0x00B0;
 
 	private int currentTemp = -12;
@@ -35,8 +35,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	private ImageButton refreshImageButton;
 	// TODO - Are warningHighImageView and warningLowImageView ever used?
 	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView, warningHighImageView, warningLowImageView;
-	private TextView batteryTextView, currentTemperatureTextView, warningHighTextView, warningLowTextView,
-			currentProgramTextView;
+	private TextView batteryTextView, currentTemperatureTextView, warningHighTextView, warningLowTextView, currentProgramTextView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		View inflatedView = inflater.inflate(R.layout.infoscreen_layout, null);
 
 		currentTemperatureTextView = (TextView) inflatedView.findViewById(R.id.currentTemperatureTextView);
-		
+
 		warningHighTextView = (TextView) inflatedView.findViewById(R.id.alarmsHighTextView);
 		warningLowTextView = (TextView) inflatedView.findViewById(R.id.alarmsLowTextView);
 		currentProgramImageView = (ImageView) inflatedView.findViewById(R.id.currentProgramImageView);
@@ -62,10 +61,12 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		refreshImageButton = (ImageButton) inflatedView.findViewById(R.id.refreshButtonImageButton);
 		refreshImageButton.setOnClickListener(this);
 
+		updateFieldsfromSharedPreferences();
+		
 		setProgramImagePlusTextView();
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();
-		
+
 		return inflatedView;
 	}
 
@@ -84,6 +85,20 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	}
 
 	private void setProgramImagePlusTextView() {
+		//program = heat
+		if(coolingTemp == -1){
+			currentProgramImageView.setImageResource(R.drawable.varme_ikon);
+			currentProgramTextView.setText(""+heatingTemp+degreeSign);
+		}
+		//program = cool
+		else if(heatingTemp == -1){
+			currentProgramImageView.setImageResource(R.drawable.kulde_ikon);
+			currentProgramTextView.setText(""+coolingTemp+degreeSign);
+		}
+		else{
+			currentProgramImageView.setImageResource(R.drawable.refresh);//Just to set something
+			currentProgramTextView.setText("N/A");
+		}
 		// TODO: S¾t billede alt efter heat/Cool + textView til temperatur (fx
 		// heat_16)
 	}
@@ -134,31 +149,29 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 			break;
 		}
 	}
-	
-	private void updateSharedPreferencesfromFields(){
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(),
-				Context.MODE_PRIVATE);
+
+	private void updateSharedPreferencesfromFields() {
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
-		
+
 		editor.putInt(SettingsNames.CURRENT_TEMP.getName(), currentTemp);
 		editor.putInt(SettingsNames.WARNING_TEMP_HIGH.getName(), warningTempHigh);
 		editor.putInt(SettingsNames.WARNING_TEMP_LOW.getName(), warningTempLow);
 		editor.putInt(SettingsNames.GSM_BATTERY.getName(), gsmBat);
 		editor.putInt(SettingsNames.GSM_SIGNAL.getName(), gsmSignal);
-		
+
 		editor.putInt(SettingsNames.COOL_TEMP.getName(), coolingTemp);
 		editor.putInt(SettingsNames.HEAT_TEMP.getName(), heatingTemp);
-		
+
 		editor.commit();
-		
+
 	}
 
 	private void updateFieldsfromSharedPreferences() {
-		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(),
-				Context.MODE_PRIVATE);
+		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
 		currentTemp = settings.getInt(SettingsNames.CURRENT_TEMP.getName(), iDefaultValue);
 		warningTempHigh = settings.getInt(SettingsNames.WARNING_TEMP_HIGH.getName(), iDefaultValue);
-		warningTempLow= settings.getInt(SettingsNames.WARNING_TEMP_LOW.getName(), iDefaultValue);
+		warningTempLow = settings.getInt(SettingsNames.WARNING_TEMP_LOW.getName(), iDefaultValue);
 		gsmBat = settings.getInt(SettingsNames.GSM_BATTERY.getName(), iDefaultValue);
 		gsmSignal = settings.getInt(SettingsNames.GSM_SIGNAL.getName(), iDefaultValue);
 
@@ -167,18 +180,18 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		if (coolingTemp == -1) {
 			// program is heat
 			currentProgramImageView.setImageResource(R.drawable.varme_ikon);
-			currentProgramTextView.setText("" + heatingTemp+degreeSign);
-		}
-		else if (heatingTemp == -1) {
-			//program is cool
+			currentProgramTextView.setText("" + heatingTemp + degreeSign);
+		} else if (heatingTemp == -1) {
+			// program is cool
 			currentProgramImageView.setImageResource(R.drawable.kulde_ikon);
-			currentProgramTextView.setText(""+coolingTemp+degreeSign);
+			currentProgramTextView.setText("" + coolingTemp + degreeSign);
 		}
 
-		currentTemperatureTextView.setText("" + currentTemp+degreeSign);
-		warningHighTextView.setText("" + warningTempHigh+degreeSign);
-		warningLowTextView.setText("" + warningTempLow+degreeSign);
+		currentTemperatureTextView.setText("" + currentTemp + degreeSign);
+		warningHighTextView.setText("" + warningTempHigh + degreeSign);
+		warningLowTextView.setText("" + warningTempLow + degreeSign);
 
+		setProgramImagePlusTextView();
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();
 	}

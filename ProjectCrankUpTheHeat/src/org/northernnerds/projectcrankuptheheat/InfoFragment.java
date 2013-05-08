@@ -33,8 +33,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	private int gsmSignal = 0;
 
 	private ImageButton refreshImageButton;
-	// TODO - Are warningHighImageView and warningLowImageView ever used?
-	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView, warningHighImageView, warningLowImageView;
+	private ImageView gsmSignalImageView, batteryImageView, currentProgramImageView;
 	private TextView batteryTextView, currentTemperatureTextView, warningHighTextView, warningLowTextView, currentProgramTextView;
 
 	@Override
@@ -99,8 +98,6 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 			currentProgramImageView.setImageResource(R.drawable.refresh);//Just to set something
 			currentProgramTextView.setText("N/A");
 		}
-		// TODO: S¾t billede alt efter heat/Cool + textView til temperatur (fx
-		// heat_16)
 	}
 
 	private void setBatteryImageAndTextView() {

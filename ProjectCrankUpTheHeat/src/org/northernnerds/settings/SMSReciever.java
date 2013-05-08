@@ -45,7 +45,7 @@ public class SMSReciever extends BroadcastReceiver {
 				// Make notification
 				String[] msgLines = messages.getMessageBody().split("\\n");
 				ResponseTypes resposeType = helper.getResponseType(msgLines[1]);
-				new Notifier(context).makeNotification(resposeType, messages.getMessageBody());
+				new Notifier(context).makeNotification(resposeType, messages.getMessageBody(), (int)System.currentTimeMillis());
 				// Broadcast that a new SMS was handled.
 				this.context.sendBroadcast(new Intent(SettingsNames.SMS_HANDLED_ACTION.getName()));
 			}

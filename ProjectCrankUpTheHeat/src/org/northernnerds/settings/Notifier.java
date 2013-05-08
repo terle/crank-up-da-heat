@@ -23,8 +23,7 @@ public class Notifier {
 
 	//FIXME: The way notifications are build are only valid for API >=16
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	public void makeNotification(ResponseTypes responseType, String message) {
-		
+	public void makeNotification(ResponseTypes responseType, String message, int id) {		
 		Intent notificationIntent = new Intent(context, MainActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		
@@ -89,6 +88,7 @@ public class Notifier {
 					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
 					.setContentIntent(pIntent)
 					.build();
+			
 			break;
 		}
 		case PASSWORD_UPDATE: {
@@ -256,6 +256,7 @@ public class Notifier {
 
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		noti.flags |= Notification.FLAG_AUTO_CANCEL;
-		notificationManager.notify(0, noti);
+		System.out.println("Id: " + id);
+		notificationManager.notify(id, noti);
 	}
 }

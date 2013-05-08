@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class ThermometerFragment extends SherlockFragment implements OnTouchListener {
+public class ThermometerFragment extends SherlockFragment implements OnTouchListener, Observer {
 	private ImageView maxTempImageView, minTempImageView;
 	private ImageView thermoWarm, thermoCold;
 	private ViewGroup rootView;
@@ -155,5 +155,10 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 		}
 		rootView.invalidate();
 		return true;
+	}
+
+	@Override
+	public void update() {
+		// TODO - Implement...
 	}
 }

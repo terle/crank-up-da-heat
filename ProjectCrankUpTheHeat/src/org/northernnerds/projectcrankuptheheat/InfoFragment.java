@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class InfoFragment extends SherlockFragment implements OnClickListener {
+public class InfoFragment extends SherlockFragment implements OnClickListener, Observer {
 
 	private final int iDefaultValue = -111;
 
@@ -60,7 +60,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		refreshImageButton = (ImageButton) inflatedView.findViewById(R.id.refreshButtonImageButton);
 		refreshImageButton.setOnClickListener(this);
 
-		updateFieldsAndViewafromSharedPreferences();
+		updateFieldsAndViewFromSharedPreferences();
 		
 		setProgramImagePlusTextView();
 		setBatteryImageAndTextView();
@@ -80,7 +80,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 	public void onResume() {
 		Toast.makeText(getActivity(), "InfoFragment: OnResume", Toast.LENGTH_SHORT).show();
 		super.onResume();
-		updateFieldsAndViewafromSharedPreferences();
+		updateFieldsAndViewFromSharedPreferences();
 	}
 
 	private void setProgramImagePlusTextView() {
@@ -164,7 +164,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 
 	}
 
-	private void updateFieldsAndViewafromSharedPreferences() {
+	private void updateFieldsAndViewFromSharedPreferences() {
 		SharedPreferences settings = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
 		currentTemp = settings.getInt(SettingsNames.CURRENT_TEMP.getName(), iDefaultValue);
 		warningTempHigh = settings.getInt(SettingsNames.WARNING_TEMP_HIGH.getName(), iDefaultValue);
@@ -202,5 +202,10 @@ public class InfoFragment extends SherlockFragment implements OnClickListener {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void update() {
+		updateFieldsAndViewFromSharedPreferences();
 	}
 }

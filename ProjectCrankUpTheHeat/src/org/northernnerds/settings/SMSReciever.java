@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class SMSReciever extends BroadcastReceiver {
 	private static final String TAG = "Message received";
 
-	private Context context;;
+	private Context context;
 	private SMSHelper helper;
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
@@ -40,19 +40,21 @@ public class SMSReciever extends BroadcastReceiver {
 
 				// FIXME - Remove logs.
 				Log.i(TAG, messages.getMessageBody());
-				decodeRespose(messages.getMessageBody());
+				decodeResponse(messages.getMessageBody());
 
 				// Make notification
 				String[] msgLines = messages.getMessageBody().split("\\n");
 				ResponseTypes resposeType = helper.getResponseType(msgLines[1]);
 				new Notifier(context).makeNotification(resposeType, messages.getMessageBody());
+				// Broadcast that a new SMS was handled.
+				this.context.sendBroadcast(new Intent(SettingsNames.SMS_HANDLED_ACTION.getName()));
 			}
 			// FIXME - Remove logs.
 			Log.i(TAG, messages.getMessageBody());
 		}
 	}
 
-	private void decodeRespose(String message) {
+	private void decodeResponse(String message) {
 
 		String[] msgLines = message.split("\\n");
 		ResponseTypes resposeType = helper.getResponseType(msgLines[1]);

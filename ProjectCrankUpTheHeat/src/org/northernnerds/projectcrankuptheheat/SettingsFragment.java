@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class SettingsFragment extends SherlockFragment implements OnClickListener, OnCheckedChangeListener, OnItemSelectedListener {
+public class SettingsFragment extends SherlockFragment implements OnClickListener, OnCheckedChangeListener, OnItemSelectedListener, Observer {
 	private final String strDefaultValue = "N/A";
 	// private final int iDefaultValue = -111;
 
@@ -297,5 +297,10 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
+	}
+
+	@Override
+	public void update() {
+		// TODO - Implement...
 	}
 }

@@ -5,7 +5,7 @@ public enum SettingsNames {
 			"minTemp"), WARNING_TEMP_HIGH("maxTemp"), DEVICE_NAME("deviceName"), HEAT_TEMP("HeatTemp"), COOL_TEMP("CoolTemp"), CURRENT_PROGRAM(
 			"CurrentProgram"), GSM_BATTERY("GSMBat"), GSM_SIGNAL("GSMSignal"), CURRENT_TEMP("AktuelTemp"), ALARM_NUMBER_01("AlarmNumber01"), ALARM_NUMBER_02(
 			"AlarmNumber02"), ALARM_NUMBER_03("AlarmNumber03"), ALARM_NUMBER_04("AlarmNumber04"), BRAND_NAME("Brand Name"), SHOULD_SHOW_WIZARD(
-			"ShowWizard");
+			"ShowWizard"), SMS_HANDLED_ACTION("org.northernnerds.smshandled");
 
 	private String name;
 

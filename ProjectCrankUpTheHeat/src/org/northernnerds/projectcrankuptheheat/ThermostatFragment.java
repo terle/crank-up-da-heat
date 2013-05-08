@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class ThermostatFragment extends SherlockFragment implements OnClickListener, OnTouchListener, OnSeekBarChangeListener {
+public class ThermostatFragment extends SherlockFragment implements OnClickListener, OnTouchListener, OnSeekBarChangeListener, Observer {
 	private LinearLayout buttonLayout;
 	private Button sendButton, cancelButton;
 	private ThermostatView thermostat;
@@ -178,5 +178,10 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 		} else {
 			hotColdSeekBar.setProgress(100);
 		}
+	}
+
+	@Override
+	public void update() {
+		// TODO - Implement.
 	}
 }

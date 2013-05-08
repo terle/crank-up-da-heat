@@ -1,31 +1,43 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.actionbarsherlock.app.SherlockFragment;
 import com.viewpagerindicator.IconPagerAdapter;
 
-class HeatFragmentAdapter extends FragmentPagerAdapter implements
+public class HeatFragmentAdapter extends FragmentPagerAdapter implements
 		IconPagerAdapter {
 	protected static final String[] CONTENT = new String[] { "Info",
 			"Programvalg", "Advarsler" };
 
 	private int mCount = CONTENT.length;
+	private List<SherlockFragment> fragmentList;
 
 	public HeatFragmentAdapter(FragmentManager fm) {
 		super(fm);
+		fragmentList = new ArrayList<SherlockFragment>();
     }
 
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {
 		case 0:
-			return new InfoFragment();
+			InfoFragment infoFragment = new InfoFragment();
+			fragmentList.add(infoFragment);
+			return infoFragment;
 		case 1:
-			return new ThermostatFragment();
+			ThermostatFragment thermostatFragment = new ThermostatFragment();
+			fragmentList.add(thermostatFragment);
+			return thermostatFragment;
 		default:
-			return new ThermometerFragment();
+			ThermometerFragment thermometerFragment = new ThermometerFragment();
+			fragmentList.add(thermometerFragment);
+			return thermometerFragment;
 		}
 	}
 
@@ -49,5 +61,17 @@ class HeatFragmentAdapter extends FragmentPagerAdapter implements
 	@Override
 	public int getIconResId(int index) {
 		return 0;
+	}
+	
+	public void updateFragments() {
+		for(SherlockFragment f : fragmentList) {
+			if(f instanceof InfoFragment) {
+				((InfoFragment) f).update();
+			} else if(f instanceof ThermostatFragment) {
+				((ThermostatFragment) f).update();
+			} else if(f instanceof ThermometerFragment) {
+				((ThermometerFragment) f).update();
+			}
+		}
 	}
 }

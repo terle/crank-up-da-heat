@@ -30,6 +30,7 @@ public class ThermometerFragment extends SherlockFragment implements OnTouchList
 		super.onCreate(savedInstanceState);
 		
 		View inflatedView = inflater.inflate(R.layout.thermometer_layout, null);
+		inflatedView.setBackgroundResource(R.drawable.bg);
 		rootView = (ViewGroup) inflatedView.findViewById(R.id.root);
 		
 		addThermometer();

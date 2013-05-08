@@ -46,6 +46,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener, O
 		Toast.makeText(getActivity(), "InfoFragment: OnCreate", Toast.LENGTH_SHORT).show();
 
 		View inflatedView = inflater.inflate(R.layout.infoscreen_layout, null);
+		inflatedView.setBackgroundResource(R.drawable.bg);
 
 		currentTemperatureTextView = (TextView) inflatedView.findViewById(R.id.currentTemperatureTextView);
 

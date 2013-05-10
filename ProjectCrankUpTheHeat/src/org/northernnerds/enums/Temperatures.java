@@ -13,4 +13,22 @@ public enum Temperatures {
 	public int getAngle() {
 		return this.angle;
 	}
+	
+	public Temperatures getTemperature(int i){
+		switch(i){
+		case 0: return T00;
+		case 8: return T08;
+		case 10: return T10;
+		case 16: return T16;
+		case 17: return T17;
+		case 18: return T18;
+		case 19: return T19;
+		case 20: return T20;
+		case 21: return T21;
+		case 22: return T22;
+		case 23: return T23;
+		case 24: return T24;
+		default: return T18;
+		}
+	}
 }

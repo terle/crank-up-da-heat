@@ -1,8 +1,10 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northernnerds.enums.SettingsNames;
 import org.northernnerds.enums.Temperatures;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -304,5 +306,22 @@ public class ThermostatView extends ImageView {
 			vibrator.vibrate(20);
 			shouldIVibrate = false;
 		}
+	}
+	
+	public void resetThermostatView(){
+		SharedPreferences settings = this.getContext().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
+		
+		int coolingTemp = settings.getInt(SettingsNames.COOL_TEMP.getName(), Temperatures.T18.getAngle());
+		int heatingTemp = settings.getInt(SettingsNames.HEAT_TEMP.getName(), Temperatures.T18.getAngle());
+		Temperatures t = Temperatures.T00;
+		if (coolingTemp == -1) {
+			// program is heat
+		t = t.getTemperature(heatingTemp);
+		} else if (heatingTemp == -1) {
+			// program is cool
+			t = t.getTemperature(coolingTemp);
+		}
+		setRotation(t.getAngle());
+		updateTextView(t.getAngle());
 	}
 }

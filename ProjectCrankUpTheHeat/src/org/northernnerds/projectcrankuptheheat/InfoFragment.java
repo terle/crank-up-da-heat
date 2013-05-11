@@ -62,7 +62,7 @@ public class InfoFragment extends SherlockFragment implements OnClickListener, O
 		refreshImageButton.setOnClickListener(this);
 
 		updateFieldsAndViewFromSharedPreferences();
-		
+
 		setProgramImagePlusTextView();
 		setBatteryImageAndTextView();
 		setGsmSignalImageView();
@@ -85,18 +85,20 @@ public class InfoFragment extends SherlockFragment implements OnClickListener, O
 	}
 
 	private void setProgramImagePlusTextView() {
-		//program = heat
-		if(coolingTemp == -1){
+		// program = heat
+		if (coolingTemp == -1) {
 			currentProgramImageView.setImageResource(R.drawable.varme_ikon);
-			currentProgramTextView.setText(""+heatingTemp+degreeSign);
+			currentProgramTextView.setText("" + heatingTemp + degreeSign);
 		}
-		//program = cool
-		else if(heatingTemp == -1){
+		// program = cool
+		else if (heatingTemp == -1) {
 			currentProgramImageView.setImageResource(R.drawable.kulde_ikon);
-			currentProgramTextView.setText(""+coolingTemp+degreeSign);
-		}
-		else{
-			currentProgramImageView.setImageResource(R.drawable.refresh);//Just to set something
+			currentProgramTextView.setText("" + coolingTemp + degreeSign);
+		} else {
+			currentProgramImageView.setImageResource(R.drawable.refresh);// Just
+																			// to
+																			// set
+																			// something
 			currentProgramTextView.setText("N/A");
 		}
 	}

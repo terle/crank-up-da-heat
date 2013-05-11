@@ -1,6 +1,9 @@
 package org.northernnerds.projectcrankuptheheat;
 
+import org.northernnerds.enums.SettingsNames;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -49,8 +52,7 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 		tempTextView.setTypeface(roboto);
 		tempTextView.setTextSize(70);
 
-		thermostat = (ThermostatView) inflatedView
-				.findViewById(R.id.thermostatView1);
+		thermostat = (ThermostatView) inflatedView.findViewById(R.id.thermostatView1);
 		thermostat.setTempTextView(tempTextView);
 		thermostat.setOnTouchListener(this);
 
@@ -61,14 +63,15 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 		cancelButton = (Button) inflatedView.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(this);
 
-		hotColdSeekBar = (SeekBar) inflatedView
-				.findViewById(R.id.hotColdSeekBar);
+		hotColdSeekBar = (SeekBar) inflatedView.findViewById(R.id.hotColdSeekBar);
 		hotColdSeekBar.setOnSeekBarChangeListener(this);
 
 		mainLayout = (RelativeLayout) inflatedView.findViewById(R.id.mainLayout);
 
 		hotImageView = (ImageView) inflatedView.findViewById(R.id.hotImageView);
 		coldImageView = (ImageView) inflatedView.findViewById(R.id.coldImageView);
+
+		resetThermostat();
 
 		return inflatedView;
 	}
@@ -105,7 +108,7 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 			progress.setIndeterminate(true);
 			progress.setCancelable(false);
 			progress.show();
-			
+
 			Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 				@Override
@@ -114,10 +117,11 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 					progress.cancel();
 				}
 			}, 5000);
-			
+
 			slideOutButtons();
 			break;
 		case R.id.cancelButton:
+			resetThermostat();
 			slideOutButtons();
 			break;
 		default:
@@ -145,8 +149,7 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
+	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		if (progress <= hotColdSeekBar.getMax() / 2) {
 			// TODO: This is deprecated, but since the app is working from API =
 			// 8, then we need it.
@@ -183,5 +186,30 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 	@Override
 	public void update() {
 		// TODO - Implement.
+		resetThermostat();
+	}
+
+	@SuppressWarnings("deprecation")
+	private void resetThermostat() {
+		thermostat.resetThermostatView();
+
+		SharedPreferences settings = this.getActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
+		int heatingTemp = settings.getInt(SettingsNames.HEAT_TEMP.getName(), 0);
+		int coolingTemp = settings.getInt(SettingsNames.COOL_TEMP.getName(), 0);
+
+		// program is heat
+		if (coolingTemp == -1) {
+			hotColdSeekBar.setProgress(0);
+			mainLayout.setBackgroundDrawable(hotBackground);
+			hotImageView.setImageDrawable(getResources().getDrawable(R.drawable.varme_ikon_selected));
+			coldImageView.setImageDrawable(getResources().getDrawable(R.drawable.kulde_ikon));
+
+			// program is cool
+		} else if (heatingTemp == -1) {
+			mainLayout.setBackgroundDrawable(coldBackground);
+			hotColdSeekBar.setProgress(100);
+			coldImageView.setImageDrawable(getResources().getDrawable(R.drawable.kulde_ikon_selected));
+			hotImageView.setImageDrawable(getResources().getDrawable(R.drawable.varme_ikon));
+		}
 	}
 }

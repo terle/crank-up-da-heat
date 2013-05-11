@@ -52,8 +52,8 @@ public class Notifier {
 //			Ph4:
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("Alarmnumre Opdateret").setContentText("")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -68,8 +68,8 @@ public class Notifier {
 //			Mulige Brand: Panasonic, Daikin, Haier, LG, Bosch, IVT, Mitsubishi, Toshiba, Elux1, Elux2
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("Model Opdateret").setContentText("")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -84,8 +84,8 @@ public class Notifier {
 //			GSM signal(1-5):3
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("Temperatur Normal igen").setContentText("")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			
@@ -93,24 +93,24 @@ public class Notifier {
 		}
 		case PASSWORD_UPDATE: {
 			noti = new Notification.Builder(context).setContentTitle("Password Opdateret").setContentText("")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
 		}
 		case POWER_FAILURE: {
 			noti = new Notification.Builder(context).setContentTitle("INGEN STR¯M!").setContentText("Netforsyning afbrudt")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.no_power)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
 		}
 		case POWER_RESTORED: {
 			noti = new Notification.Builder(context).setContentTitle("Str¿m genskabt").setContentText("Str¿mmen er tilbage")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.power_back)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -136,8 +136,8 @@ public class Notifier {
 //			GSM signal(1-5):2
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("Set Opdateret").setContentText("")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -150,8 +150,8 @@ public class Notifier {
 //			 Batteri:15%
 //			 GSM signal(1-5):2
 			noti = new Notification.Builder(context).setContentTitle("Status modtaget").setContentText("")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -168,8 +168,8 @@ public class Notifier {
 //			GSM signal(1-5):3
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("Advarsel Opdateret").setContentText("H¿j temperatur")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -186,16 +186,16 @@ public class Notifier {
 //			GSM signal(1-5):3
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("Advarsel Opdateret").setContentText("Lav temperatur")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
 		}
 		case UNKOWN: {
 			noti = new Notification.Builder(context).setContentTitle("Ukendt Type").setContentText(message)
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.temperature_normal)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -210,8 +210,8 @@ public class Notifier {
 //			GSM signal(1-5):3
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("ADVARSEL!").setContentText("H¿j temperatur")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.high_low_temperature)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
@@ -228,16 +228,16 @@ public class Notifier {
 //			GSM signal(1-5):2
 //			------------------------------------------
 			noti = new Notification.Builder(context).setContentTitle("ADVARSEL!").setContentText("Lav Temperatur")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.high_low_temperature)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;
 		}
 		case WARNING_UNDER_5_DEGREES: {
 			noti = new Notification.Builder(context).setContentTitle("ADVARSEL!").setContentText("Under 5 grader")
-					.setSmallIcon(R.drawable.send_ikon)
-					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.current_temperature_icon))
+					.setSmallIcon(R.drawable.below5)
+					.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.custom_switch_48))
 					.setContentIntent(pIntent)
 					.build();
 			break;

@@ -1,5 +1,6 @@
 package org.northernnerds.settings;
 
+import org.northernnerds.enums.Brands;
 import org.northernnerds.enums.ResponseTypes;
 import org.northernnerds.enums.SettingsNames;
 
@@ -68,7 +69,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Ph3:+4528921237
 			// Ph4:
 
-			// TODO: Make a notification of the numbers
 			Toast.makeText(context, ResponseTypes.ALARM_NUMBERS.getText() + " recieved", Toast.LENGTH_SHORT).show();
 
 			editor.putString(SettingsNames.ALARM_NUMBER_01.getName(), helper.getPhoneNum(msgLines[2]));
@@ -85,7 +85,11 @@ public class SMSReciever extends BroadcastReceiver {
 			// Mulige Brand: Panasonic, Daikin, Haier, LG, Bosch, IVT,
 			// Mitsubishi, Toshiba, Elux1, Elux2
 
-			// TODO maybe nothing should be done here
+			String strBrand = helper.getBrand(msgLines[2]);
+			Brands brand  = Brands.BOSCH;
+			brand = brand.getBrand(strBrand);
+			editor.putString(SettingsNames.BRAND_NAME.getName(), brand.getName());
+			
 			Toast.makeText(context, ResponseTypes.BRANDS.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
@@ -97,7 +101,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:100%
 			// GSM signal(1-5):1
 
-			// TODO make the system aware that things have normalized
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.NORMALIZED_NOTIFICATION.getText() + " recieved", Toast.LENGTH_SHORT)
 					.show();
@@ -107,8 +110,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Sommerhuset i R¿dhus
 			// **Din kode er ¾ndret**
 			// Din nye kode er:8110
-
-			// TODO Make the system aware that the password has been changed.
 
 			editor.putString(SettingsNames.DEVICE_PASSWORD.getName(), helper.getPassword(msgLines[2]));
 			Toast.makeText(context, ResponseTypes.PASSWORD_UPDATE.getText() + " recieved", Toast.LENGTH_SHORT).show();
@@ -122,7 +123,7 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:100%
 			// GSM signal(1-5):3
 
-			// TODO make the system aware that the power has failed
+			// TODO This case should lock the app, and show Tues BEAUTIFUL drawing of no-power
 			extractCommonContent(msgLines);
 
 			Toast.makeText(context, ResponseTypes.POWER_FAILURE.getText() + " recieved", Toast.LENGTH_SHORT).show();
@@ -136,7 +137,7 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:96%
 			// GSM signal(1-5):2
 
-			// TODO make the system aware of that the power has been restored
+			// TODO This should remove the drawing and restore operations back to normal
 			extractCommonContent(msgLines);
 
 			Toast.makeText(context, ResponseTypes.POWER_RESTORED.getText() + " recieved", Toast.LENGTH_SHORT).show();
@@ -150,13 +151,11 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:100%
 			// GSM signal(1-5):4
 
-			// TODO make the system aware of the recieved update
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.SET_UPDATE.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
 		}
 		case STATUS: {
-			// TODO: Make the system aware of the recieved update
 			Toast.makeText(context, ResponseTypes.STATUS.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			extractCommonContent(msgLines);
 			break;
@@ -169,7 +168,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:65%
 			// GSM signal(1-5):3
 
-			// TODO make the system aware of the update
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.TEMP_HIGH_UPDATE.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
@@ -182,7 +180,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:64%
 			// GSM signal(1-5):3
 
-			// TODO make the system aware of the update
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.TEMP_LOW_UPDATE.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
@@ -196,7 +193,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:63%
 			// GSM signal(1-5):3
 
-			// TODO make the system aware of the warning
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.WARNING_HIGH_TEMP.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
@@ -209,7 +205,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:95%
 			// GSM signal(1-5):2
 
-			// TODO make the system aware of the warning
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.WARNING_LOW_TEMP.getText() + " recieved", Toast.LENGTH_SHORT).show();
 			break;
@@ -222,7 +217,6 @@ public class SMSReciever extends BroadcastReceiver {
 			// Batteri:100%
 			// GSM signal(1-5):3
 
-			// TODO make the system aware of the warning
 			extractCommonContent(msgLines);
 			Toast.makeText(context, ResponseTypes.WARNING_UNDER_5_DEGREES.getText() + " recieved", Toast.LENGTH_SHORT)
 					.show();
@@ -233,6 +227,8 @@ public class SMSReciever extends BroadcastReceiver {
 			break;
 		}
 		}
+		
+		editor.commit();
 	}
 
 	private void extractCommonContent(String[] msgLines) {

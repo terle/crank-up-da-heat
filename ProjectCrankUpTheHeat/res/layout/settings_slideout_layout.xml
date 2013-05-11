@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:maxLength="30"
             android:text="Bingeling Dong" />
 
         <TextView
@@ -64,7 +65,8 @@
             android:id="@+id/unitPasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            android:maxLength="10" />
 
         <TableLayout
             android:id="@+id/tableLayout"

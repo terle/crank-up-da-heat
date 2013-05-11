@@ -179,7 +179,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.lockButtonImageButton:
-			ViewGroup parentView = (ViewGroup) inflatedView;
+			ViewGroup parentView = (ViewGroup) inflatedView.findViewById(R.id.behind);
 			if (isLocked) {
 				lockButton.setImageResource(R.drawable.lock_unlocked_icon);
 				isLocked = false;

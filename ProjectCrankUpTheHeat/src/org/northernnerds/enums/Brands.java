@@ -15,6 +15,8 @@ public enum Brands {
 		return this.name;
 	}
 
+	// TODO - Remove this method. Enum has a method called valueOf(String) that returns the Enum for a String,
+	// so this code is redundant.
 	public Brands getBrand(String name) {
 		Brands result = null;
 

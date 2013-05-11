@@ -6,46 +6,52 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.viewpagerindicator.IconPagerAdapter;
 
-class WizardFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
-    private WizardActivity parentActivity;
+class WizardFragmentAdapter extends FragmentPagerAdapter implements
+		IconPagerAdapter {
+	private WizardActivity parentActivity;
+	private PageFragmentOne page1;
+	private PageFragmentTwo page2;
+	private PageFragmentThree page3;
 
-    public WizardFragmentAdapter(FragmentManager fm) {
-        super(fm);
-    }
-    
-    public void setParentActivity(WizardActivity parentActivity) {
-    	this.parentActivity = parentActivity;
-    }
+	public WizardFragmentAdapter(FragmentManager fm) {
+		super(fm);
+	}
 
-    @Override
-    public Fragment getItem(int position) {
-    	switch (position) {
+	public void setParentActivity(WizardActivity parentActivity) {
+		this.parentActivity = parentActivity;
+	}
+
+	@Override
+	public Fragment getItem(int position) {
+		switch (position) {
 		case 0:
-			PageFragmentOne p1 = new PageFragmentOne();
-			p1.setParentActivity(parentActivity);
-			return p1;
+			page1 = new PageFragmentOne();
+			page1.setParentActivity(parentActivity);
+			return page1;
 		case 1:
-			PageFragmentTwo p2 = new PageFragmentTwo();
-			p2.setParentActivity(parentActivity);
-			return p2;
+			page2 = new PageFragmentTwo();
+			page2.setParentActivity(parentActivity);
+			return page2;
 		case 2:
-			PageFragmentThree p3 = new PageFragmentThree();
-			p3.setParentActivity(parentActivity);
-			return p3;
+			page3 = new PageFragmentThree();
+			page3.setParentActivity(parentActivity);
+			return page3;
 		default:
-			return new PageFragmentOne();
+			page1 = new PageFragmentOne();
+			page1.setParentActivity(parentActivity);
+			return page1;
 		}
-    }
+	}
 
-    @Override
-    public int getCount() {
-        return 3;
-    }
+	@Override
+	public int getCount() {
+		return 3;
+	}
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-    	return "";    
-    }
+	@Override
+	public CharSequence getPageTitle(int position) {
+		return "";
+	}
 
 	@Override
 	public int getIconResId(int index) {

@@ -5,4 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
 
+    <string name="wizard1">Vælg program ved at trække slideren imellem kold eller varm</string>
+    <string name="wizard2">Drej på termostaten for at sætte temperaturen for det valgte program</string>
+    <string name="wizard3">Træk i sliderne for at sætte minimum og maksimum værdier for overvågning</string>
+    <string name="showWizard">Vis guide ved opstart</string>
+    
 </resources>

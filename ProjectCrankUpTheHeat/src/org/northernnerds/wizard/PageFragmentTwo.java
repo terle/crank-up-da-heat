@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -28,6 +29,9 @@ public class PageFragmentTwo extends SherlockFragment implements
 		Button button1 = (Button) page.findViewById(R.id.button1);
 		button1.setOnClickListener(this);
 
+		ImageView thermostatIamge = (ImageView) page.findViewById(R.id.thermostatImage);
+		thermostatIamge.setImageBitmap(ImageHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.termostat, 300, 400));
+		
 		return page;
 	}
 

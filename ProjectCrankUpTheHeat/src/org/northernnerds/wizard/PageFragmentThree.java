@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageView;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -36,6 +37,9 @@ public class PageFragmentThree extends SherlockFragment implements OnClickListen
 		showWizardCheckbox = (CheckBox) page.findViewById(R.id.showWizardCheckbox);
 		showWizardCheckbox.setOnCheckedChangeListener(this);
 		
+		ImageView thermostatIamge = (ImageView) page.findViewById(R.id.maxMinImage);
+		thermostatIamge.setImageBitmap(ImageHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.maxmin, 300, 400));
+		
 		return page;
 	}
 
@@ -51,13 +55,18 @@ public class PageFragmentThree extends SherlockFragment implements OnClickListen
 			parentActivity = (WizardActivity) getSherlockActivity();
 			parentActivity.setCurrentFragment(0);
 		}
+		saveShowWizard();
 	}
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		saveShowWizard();
+	}
+	
+	private void saveShowWizard() {
 		SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), Context.MODE_PRIVATE);
 	    SharedPreferences.Editor editor = sharedPreferences.edit();
-	    editor.putBoolean("ShowWizard", isChecked);
+	    editor.putBoolean(SettingsNames.SHOULD_SHOW_WIZARD.getName(), showWizardCheckbox.isChecked());
 	    editor.commit();
 	}
 }

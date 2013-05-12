@@ -34,13 +34,13 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	// Values for SharedPrefs
 	private String deviceName = "Sommerfjong i bingbong";
-	private Brands brand = Brands.PANASONIC;
-	private String devicePhoneNum = "+4561319616"; // Dette er tlf nr til device
-	private String devicePasswd = "8110"; // Dette er password til device
+	private Brands brand = Brands.MITSUBISHI;
+	private String devicePhoneNum = "+4561319616"; // Dette er det "skarpe" tlf nr til device
+	private String devicePasswd = "8110"; // Dette er det "skarpe" password til device
 	private String phNum01 = "+4528921237";
-	private String phNum02 = "";
-	private String phNum03 = "";
-	private String phNum04 = "";
+	private String phNum02 = "1111111111";
+	private String phNum03 = "2222222222";
+	private String phNum04 = "3333333333";
 	private ImageButton lockButton;
 	private EditText alarmNum01EditText, alarmNum02EditText, alarmNum03EditText, alarmNum04EditText;
 	private boolean isLocked = false;
@@ -57,7 +57,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		Toast.makeText(getActivity(), "SettingsFragment: OnCreateView", Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getActivity(), "SettingsFragment: OnCreateView", Toast.LENGTH_SHORT).show();
 
 		inflatedView = inflater.inflate(R.layout.settings_slideout_layout, null);
 
@@ -68,6 +68,10 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		editor.putString(SettingsNames.DEVICE_PHONENO.getName(), devicePhoneNum);
 		editor.putString(SettingsNames.DEVICE_PASSWORD.getName(), devicePasswd);
 		editor.putString(SettingsNames.BRAND_NAME.getName(), brand.getName());
+		editor.putString(SettingsNames.ALARM_NUMBER_01.getName(), phNum01);
+		editor.putString(SettingsNames.ALARM_NUMBER_02.getName(), phNum02);
+		editor.putString(SettingsNames.ALARM_NUMBER_03.getName(), phNum03);
+		editor.putString(SettingsNames.ALARM_NUMBER_04.getName(), phNum04);
 		editor.commit();
 		// ---------------------
 
@@ -106,14 +110,14 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	@Override
 	public void onPause() {
-		Toast.makeText(getActivity(), "SettingsFragment: OnPause", Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getActivity(), "SettingsFragment: OnPause", Toast.LENGTH_SHORT).show();
 		super.onPause();
 		updateSharedPreferencesfromFields();
 	}
 
 	@Override
 	public void onResume() {
-		Toast.makeText(getActivity(), "SettingsFragment: OnResume", Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getActivity(), "SettingsFragment: OnResume", Toast.LENGTH_SHORT).show();
 		super.onResume();
 		// Restore preferences
 		updateFieldsfromSharedPreferences();
@@ -160,9 +164,7 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 		String temp = settings.getString(SettingsNames.BRAND_NAME.getName(), strDefaultValue);
 		brand = brand.getBrand(temp);
-		// TODO: SetSelection on brandspinner when loading values from
-		// SharedPrefs.
-		// brandSpinner.setSelection(CustomAdapter.getPosition("Category 2"));
+		brandSpinner.setSelection(getBrandPositionFromList(brand));
 
 		shouldShowWizard = settings.getBoolean(SettingsNames.SHOULD_SHOW_WIZARD.getName(), false);
 
@@ -240,6 +242,8 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 		public View getView(int position, View convertView, ViewGroup parent) {
 			return getCustomView(position, convertView, parent);
 		}
+		
+		
 
 		public View getCustomView(int position, View convertView, ViewGroup parent) {
 
@@ -301,6 +305,20 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 	@Override
 	public void update() {
-		// TODO - Implement...
+		updateFieldsfromSharedPreferences();
+	}
+	
+	/**
+	 * Returns the position of the Brand in the List brandList[]
+	 * @param brand
+	 * @return position in list
+	 */
+	private int getBrandPositionFromList(Brands brand){
+		int i = 0;
+		for(Brands b : brandList){
+			if(brand == b) return i;
+			i++;
+		}
+		return i;
 	}
 }

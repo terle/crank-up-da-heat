@@ -63,16 +63,16 @@ public class SettingsFragment extends SherlockFragment implements OnClickListene
 
 		SharedPreferences settings = getActivity().getSharedPreferences(SettingsNames.PREFERENCES_NAME.getName(), 0);
 		// --FOR DEVELOPEMNT----
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putString(SettingsNames.DEVICE_NAME.getName(), deviceName);
-		editor.putString(SettingsNames.DEVICE_PHONENO.getName(), devicePhoneNum);
-		editor.putString(SettingsNames.DEVICE_PASSWORD.getName(), devicePasswd);
-		editor.putString(SettingsNames.BRAND_NAME.getName(), brand.getName());
-		editor.putString(SettingsNames.ALARM_NUMBER_01.getName(), phNum01);
-		editor.putString(SettingsNames.ALARM_NUMBER_02.getName(), phNum02);
-		editor.putString(SettingsNames.ALARM_NUMBER_03.getName(), phNum03);
-		editor.putString(SettingsNames.ALARM_NUMBER_04.getName(), phNum04);
-		editor.commit();
+//		SharedPreferences.Editor editor = settings.edit();
+//		editor.putString(SettingsNames.DEVICE_NAME.getName(), deviceName);
+//		editor.putString(SettingsNames.DEVICE_PHONENO.getName(), devicePhoneNum);
+//		editor.putString(SettingsNames.DEVICE_PASSWORD.getName(), devicePasswd);
+//		editor.putString(SettingsNames.BRAND_NAME.getName(), brand.getName());
+//		editor.putString(SettingsNames.ALARM_NUMBER_01.getName(), phNum01);
+//		editor.putString(SettingsNames.ALARM_NUMBER_02.getName(), phNum02);
+//		editor.putString(SettingsNames.ALARM_NUMBER_03.getName(), phNum03);
+//		editor.putString(SettingsNames.ALARM_NUMBER_04.getName(), phNum04);
+//		editor.commit();
 		// ---------------------
 
 		showWizardCheckBox = (CheckBox) inflatedView.findViewById(R.id.showWizardCheckBox);

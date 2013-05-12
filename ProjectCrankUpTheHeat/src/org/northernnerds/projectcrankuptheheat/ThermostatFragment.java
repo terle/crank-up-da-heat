@@ -78,7 +78,7 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		System.out.println("X: " + event.getX() + ", Y: " + event.getY());
+//		System.out.println("X: " + event.getX() + ", Y: " + event.getY());
 
 		if (event.getAction() == MotionEvent.ACTION_UP) {
 			if (buttonLayout.getVisibility() == View.INVISIBLE) {
@@ -103,6 +103,7 @@ public class ThermostatFragment extends SherlockFragment implements OnClickListe
 		case R.id.sendButton:
 			Toast.makeText(getActivity(), "Sending something!", Toast.LENGTH_SHORT).show();
 			// Should call SMSHandler here...
+			//TODO: Send the sms
 			final ProgressDialog progress = new ProgressDialog(getSherlockActivity());
 			progress.setTitle("Vent venligst...");
 			progress.setIndeterminate(true);

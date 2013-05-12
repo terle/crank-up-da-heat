@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/unitNameTextView"
-        android:ems="10" >
+        android:ems="10"
+        android:text="Sommerfjong i bingbong" >
 
         <requestFocus />
     </EditText>
@@ -49,7 +50,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/unitPhoneNo"
         android:ems="10"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:text="+4561319616" />
 
     <TextView
         android:id="@+id/unitPasswordTextView"
@@ -66,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/unitPasswordTextView"
-        android:ems="10" />
+        android:ems="10"
+        android:text="8110" />
 
     <Button
         android:id="@+id/nextButton"
@@ -112,7 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="phone" />
 
         <ImageButton
             android:id="@+id/contactButton1"
@@ -141,7 +145,8 @@
             android:id="@+id/alarm2EditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="phone" />
 
         <ImageButton
             android:id="@+id/contactButton2"
@@ -170,7 +175,8 @@
             android:id="@+id/alarm3EditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="phone" />
 
         <ImageButton
             android:id="@+id/contactButton3"
@@ -199,7 +205,8 @@
             android:id="@+id/alarm4EditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="phone" />
 
         <ImageButton
             android:id="@+id/contactButton4"

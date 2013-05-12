@@ -43,7 +43,8 @@ public class InfoFragment extends SherlockFragment implements OnClickListener, O
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		Toast.makeText(getActivity(), "InfoFragment: OnCreate", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getActivity(), "InfoFragment: OnCreate",
+		// Toast.LENGTH_SHORT).show();
 
 		View inflatedView = inflater.inflate(R.layout.infoscreen_layout, null);
 		inflatedView.setBackgroundResource(R.drawable.bg);
@@ -72,14 +73,16 @@ public class InfoFragment extends SherlockFragment implements OnClickListener, O
 
 	@Override
 	public void onPause() {
-		Toast.makeText(getActivity(), "InfoFragment: OnPause", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getActivity(), "InfoFragment: OnPause",
+		// Toast.LENGTH_SHORT).show();
 		super.onPause();
 		updateSharedPreferencesfromFields();
 	}
 
 	@Override
 	public void onResume() {
-		Toast.makeText(getActivity(), "InfoFragment: OnResume", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(getActivity(), "InfoFragment: OnResume",
+		// Toast.LENGTH_SHORT).show();
 		super.onResume();
 		updateFieldsAndViewFromSharedPreferences();
 	}
@@ -95,10 +98,8 @@ public class InfoFragment extends SherlockFragment implements OnClickListener, O
 			currentProgramImageView.setImageResource(R.drawable.kulde_ikon);
 			currentProgramTextView.setText("" + coolingTemp + degreeSign);
 		} else {
-			currentProgramImageView.setImageResource(R.drawable.refresh);// Just
-																			// to
-																			// set
-																			// something
+			// Just to set something
+			currentProgramImageView.setImageResource(R.drawable.refresh);
 			currentProgramTextView.setText("N/A");
 		}
 	}

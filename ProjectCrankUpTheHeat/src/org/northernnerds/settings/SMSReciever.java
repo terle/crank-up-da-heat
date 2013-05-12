@@ -250,6 +250,11 @@ public class SMSReciever extends BroadcastReceiver {
 			editor.putInt(SettingsNames.HEAT_TEMP.getName(), -1);
 			editor.putInt(SettingsNames.COOL_TEMP.getName(), helper.getSetTemp(msgLines[2]));
 		}
+		else{
+			//Dunno why, but the sms-line reads: "Aktuel:18 - Set:18". If so, set the program to 18_heat
+			editor.putInt(SettingsNames.COOL_TEMP.getName(), -1);
+			editor.putInt(SettingsNames.HEAT_TEMP.getName(), helper.getSetTemp(msgLines[2]));
+		}
 
 		editor.putInt(SettingsNames.WARNING_TEMP_LOW.getName(), helper.getWarningLowTemp(msgLines[3]));
 		editor.putInt(SettingsNames.WARNING_TEMP_HIGH.getName(), helper.getWarningHighTemp(msgLines[3]));

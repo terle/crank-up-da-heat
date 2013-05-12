@@ -14,7 +14,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 public class PageFragmentTwo extends SherlockFragment implements
 		OnClickListener {
-
 	private WizardActivity parentActivity;
 
 	public void setParentActivity(WizardActivity parentActivity) {
@@ -24,24 +23,21 @@ public class PageFragmentTwo extends SherlockFragment implements
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
 		View page = (View) inflater.inflate(R.layout.fragment_two, null);
 		Button button1 = (Button) page.findViewById(R.id.button1);
 		button1.setOnClickListener(this);
 
-		ImageView thermostatIamge = (ImageView) page.findViewById(R.id.thermostatImage);
-		thermostatIamge.setImageBitmap(ImageHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.termostat, 300, 400));
-		
+		ImageView coldWarmSelectorIamge = (ImageView) page.findViewById(R.id.coldWarmSelectorImage);
+		coldWarmSelectorIamge.setImageBitmap(ImageHelper.decodeSampledBitmapFromResource(getResources(), R.drawable.kold_varm, 300, 400));
+
 		return page;
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (parentActivity != null) {
-			parentActivity.setCurrentFragment(2);
-		} else {
+		if (parentActivity == null) {
 			parentActivity = (WizardActivity) getSherlockActivity();
-			parentActivity.setCurrentFragment(1);
 		}
+		parentActivity.setCurrentFragment(2);
 	}
 }
